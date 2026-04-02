@@ -20,6 +20,8 @@ export const env = {
   NEXT_PUBLIC_SITE_URL:
     process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   NEON_PROJECT_ID: process.env.NEON_PROJECT_ID ?? "",
+  AUTH_GOOGLE_ID: process.env.AUTH_GOOGLE_ID ?? "",
+  AUTH_GOOGLE_SECRET: process.env.AUTH_GOOGLE_SECRET ?? "",
   ADMIN_BOOTSTRAP_EMAIL: process.env.ADMIN_BOOTSTRAP_EMAIL ?? "",
   ADMIN_BOOTSTRAP_PASSWORD: process.env.ADMIN_BOOTSTRAP_PASSWORD ?? "",
 };

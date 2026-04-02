@@ -29,12 +29,12 @@ export default function BananaSpotlight({
 }) {
   return (
     <section id="heritage" className="section-shell bg-surface-container">
-      <div className="content-shell grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
-        <ScrollReveal className="grid grid-cols-2 gap-4" direction="right">
+      <div className="content-shell grid items-center gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
+        <ScrollReveal className="grid grid-cols-2 gap-3 md:gap-4" direction="right">
           {images.map((image, index) => (
             <div
               key={image.slotKey}
-              className={`image-frame ${index % 2 === 0 ? "mt-8" : ""} ${
+              className={`image-frame ${index % 2 === 0 ? "mt-5 md:mt-8" : ""} ${
                 index === 0 || index === 3 ? "aspect-[3/4]" : "aspect-square"
               }`}
             >
@@ -49,9 +49,9 @@ export default function BananaSpotlight({
           ))}
         </ScrollReveal>
 
-        <ScrollReveal className="editorial-card p-6 md:p-8" direction="left" delay={120}>
+        <ScrollReveal className="editorial-card p-5 md:p-8" direction="left" delay={120}>
           <span className="eyebrow mb-5 inline-block">{section.bananaEyebrow}</span>
-          <h2 className="text-3xl font-extrabold text-on-surface md:text-[3.25rem]">
+          <h2 className="text-[2rem] font-extrabold text-on-surface md:text-[3.25rem]">
             {section.bananaTitle}
             <span className="mt-2 block italic text-primary-ink">
               {section.bananaAccent}
@@ -65,11 +65,11 @@ export default function BananaSpotlight({
             {features.map((feature, index) => (
               <ScrollReveal
                 key={feature.title}
-                className="rounded-[1.5rem] bg-surface-container p-5"
+                className="rounded-[1.35rem] bg-surface-container p-4 md:rounded-[1.5rem] md:p-5"
                 delay={190 + index * 90}
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary-ink text-white">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary-ink text-white md:h-12 md:w-12">
                     <span className="text-xs font-extrabold tracking-[0.18em]">
                       {feature.icon}
                     </span>

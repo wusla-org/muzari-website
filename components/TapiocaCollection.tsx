@@ -35,7 +35,7 @@ export default function TapiocaCollection({
           {products.map((product, index) => (
             <ScrollReveal key={product.title} delay={index * 120}>
               <article
-                className={`editorial-card group overflow-hidden p-6 ${
+                className={`editorial-card group overflow-hidden p-5 md:p-6 ${
                   index === 1 ? "lg:-translate-y-2" : ""
                 }`}
               >
@@ -49,12 +49,12 @@ export default function TapiocaCollection({
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                   />
                 </div>
-                <div className="px-2 pb-2 pt-7">
+                <div className="px-1 pb-1 pt-6 md:px-2 md:pb-2 md:pt-7">
                   <div className="mb-3 flex items-center gap-3 text-[0.7rem] font-extrabold uppercase tracking-[0.24em] text-primary-ink/70">
                     {index === 1 ? <span className="attention-dot" /> : null}
                     <span>Export Category {index + 1}</span>
                   </div>
-                  <h3 className="text-xl font-bold uppercase tracking-[-0.02em] text-on-surface md:text-[1.4rem]">
+                  <h3 className="text-lg font-bold uppercase tracking-[-0.02em] text-on-surface md:text-[1.4rem]">
                     {product.title}
                   </h3>
                   <p className="mt-3 text-sm leading-6 text-on-surface-variant">

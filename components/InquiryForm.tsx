@@ -51,20 +51,20 @@ export default function InquiryForm({
   return (
     <section id="inquiry" className="section-shell">
       <ScrollReveal className="content-shell">
-      <div className="editorial-card overflow-hidden p-6 md:p-10">
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+      <div className="editorial-card overflow-hidden p-4 md:p-10">
+        <div className="grid gap-6 md:gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-10">
           <ScrollReveal
-            className="rounded-[1.8rem] bg-primary-ink px-6 py-7 text-white md:px-8 md:py-9"
+            className="rounded-[1.45rem] bg-primary-ink px-5 py-6 text-white md:rounded-[1.8rem] md:px-8 md:py-9"
             direction="right"
             delay={60}
           >
-            <div className="mb-6 w-fit rounded-[1.35rem] bg-white px-4 py-3">
-              <BrandLogo variant="compact" className="max-w-[8.5rem]" />
+            <div className="mb-5 w-fit rounded-[1.1rem] bg-white px-4 py-3 md:mb-6 md:rounded-[1.35rem]">
+              <BrandLogo variant="compact" className="max-w-[7.5rem] md:max-w-[8.5rem]" />
             </div>
             <span className="mb-5 inline-block text-[0.72rem] font-extrabold uppercase tracking-[0.24em] text-white/70">
               {inquiryContent.inquiryBadge}
             </span>
-            <h2 className="text-3xl font-extrabold md:text-4xl">
+            <h2 className="text-[2rem] font-extrabold md:text-4xl">
               {inquiryContent.inquiryTitle}
             </h2>
             <p className="mt-5 text-[0.97rem] leading-7 text-white/76">
@@ -78,7 +78,7 @@ export default function InquiryForm({
           </ScrollReveal>
 
           <ScrollReveal
-            className="rounded-[1.8rem] bg-surface-bright p-6 md:p-8"
+            className="rounded-[1.45rem] bg-surface-bright p-5 md:rounded-[1.8rem] md:p-8"
             direction="left"
             delay={140}
           >

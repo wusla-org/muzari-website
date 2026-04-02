@@ -1,6 +1,6 @@
 import Link from "next/link";
+import AdminLogoutButton from "@/components/admin/AdminLogoutButton";
 import { requireAdminSession } from "@/lib/auth";
-import { logoutAction } from "@/app/admin/actions";
 
 export const dynamic = "force-dynamic";
 
@@ -39,12 +39,9 @@ export default async function AdminDashboardLayout({
               </Link>
             ))}
           </nav>
-
-          <form action={logoutAction} className="mt-6">
-            <button type="submit" className="button-secondary w-full">
-              Logout
-            </button>
-          </form>
+          <div className="mt-6">
+            <AdminLogoutButton />
+          </div>
         </aside>
 
         <section>{children}</section>

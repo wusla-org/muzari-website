@@ -37,7 +37,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed inset-x-0 top-0 z-50 px-4 pt-4 transition-all duration-500 md:px-6 ${
+      className={`fixed inset-x-0 top-0 z-50 px-3 pt-3 transition-all duration-500 md:px-6 md:pt-4 ${
         visible
           ? "translate-y-0 opacity-100"
           : "-translate-y-full opacity-0 pointer-events-none"
@@ -45,7 +45,7 @@ export default function Navbar() {
     >
       <div className="content-shell">
         <div
-          className={`glass-panel rounded-[2rem] px-5 py-4 transition-all duration-500 md:px-7 ${
+          className={`glass-panel rounded-[1.5rem] px-4 py-3 transition-all duration-500 md:rounded-[2rem] md:px-7 md:py-4 ${
             scrolled
               ? "shadow-[0_20px_56px_rgba(25,28,24,0.14)] ring-1 ring-white/50"
               : ""
@@ -56,7 +56,7 @@ export default function Navbar() {
               <BrandLogo
                 variant="compact"
                 priority
-                className="max-w-[11rem] md:max-w-[13.5rem]"
+                className="max-w-[8.75rem] md:max-w-[13.5rem]"
               />
             </a>
 
@@ -83,7 +83,7 @@ export default function Navbar() {
                 onClick={() => setOpen((value) => !value)}
                 className="flex h-11 w-11 items-center justify-center rounded-full bg-white/80 text-primary-ink md:hidden"
               >
-                <span className="text-xl font-semibold leading-none">
+                <span className="text-lg font-semibold leading-none">
                   {open ? "×" : "≡"}
                 </span>
               </button>
@@ -91,16 +91,16 @@ export default function Navbar() {
           </div>
 
           {open ? (
-            <div className="mt-4 space-y-2 rounded-[1.5rem] bg-white/72 p-3 md:hidden">
-              <div className="rounded-[1.2rem] bg-white px-4 py-4">
-                <BrandLogo variant="compact" className="max-w-[10.5rem]" />
+            <div className="mt-3 space-y-2 rounded-[1.25rem] bg-white/72 p-3 md:hidden">
+              <div className="rounded-[1.1rem] bg-white px-4 py-3">
+                <BrandLogo variant="compact" className="max-w-[9rem]" />
               </div>
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="block rounded-[1.2rem] px-4 py-3 text-[0.72rem] font-bold uppercase tracking-[0.22em] text-on-surface/80 hover:translate-x-1 hover:bg-white"
+                  className="block rounded-[1rem] px-4 py-3 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-on-surface/80 hover:translate-x-1 hover:bg-white"
                 >
                   {link.label}
                 </a>

@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
 import { getAdminSession } from "@/lib/auth";
 import { loginAction } from "@/app/admin/actions";
+import GoogleAdminSignInButton from "@/components/admin/GoogleAdminSignInButton";
+import { googleAuthConfigured } from "@/lib/auth-options";
 
 export const dynamic = "force-dynamic";
 
@@ -18,6 +20,10 @@ export default async function AdminLoginPage({ searchParams }: LoginPageProps) {
       ? "No admin account was found for that email."
       : params.error === "password"
         ? "The password did not match the stored admin password."
+        : params.error === "AccessDenied"
+          ? "This Google account is not approved for admin access."
+          : params.error === "google_missing"
+            ? "Google authentication is not configured yet."
         : params.error === "server"
           ? "The server hit an unexpected login error. Check the Next.js terminal."
           : params.error === "missing"
@@ -41,6 +47,25 @@ export default async function AdminLoginPage({ searchParams }: LoginPageProps) {
               {errorMessage}
             </p>
           ) : null}
+
+          {googleAuthConfigured ? (
+            <div className="mt-8">
+              <GoogleAdminSignInButton />
+            </div>
+          ) : (
+            <p className="mt-8 rounded-2xl bg-surface-container px-4 py-3 text-sm text-on-surface-variant">
+              Google admin sign-in will appear here after `AUTH_GOOGLE_ID` and
+              `AUTH_GOOGLE_SECRET` are added to your environment.
+            </p>
+          )}
+
+          <div className="mt-8 flex items-center gap-3">
+            <div className="h-px flex-1 bg-primary-ink/10" />
+            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-on-surface-variant">
+              Or use temporary email login
+            </span>
+            <div className="h-px flex-1 bg-primary-ink/10" />
+          </div>
 
           <form action={loginAction} className="mt-8 space-y-6">
             <div>

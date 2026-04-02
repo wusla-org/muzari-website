@@ -26,6 +26,15 @@ stay only in local `.env.local` and Vercel environment variables.
 - `ADMIN_BOOTSTRAP_PASSWORD`
 - `NEON_PROJECT_ID` (optional, internal reference only)
 
+### Optional Google admin sign-in variables
+
+- `AUTH_GOOGLE_ID`
+- `AUTH_GOOGLE_SECRET`
+
+Google sign-in is checked against the existing `admin_users` table, so only
+approved admin emails can access `/admin` even if another Google user signs in
+successfully.
+
 ### Before first production deploy
 
 1. Rotate the Neon database password because older connection strings were exposed during local setup.
@@ -33,6 +42,7 @@ stay only in local `.env.local` and Vercel environment variables.
 3. Use a new strong `ADMIN_BOOTSTRAP_PASSWORD` for production.
 4. Confirm `.env.local`, `.neon`, `.vercel`, and `.next` are not committed.
 5. Set `NEXT_PUBLIC_SITE_URL` to your Vercel production URL.
+6. If you want Google admin login, create Google OAuth credentials and add `AUTH_GOOGLE_ID` and `AUTH_GOOGLE_SECRET`.
 
 ### After first deploy
 
@@ -41,6 +51,7 @@ stay only in local `.env.local` and Vercel environment variables.
 3. Sign in to `/admin` with the production bootstrap credentials.
 4. Change homepage content and images from the CMS and confirm production updates.
 5. Confirm no secrets appear in client-side source, browser DevTools, or public UI.
+6. If Google auth is enabled, confirm only emails already present in `admin_users` can enter `/admin`.
 
 ## Getting Started
 

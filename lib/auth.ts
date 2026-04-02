@@ -1,7 +1,9 @@
 import { createHmac, randomBytes, scryptSync, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
 import { env } from "@/lib/env";
+import { authOptions } from "@/lib/auth-options";
 import { sql } from "@/lib/neon";
 
 const SESSION_COOKIE = "muzari_admin_session";
@@ -97,6 +99,21 @@ export async function clearAdminSession() {
 }
 
 export async function getAdminSession() {
+  const oauthSession = await getServerSession(authOptions);
+  const oauthEmail = oauthSession?.user?.email?.toLowerCase().trim();
+
+  if (oauthEmail) {
+    const [oauthUser] = await sql`
+      SELECT id, email, display_name AS "displayName"
+      FROM admin_users
+      WHERE email = ${oauthEmail}
+    `;
+
+    if (oauthUser) {
+      return oauthUser;
+    }
+  }
+
   const cookieStore = await cookies();
   const sessionToken = cookieStore.get(SESSION_COOKIE)?.value;
   if (!sessionToken) return null;
