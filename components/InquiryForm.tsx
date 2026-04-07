@@ -21,6 +21,7 @@ export default function InquiryForm({
   });
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function handleChange(
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
@@ -31,6 +32,7 @@ export default function InquiryForm({
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setError("");
+    setIsSubmitting(true);
 
     const response = await fetch("/api/inquiries", {
       method: "POST",
@@ -42,10 +44,12 @@ export default function InquiryForm({
 
     if (!response.ok) {
       setError("We could not send your inquiry. Please try again.");
+      setIsSubmitting(false);
       return;
     }
 
     setSubmitted(true);
+    setIsSubmitting(false);
   }
 
   return (
@@ -111,10 +115,11 @@ export default function InquiryForm({
                 ) : null}
                 <div className="grid gap-6 md:grid-cols-2">
                   <div>
-                    <label className="mb-3 block text-sm font-medium text-on-surface-variant">
+                    <label htmlFor="field-name" className="mb-3 block text-sm font-medium text-on-surface-variant">
                       Full Name
                     </label>
                     <input
+                      id="field-name"
                       type="text"
                       name="name"
                       value={form.name}
@@ -125,10 +130,11 @@ export default function InquiryForm({
                     />
                   </div>
                   <div>
-                    <label className="mb-3 block text-sm font-medium text-on-surface-variant">
+                    <label htmlFor="field-email" className="mb-3 block text-sm font-medium text-on-surface-variant">
                       Company Email
                     </label>
                     <input
+                      id="field-email"
                       type="email"
                       name="email"
                       value={form.email}
@@ -142,10 +148,11 @@ export default function InquiryForm({
 
                 <div className="grid gap-6 md:grid-cols-2">
                   <div>
-                    <label className="mb-3 block text-sm font-medium text-on-surface-variant">
+                    <label htmlFor="field-organization" className="mb-3 block text-sm font-medium text-on-surface-variant">
                       Organization
                     </label>
                     <input
+                      id="field-organization"
                       type="text"
                       name="organization"
                       value={form.organization}
@@ -155,10 +162,11 @@ export default function InquiryForm({
                     />
                   </div>
                   <div>
-                    <label className="mb-3 block text-sm font-medium text-on-surface-variant">
+                    <label htmlFor="field-product" className="mb-3 block text-sm font-medium text-on-surface-variant">
                       Product Interest
                     </label>
                     <select
+                      id="field-product"
                       name="product"
                       value={form.product}
                       onChange={handleChange}
@@ -172,10 +180,11 @@ export default function InquiryForm({
                 </div>
 
                 <div>
-                  <label className="mb-3 block text-sm font-medium text-on-surface-variant">
+                  <label htmlFor="field-details" className="mb-3 block text-sm font-medium text-on-surface-variant">
                     Requirement Details
                   </label>
                   <textarea
+                    id="field-details"
                     name="details"
                     value={form.details}
                     onChange={handleChange}
@@ -185,8 +194,8 @@ export default function InquiryForm({
                   />
                 </div>
 
-                <button type="submit" className="button-primary w-full">
-                  Send Export Inquiry
+                <button type="submit" disabled={isSubmitting} className="button-primary w-full disabled:opacity-70 disabled:cursor-not-allowed">
+                  {isSubmitting ? "Sending..." : "Send Export Inquiry"}
                 </button>
               </form>
             )}
