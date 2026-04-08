@@ -21,6 +21,7 @@ export default function InquiryForm({
   });
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function handleChange(
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
@@ -30,22 +31,30 @@ export default function InquiryForm({
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    if (isSubmitting) return;
+    setIsSubmitting(true);
     setError("");
 
-    const response = await fetch("/api/inquiries", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(form),
-    });
+    try {
+      const response = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
 
-    if (!response.ok) {
-      setError("We could not send your inquiry. Please try again.");
-      return;
+      if (!response.ok) {
+        setError("We could not send your inquiry. Please try again.");
+        return;
+      }
+
+      setSubmitted(true);
+    } catch { // _err
+      setError("A network error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setSubmitted(true);
   }
 
   return (
@@ -111,11 +120,12 @@ export default function InquiryForm({
                 ) : null}
                 <div className="grid gap-6 md:grid-cols-2">
                   <div>
-                    <label className="mb-3 block text-sm font-medium text-on-surface-variant">
+                    <label htmlFor="name" className="mb-3 block text-sm font-medium text-on-surface-variant">
                       Full Name
                     </label>
                     <input
                       type="text"
+                      id="name"
                       name="name"
                       value={form.name}
                       onChange={handleChange}
@@ -125,11 +135,12 @@ export default function InquiryForm({
                     />
                   </div>
                   <div>
-                    <label className="mb-3 block text-sm font-medium text-on-surface-variant">
+                    <label htmlFor="email" className="mb-3 block text-sm font-medium text-on-surface-variant">
                       Company Email
                     </label>
                     <input
                       type="email"
+                      id="email"
                       name="email"
                       value={form.email}
                       onChange={handleChange}
@@ -142,11 +153,12 @@ export default function InquiryForm({
 
                 <div className="grid gap-6 md:grid-cols-2">
                   <div>
-                    <label className="mb-3 block text-sm font-medium text-on-surface-variant">
+                    <label htmlFor="organization" className="mb-3 block text-sm font-medium text-on-surface-variant">
                       Organization
                     </label>
                     <input
                       type="text"
+                      id="organization"
                       name="organization"
                       value={form.organization}
                       onChange={handleChange}
@@ -155,10 +167,11 @@ export default function InquiryForm({
                     />
                   </div>
                   <div>
-                    <label className="mb-3 block text-sm font-medium text-on-surface-variant">
+                    <label htmlFor="product" className="mb-3 block text-sm font-medium text-on-surface-variant">
                       Product Interest
                     </label>
                     <select
+                      id="product"
                       name="product"
                       value={form.product}
                       onChange={handleChange}
@@ -172,10 +185,11 @@ export default function InquiryForm({
                 </div>
 
                 <div>
-                  <label className="mb-3 block text-sm font-medium text-on-surface-variant">
+                  <label htmlFor="details" className="mb-3 block text-sm font-medium text-on-surface-variant">
                     Requirement Details
                   </label>
                   <textarea
+                    id="details"
                     name="details"
                     value={form.details}
                     onChange={handleChange}
@@ -185,8 +199,8 @@ export default function InquiryForm({
                   />
                 </div>
 
-                <button type="submit" className="button-primary w-full">
-                  Send Export Inquiry
+                <button type="submit" disabled={isSubmitting} className="button-primary w-full disabled:opacity-70 disabled:cursor-not-allowed">
+                  {isSubmitting ? "Sending..." : "Send Export Inquiry"}
                 </button>
               </form>
             )}
