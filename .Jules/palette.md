@@ -1,0 +1,3 @@
+## 2024-04-12 - Accessibility & Feedback Improvements for InquiryForm
+**Learning:** Custom UI components in this app (like the generic `input-shell` text boxes) look great but were missing foundational a11y HTML attributes (`id`/`htmlFor`) mapping them to labels. The lack of visual loading states (`isSubmitting`) made the asynchronous submission path feel unresponsive.
+**Action:** Always verify that input elements have matching `id`s for their `label`s, and ensure interactive submit elements immediately indicate a disabled or loading state to visually reassure users that their action was registered.

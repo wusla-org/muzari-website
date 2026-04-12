@@ -20,6 +20,7 @@ export default function InquiryForm({
     details: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
 
   function handleChange(
@@ -31,21 +32,26 @@ export default function InquiryForm({
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setError("");
+    setIsSubmitting(true);
 
-    const response = await fetch("/api/inquiries", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(form),
-    });
+    try {
+      const response = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
 
-    if (!response.ok) {
-      setError("We could not send your inquiry. Please try again.");
-      return;
+      if (!response.ok) {
+        setError("We could not send your inquiry. Please try again.");
+        return;
+      }
+
+      setSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setSubmitted(true);
   }
 
   return (
@@ -111,58 +117,66 @@ export default function InquiryForm({
                 ) : null}
                 <div className="grid gap-6 md:grid-cols-2">
                   <div>
-                    <label className="mb-3 block text-sm font-medium text-on-surface-variant">
+                    <label htmlFor="inquiry-name" className="mb-3 block text-sm font-medium text-on-surface-variant">
                       Full Name
                     </label>
                     <input
+                      id="inquiry-name"
                       type="text"
                       name="name"
                       value={form.name}
                       onChange={handleChange}
                       required
+                      disabled={isSubmitting}
                       placeholder="e.g. John Doe"
-                      className="input-shell"
+                      className="input-shell disabled:opacity-50"
                     />
                   </div>
                   <div>
-                    <label className="mb-3 block text-sm font-medium text-on-surface-variant">
+                    <label htmlFor="inquiry-email" className="mb-3 block text-sm font-medium text-on-surface-variant">
                       Company Email
                     </label>
                     <input
+                      id="inquiry-email"
                       type="email"
                       name="email"
                       value={form.email}
                       onChange={handleChange}
                       required
+                      disabled={isSubmitting}
                       placeholder="email@company.com"
-                      className="input-shell"
+                      className="input-shell disabled:opacity-50"
                     />
                   </div>
                 </div>
 
                 <div className="grid gap-6 md:grid-cols-2">
                   <div>
-                    <label className="mb-3 block text-sm font-medium text-on-surface-variant">
+                    <label htmlFor="inquiry-organization" className="mb-3 block text-sm font-medium text-on-surface-variant">
                       Organization
                     </label>
                     <input
+                      id="inquiry-organization"
                       type="text"
                       name="organization"
                       value={form.organization}
                       onChange={handleChange}
+                      disabled={isSubmitting}
                       placeholder="Company Name"
-                      className="input-shell"
+                      className="input-shell disabled:opacity-50"
                     />
                   </div>
                   <div>
-                    <label className="mb-3 block text-sm font-medium text-on-surface-variant">
+                    <label htmlFor="inquiry-product" className="mb-3 block text-sm font-medium text-on-surface-variant">
                       Product Interest
                     </label>
                     <select
+                      id="inquiry-product"
                       name="product"
                       value={form.product}
                       onChange={handleChange}
-                      className="input-shell appearance-none"
+                      disabled={isSubmitting}
+                      className="input-shell appearance-none disabled:opacity-50"
                     >
                       {productOptions.map((opt) => (
                         <option key={opt}>{opt}</option>
@@ -172,21 +186,28 @@ export default function InquiryForm({
                 </div>
 
                 <div>
-                  <label className="mb-3 block text-sm font-medium text-on-surface-variant">
+                  <label htmlFor="inquiry-details" className="mb-3 block text-sm font-medium text-on-surface-variant">
                     Requirement Details
                   </label>
                   <textarea
+                    id="inquiry-details"
                     name="details"
                     value={form.details}
                     onChange={handleChange}
+                    disabled={isSubmitting}
                     rows={6}
                     placeholder="Volume requirements, destination port, and preferred timelines..."
-                    className="input-shell resize-none"
+                    className="input-shell resize-none disabled:opacity-50"
                   />
                 </div>
 
-                <button type="submit" className="button-primary w-full">
-                  Send Export Inquiry
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  aria-busy={isSubmitting}
+                  className="button-primary w-full disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? "Sending..." : "Send Export Inquiry"}
                 </button>
               </form>
             )}
