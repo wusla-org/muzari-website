@@ -20,7 +20,7 @@ export default function MissionVision({
             <span className="inline-flex h-[1em] w-[2.2em] items-center justify-center align-middle relative overflow-hidden rounded-full border-4 border-surface shadow-sm mx-1">
               <Image
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiDZgyv3xrx8FaQu0jWkqAGASh3Okze46dKeMq8pD_YNWxU_Ppa3SXNr4ivAmYOijZ_Hx6j39vN819ohakBNXQZfu6gWgkzpt-SnSW3nbgpTQkKz36Tx3mLOSAhopmrryHYRnRXd_9jS1YnYI59RWPqi1lDTKR6TQH6mjgs0-AU2syp94WW0OnjAiF9XAS6uR2YOO2CRNtEdAyIcAthbpB6_vjyJIk-gh4ygBi_2qgHUECRdkSZAFrb458EiiwUtIcZ-MDBM3stCun"
-                alt="Farmers"
+                alt="Kerala tapioca farmers working in the plantation"
                 fill
                 className="object-cover"
               />
@@ -29,7 +29,7 @@ export default function MissionVision({
             <span className="inline-flex h-[1em] w-[2.2em] items-center justify-center align-middle relative overflow-hidden rounded-full border-4 border-surface shadow-sm mx-1">
               <Image
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuD22HSou1rG2SCGYlIaJ7HwbGw1viRyODBc-NRqNbYaCWdYucu7y4n8UdVaY9UFj2Dn1CoxGqU2tYS4Ysjx5NCjMbiNV-BOJP-t_h8EJeaSPnV9TKg-_g2gAATH-TRwZg0ZVikpfFEzoOr_MKjS_kqwWQuNvqgGUhuv2p1Ib8Xwe1y0ByBOeMExQ_vjaufER-TX2x7mcaLRDazanfTQbydRdd7MZFAQmjYAfbd2sV2Nnr1Riytis8CWn8fkkbgXKihZ2GLG4Y7q2Ti3"
-                alt="Agricultural"
+                alt="Fresh Nendran bananas growing in Kerala"
                 fill
                 className="object-cover"
               />

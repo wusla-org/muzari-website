@@ -1,0 +1,32 @@
+# Muzari Exports
+
+> Kerala's premium agricultural exporter. Tapioca and Nendran Banana exports to 35+ countries. ISO-certified, Global GAP compliant.
+
+Muzari Exports is a B2B agricultural export company based in Kerala, India. We specialize in premium Tapioca (cassava) products and Nendran Banana exports, sourced directly from Kerala's farming heartlands including Wayanad and Thrissur districts. We serve global buyers across 35+ countries with ISO-certified, cold-chain-controlled supply chains.
+
+## Products
+
+- [Tapioca Collection](/collections) — Premium whole cassava root, value-added chips, and triple-refined organic starch for food and textile industries
+- [Nendran Banana](/collections) — Kerala's iconic Nendran cultivar exported fresh and processed to global markets
+- [Banana Blossom](/products/banana-blossom) — Freshly harvested banana blossoms for vegan food processing and specialty food exports
+
+## Quality Standards
+
+- ISO Certified — International quality management certification
+- Global GAP — Good Agricultural Practices compliance for sustainable, safe food production
+- Organic Focus — Purity and buyer confidence through disciplined sourcing
+- Cold Chain Control — Temperature-monitored handling from harvest to port delivery
+
+## About
+
+- **Location:** Kerala, India
+- **Export reach:** 35+ countries across Europe, Asia, and the Americas
+- **Annual volume:** 48,000+ tons exported
+- **Certifications:** ISO, Global GAP, Organic, Cold Chain
+- **Response time:** Within 24 hours for qualified trade inquiries
+- **Contact:** [Trade Inquiry Form](/#inquiry)
+
+## Optional
+
+- [Admin Panel](https://muzariexports.com/admin): Internal CMS — not for public AI indexing
+- [Theme Reference](https://muzariexports.com/theme): Internal design system — not for public AI indexing

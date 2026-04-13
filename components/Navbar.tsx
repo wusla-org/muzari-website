@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import BrandLogo from "@/components/BrandLogo";
 
 const navLinks = [
@@ -13,30 +14,73 @@ const navLinks = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const isHome = pathname === "/";
 
   return (
-    <nav className="absolute left-1/2 top-8 z-50 w-full max-w-7xl -translate-x-1/2 px-6 md:px-12 lg:top-10 lg:px-16">
-      <div className="flex w-full items-center justify-between">
+    <header
+      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 ease-soft ${
+        scrolled ? "py-3" : "py-6 md:py-8"
+      }`}
+    >
+      <div className="content-shell flex items-center justify-between">
+        {/* Logo Section */}
         <Link href="/" className="flex items-center">
-          <BrandLogo variant="compact" className="w-28 md:w-36 drop-shadow-md" />
+          <BrandLogo
+            variant="compact"
+            className={`transition-all duration-500 ${
+              scrolled ? "w-24 md:w-28" : "w-28 md:w-36"
+            } ${!scrolled && isHome ? "grayscale brightness-200 drop-shadow-md" : ""}`}
+          />
         </Link>
 
-        {/* Desktop Links */}
-        <div className="hidden lg:flex items-center gap-8">
+        {/* Desktop Links - Floating Pill */}
+        <nav
+          className={`hidden lg:flex items-center gap-1 transition-all duration-500 px-2 py-1.5 rounded-full border border-transparent ${
+            scrolled
+              ? "bg-white/80 backdrop-blur-xl shadow-lg shadow-on-surface/5 border-on-surface/5"
+              : "bg-transparent"
+          }`}
+        >
           {navLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="text-sm font-semibold tracking-wide text-white drop-shadow-md hover:text-white/80 transition-colors"
+              className={`px-5 py-2 text-[13px] font-bold tracking-tight rounded-full transition-all duration-300 ${
+                scrolled
+                  ? "text-on-surface hover:bg-surface"
+                  : isHome
+                  ? "text-white drop-shadow-sm hover:bg-white/10"
+                  : "text-on-surface hover:bg-surface"
+              }`}
             >
               {link.label}
             </Link>
           ))}
-        </div>
+        </nav>
 
         {/* Desktop CTA */}
         <div className="hidden lg:block">
-          <Link href="/#inquiry" className="inline-flex h-11 items-center justify-center rounded-full bg-white px-6 text-[0.8rem] font-bold text-on-surface shadow-sm transition-transform hover:scale-105">
+          <Link
+            href="/#inquiry"
+            className={`inline-flex h-11 items-center justify-center rounded-full px-7 text-[13px] font-bold transition-all duration-300 ${
+              scrolled
+                ? "bg-primary text-white shadow-md hover:bg-primary-dark hover:-translate-y-0.5"
+                : isHome
+                ? "bg-white text-on-surface shadow-md hover:bg-surface hover:-translate-y-0.5"
+                : "bg-primary text-white shadow-md hover:bg-primary-dark hover:-translate-y-0.5"
+            }`}
+          >
             Contact Us
           </Link>
         </div>
@@ -45,36 +89,45 @@ export default function Navbar() {
         <button
           onClick={() => setOpen(!open)}
           aria-label="Toggle navigation menu"
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-on-surface lg:hidden shadow-sm"
+          className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 lg:hidden shadow-sm ${
+            scrolled || !isHome
+              ? "bg-primary text-white"
+              : "bg-white text-on-surface"
+          }`}
         >
-          <span className="text-xl font-bold leading-none">{open ? "×" : "≡"}</span>
+          <span className="text-xl font-medium leading-none">{open ? "×" : "≡"}</span>
         </button>
       </div>
 
       {/* Mobile Menu */}
-      {open && (
-        <div id="mobile-menu" className="mt-4 space-y-2 rounded-3xl bg-white p-4 shadow-2xl lg:hidden">
+      <div
+        id="mobile-menu"
+        className={`absolute left-0 right-0 top-full px-6 transition-all duration-500 ease-soft lg:hidden ${
+          open ? "mt-4 opacity-100 translate-y-0" : "pointer-events-none mt-0 opacity-0 -translate-y-4"
+        }`}
+      >
+        <div className="overflow-hidden rounded-[2rem] bg-white/95 backdrop-blur-2xl p-3 shadow-2xl border border-on-surface/5">
           {navLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="block rounded-2xl px-4 py-3 text-sm font-bold text-on-surface hover:bg-surface"
+              className="block rounded-2xl px-5 py-4 text-sm font-bold text-on-surface hover:bg-surface transition-colors"
             >
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/#inquiry"
-            onClick={() => setOpen(false)}
-            className="mt-2 flex w-full h-12 items-center justify-center rounded-full bg-primary text-sm font-bold text-white"
-          >
-            Contact Us
-          </Link>
+          <div className="p-2 mt-2">
+            <Link
+              href="/#inquiry"
+              onClick={() => setOpen(false)}
+              className="flex w-full h-12 items-center justify-center rounded-full bg-primary text-sm font-bold text-white shadow-lg active:scale-95 transition-all"
+            >
+              Contact Us
+            </Link>
+          </div>
         </div>
-      )}
-    </nav>
+      </div>
+    </header>
   );
 }
