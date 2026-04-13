@@ -22,7 +22,7 @@ export default async function Home() {
         <HeroSection hero={content.hero} image={content.heroImage} />
         <MissionVision content={content.missionVision} />
         <OurProducts />
-        <QualityStandards standards={content.qualityStandards} />
+        <QualityStandards />
         <IndustriesServed />
         <ClientReviews />
         <InquiryForm
