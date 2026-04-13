@@ -1,10 +1,11 @@
-import { createHmac, randomBytes, scryptSync, timingSafeEqual } from "node:crypto";
+import { createHmac, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { env } from "@/lib/env";
 import { authOptions } from "@/lib/auth-options";
 import { sql } from "@/lib/neon";
+export { hashPassword, verifyPassword } from "@/lib/password";
 
 const SESSION_COOKIE = "muzari_admin_session";
 const SESSION_MAX_AGE = 60 * 60 * 24 * 7;
@@ -25,30 +26,6 @@ function base64UrlDecode(value: string) {
 
 function sign(value: string) {
   return createHmac("sha256", env.AUTH_SECRET).update(value).digest("base64url");
-}
-
-export function hashPassword(password: string) {
-  const salt = randomBytes(16).toString("hex");
-  const hash = scryptSync(password, salt, 64).toString("hex");
-  return `${salt}:${hash}`;
-}
-
-export function verifyPassword(password: string, storedHash: string) {
-  const [salt, stored] = storedHash.split(":");
-  if (!salt || !stored) {
-    console.error("[admin auth] Stored password hash is malformed.");
-    return false;
-  }
-
-  const hash = scryptSync(password, salt, 64);
-  const storedBuffer = Buffer.from(stored, "hex");
-  if (!storedBuffer.length) {
-    console.error("[admin auth] Stored password hash could not be decoded.");
-    return false;
-  }
-
-  if (hash.length !== storedBuffer.length) return false;
-  return timingSafeEqual(hash, storedBuffer);
 }
 
 function createSessionToken(payload: SessionPayload) {
