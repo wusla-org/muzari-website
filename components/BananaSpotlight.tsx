@@ -2,24 +2,6 @@ import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal";
 import { ImageAsset, SiteSettingsContent } from "@/lib/content";
 
-const features = [
-  {
-    icon: "ECO",
-    title: "Ethically sourced",
-    description: "Direct partnerships with local farmer cooperatives in Wayanad.",
-  },
-  {
-    icon: "CC",
-    title: "Cold-chain optimized",
-    description: "Preserving peak freshness through structured logistics.",
-  },
-  {
-    icon: "TG",
-    title: "Trade-grade consistency",
-    description: "Built for repeat global buyers who need dependable presentation.",
-  },
-];
-
 export default function BananaSpotlight({
   section,
   images,
@@ -28,68 +10,54 @@ export default function BananaSpotlight({
   images: ImageAsset[];
 }) {
   return (
-    <section id="heritage" className="section-shell bg-surface-container">
-      <div className="content-shell grid items-center gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
-        <ScrollReveal className="grid grid-cols-2 gap-3 md:gap-4" direction="right">
-          {images.map((image, index) => (
-            <div
-              key={image.slotKey}
-              className={`image-frame ${index % 2 === 0 ? "mt-5 md:mt-8" : ""} ${
-                index === 0 || index === 3 ? "aspect-[3/4]" : "aspect-square"
-              }`}
-            >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                sizes="(max-width: 1024px) 50vw, 25vw"
-                className="object-cover transition-transform duration-700 ease-out hover:scale-[1.05]"
-              />
-            </div>
-          ))}
-        </ScrollReveal>
+    <section id="banana-spotlight" className="section-shell">
+      <div className="content-shell">
+        <ScrollReveal>
+           <div className="relative w-full overflow-hidden rounded-[2.5rem] min-h-[650px] shadow-sm flex flex-col justify-end p-8 md:p-14">
+              <div className="absolute inset-0 z-0">
+                 {/* Main background image corresponding to the 'Growing Impact' section */}
+                 <Image
+                    src={images[0]?.src || "/images/banana-field.jpg"}
+                    alt={images[0]?.alt || "Banana Field"}
+                    fill
+                    className="object-cover"
+                 />
+                 {/* Dark bottom gradient overlay */}
+                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              </div>
 
-        <ScrollReveal className="editorial-card p-5 md:p-8" direction="left" delay={120}>
-          <span className="eyebrow mb-5 inline-block">{section.bananaEyebrow}</span>
-          <h2 className="text-[2rem] font-extrabold text-on-surface md:text-[3.25rem]">
-            {section.bananaTitle}
-            <span className="mt-2 block italic text-primary-ink">
-              {section.bananaAccent}
-            </span>
-          </h2>
-          <p className="mt-5 text-base leading-7 text-on-surface-variant">
-            {section.bananaDescription}
-          </p>
+              <div className="relative z-10 w-full md:w-3/4 lg:w-2/3">
+                 <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
+                    Growing Impact,<br/> Harvesting Success
+                 </h2>
+                 <p className="mt-4 text-sm md:text-base text-white/80 max-w-xl leading-relaxed">
+                    Through dedication, smart innovation, and respect for nature, we export thriving premium bananas, empower countless farmers, and prove that sustainability and success can grow together.
+                 </p>
 
-          <div className="mt-7 space-y-4">
-            {features.map((feature, index) => (
-              <ScrollReveal
-                key={feature.title}
-                className="rounded-[1.35rem] bg-surface-container p-4 md:rounded-[1.5rem] md:p-5"
-                delay={190 + index * 90}
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary-ink text-white md:h-12 md:w-12">
-                    <span className="text-xs font-extrabold tracking-[0.18em]">
-                      {feature.icon}
-                    </span>
-                  </div>
-                  <div>
-                    <h4 className="text-base font-bold uppercase tracking-[0.12em] text-on-surface">
-                      {feature.title}
-                    </h4>
-                    <p className="mt-2 text-sm leading-6 text-on-surface-variant">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-
-          <a href={section.bananaCtaHref} className="button-primary mt-9">
-            {section.bananaCtaLabel}
-          </a>
+                 <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-8 border-t border-white/20 pt-6">
+                    <div>
+                       <p className="text-2xl md:text-3xl font-extrabold text-white">4.2M</p>
+                       <p className="text-xs text-white/70 mt-1 uppercase tracking-wide">Tons Exported</p>
+                    </div>
+                    <div>
+                       <p className="text-2xl md:text-3xl font-extrabold text-white">$45M</p>
+                       <p className="text-xs text-white/70 mt-1 uppercase tracking-wide">Farmer Support</p>
+                    </div>
+                    <div>
+                       <p className="text-2xl md:text-3xl font-extrabold text-white">12+</p>
+                       <p className="text-xs text-white/70 mt-1 uppercase tracking-wide">Countries Reach</p>
+                    </div>
+                    <div className="flex items-center">
+                        <a 
+                          href="https://wa.me/1234567890" 
+                          className="button-primary px-5 py-2 !min-h-0 h-10 w-full"
+                        >
+                          Inquire Now
+                        </a>
+                    </div>
+                 </div>
+              </div>
+           </div>
         </ScrollReveal>
       </div>
     </section>

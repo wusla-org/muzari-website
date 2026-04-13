@@ -1,121 +1,76 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import BrandLogo from "@/components/BrandLogo";
 
 const navLinks = [
-  { label: "Collections", href: "#collections" },
-  { label: "Mission", href: "#mission" },
-  { label: "Heritage", href: "#heritage" },
-  { label: "Inquiry", href: "#inquiry" },
+  { label: "Home", href: "/" },
+  { label: "Our Story", href: "/#mission" },
+  { label: "Solutions", href: "/#collections" },
+  { label: "Quality", href: "/#quality" },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [visible, setVisible] = useState(true);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    let lastY = window.scrollY;
-
-    function handleScroll() {
-      const currentY = window.scrollY;
-      const isScrollingUp = currentY < lastY;
-      const isNearTop = currentY < 32;
-
-      setScrolled(currentY > 12);
-      setVisible(isNearTop || isScrollingUp || open);
-
-      lastY = currentY;
-    }
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [open]);
 
   return (
-    <nav
-      className={`fixed inset-x-0 top-0 z-50 px-3 pt-3 transition-all duration-500 md:px-6 md:pt-4 ${
-        visible
-          ? "translate-y-0 opacity-100"
-          : "-translate-y-full opacity-0 pointer-events-none"
-      }`}
-    >
-      <div className="content-shell">
-        <div
-          className={`glass-panel rounded-[1.5rem] px-4 py-3 transition-all duration-500 md:rounded-[2rem] md:px-7 md:py-4 ${
-            scrolled
-              ? "shadow-[0_20px_56px_rgba(25,28,24,0.14)] ring-1 ring-white/50"
-              : ""
-          }`}
-        >
-          <div className="flex items-center justify-between gap-4">
-            <a href="#" className="block min-w-0 flex-1 md:max-w-[15rem]">
-              <BrandLogo
-                variant="compact"
-                priority
-                className="max-w-[8.75rem] md:max-w-[13.5rem]"
-              />
+    <nav className="absolute left-1/2 top-8 z-50 w-full max-w-7xl -translate-x-1/2 px-6 md:px-12 lg:top-10 lg:px-16">
+      <div className="flex w-full items-center justify-between">
+        <a href="/" className="flex items-center">
+          <BrandLogo variant="compact" className="w-28 md:w-36 drop-shadow-md" />
+        </a>
+
+        {/* Desktop Links */}
+        <div className="hidden lg:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className="text-sm font-semibold tracking-wide text-white drop-shadow-md hover:text-white/80 transition-colors"
+            >
+              {link.label}
             </a>
-
-            <div className="hidden items-center gap-3 rounded-full bg-white/56 p-1 md:flex">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="rounded-full px-4 py-2 text-[0.7rem] font-bold uppercase tracking-[0.18em] text-on-surface/70 hover:-translate-y-0.5 hover:bg-white hover:text-primary-ink"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-
-            <div className="flex items-center gap-3">
-              <a href="#inquiry" className="button-primary hidden md:inline-flex">
-                Partner with Us
-              </a>
-              <button
-                type="button"
-                aria-expanded={open}
-                aria-label="Toggle navigation menu"
-                onClick={() => setOpen((value) => !value)}
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-white/80 text-primary-ink md:hidden"
-              >
-                <span className="text-lg font-semibold leading-none">
-                  {open ? "×" : "≡"}
-                </span>
-              </button>
-            </div>
-          </div>
-
-          {open ? (
-            <div className="mt-3 space-y-2 rounded-[1.25rem] bg-white/72 p-3 md:hidden">
-              <div className="rounded-[1.1rem] bg-white px-4 py-3">
-                <BrandLogo variant="compact" className="max-w-[9rem]" />
-              </div>
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-[1rem] px-4 py-3 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-on-surface/80 hover:translate-x-1 hover:bg-white"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <a
-                href="#inquiry"
-                onClick={() => setOpen(false)}
-                className="button-primary mt-2 flex w-full"
-              >
-                Partner with Us
-              </a>
-            </div>
-          ) : null}
+          ))}
         </div>
+
+        {/* Desktop CTA */}
+        <div className="hidden lg:block">
+          <a href="/#inquiry" className="inline-flex h-11 items-center justify-center rounded-full bg-white px-6 text-[0.8rem] font-bold text-on-surface shadow-sm transition-transform hover:scale-105">
+            Contact Us
+          </a>
+        </div>
+
+        {/* Mobile Toggle */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-on-surface lg:hidden shadow-sm"
+        >
+          <span className="text-xl font-bold leading-none">{open ? "×" : "≡"}</span>
+        </button>
       </div>
+
+      {/* Mobile Menu */}
+      {open && (
+        <div className="mt-4 space-y-2 rounded-3xl bg-white p-4 shadow-2xl lg:hidden">
+          {navLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              onClick={() => setOpen(false)}
+              className="block rounded-2xl px-4 py-3 text-sm font-bold text-on-surface hover:bg-surface"
+            >
+              {link.label}
+            </a>
+          ))}
+          <a
+            href="/#inquiry"
+            onClick={() => setOpen(false)}
+            className="mt-2 flex w-full h-12 items-center justify-center rounded-full bg-primary text-sm font-bold text-white"
+          >
+            Contact Us
+          </a>
+        </div>
+      )}
     </nav>
   );
 }

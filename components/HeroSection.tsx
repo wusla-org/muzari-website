@@ -2,21 +2,6 @@ import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal";
 import { HeroContent, ImageAsset } from "@/lib/content";
 
-const highlights = [
-  {
-    title: "Direct origin",
-    description: "Farmer-connected sourcing from Kerala with a cleaner buyer story.",
-  },
-  {
-    title: "Editorial quality",
-    description: "A premium presentation that feels curated rather than crowded.",
-  },
-  {
-    title: "Export ready",
-    description: "Built for confident trade inquiries, volume discussions, and trust.",
-  },
-];
-
 export default function HeroSection({
   hero,
   image,
@@ -25,80 +10,73 @@ export default function HeroSection({
   image: ImageAsset;
 }) {
   return (
-    <section className="section-shell overflow-hidden pt-24 md:pt-36">
-      <div className="content-shell grid items-center gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:gap-10">
-        <div className="relative z-10">
-          <ScrollReveal delay={40}>
-            <span className="eyebrow mb-5 inline-block">{hero.eyebrow}</span>
-          </ScrollReveal>
-          <ScrollReveal delay={120}>
-            <h1 className="max-w-3xl text-[2.35rem] font-extrabold leading-[0.98] text-on-surface sm:text-5xl lg:text-[4.75rem]">
-              {hero.titleLineOne}
-              <span className="mt-2 block italic text-primary-ink md:mt-3">
-                {hero.titleLineTwo}
-              </span>
-            </h1>
-          </ScrollReveal>
-          <ScrollReveal delay={200}>
-            <p className="mt-6 max-w-xl text-base leading-7 text-on-surface-variant md:text-[1.05rem]">
-              {hero.description}
-            </p>
-          </ScrollReveal>
-
-          <ScrollReveal delay={280}>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a href={hero.primaryCtaHref} className="button-primary w-full sm:w-auto">
-                {hero.primaryCtaLabel}
-              </a>
-              <a href={hero.secondaryCtaHref} className="button-secondary w-full sm:w-auto">
-                {hero.secondaryCtaLabel}
-              </a>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={340}>
-            <div className="mt-7 flex items-start gap-3 text-sm text-on-surface-variant">
-              <span className="attention-dot" />
-              <span className="leading-6">{hero.trustNote}</span>
-            </div>
-          </ScrollReveal>
-
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {highlights.map((item, index) => (
-              <ScrollReveal key={item.title} delay={380 + index * 90}>
-                <div className="editorial-card p-5 shadow-none md:p-6">
-                  <div className="text-sm font-extrabold uppercase tracking-[0.16em] text-primary-ink">
-                    {item.title}
-                  </div>
-                  <p className="mt-2 text-sm leading-6 text-on-surface-variant">
-                    {item.description}
-                  </p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
+    <section className="relative mx-auto mt-4 w-[calc(100%-2rem)] max-w-[88rem] overflow-hidden rounded-[2.5rem] bg-[#0d2a17] shadow-xl md:w-[calc(100%-4rem)] lg:w-[calc(100%-8rem)]">
+      {/* Container ensures height and centers content vertically */}
+      <div className="relative flex min-h-[86vh] w-full flex-col justify-center px-6 py-32 md:px-16 lg:px-24">
+        {/* Background Image Layer */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={image.src}
+            alt={image.alt}
+            fill
+            className="object-cover object-center opacity-70 mix-blend-overlay"
+            priority
+          />
+          {/* Subtle gradient to ensure dark contrast for white text */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
         </div>
 
-        <ScrollReveal className="relative pb-16 md:pb-0" direction="left" delay={180}>
-          <div className="animate-blob-float pointer-events-none absolute -left-6 top-0 z-0 h-32 w-32 rounded-full bg-primary/30 blur-[50px] md:-left-16 md:h-56 md:w-56" />
-          <div className="animate-blob-float animation-delay-2000 pointer-events-none absolute -right-4 bottom-18 z-0 h-24 w-24 rounded-full bg-primary-ink/20 blur-[50px] md:-right-12 md:bottom-20 md:h-48 md:w-48" />
-          <div className="image-frame relative z-10 mx-auto aspect-[4/4.8] max-w-[31rem] md:aspect-[4/5]">
-            <Image
-              src={image.src}
-              alt={image.alt}
-              fill
-              sizes="(max-width: 1024px) 100vw, 42vw"
-              className="object-cover transition-transform duration-700 ease-out hover:scale-[1.04]"
-              priority
-            />
-          </div>
+        {/* Content Wrapper */}
+        <div className="relative z-10 w-full max-w-3xl">
+          <ScrollReveal delay={40}>
+            <h1 className="text-[2.8rem] font-extrabold leading-[1.05] tracking-[-0.04em] text-white sm:text-5xl lg:text-[4.7rem]">
+              Smart Agriculture for a Greener Future
+            </h1>
+          </ScrollReveal>
 
-          <div className="editorial-card absolute -bottom-2 left-0 right-0 z-20 mx-auto max-w-[16rem] p-5 md:-left-16 md:right-auto md:bottom-12 md:mx-0 md:p-6">
-            <div className="eyebrow mb-3">Why buyers trust us</div>
-            <p className="text-sm leading-6 text-on-surface-variant">
-              A calmer, premium-first export presence that emphasizes clarity,
-              quality, and confidence instead of crowded trade-portal visuals.
+          <ScrollReveal delay={120}>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-white/90 md:text-lg">
+              We help farmers and importers improve productivity and sustainability through innovative agricultural export solutions.
             </p>
+          </ScrollReveal>
+
+          <ScrollReveal delay={200}>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <a href="/#collections" className="inline-flex h-12 items-center justify-center rounded-full bg-white px-7 text-sm font-bold text-on-surface shadow-md hover:bg-surface">
+                Explore Solutions
+              </a>
+              <a href="/#inquiry" className="inline-flex h-12 items-center justify-center rounded-full border-2 border-white bg-transparent px-7 text-sm font-bold text-white hover:bg-white/10">
+                Contact Us
+              </a>
+            </div>
+          </ScrollReveal>
+        </div>
+
+        {/* Floating "Traction" Glass Card (Bottom Right) */}
+        <ScrollReveal
+          className="absolute bottom-6 right-6 hidden md:block lg:bottom-12 lg:right-12"
+          delay={400}
+        >
+          <div className="flex items-center gap-4 rounded-3xl bg-white/10 p-3 pr-6 backdrop-blur-xl border border-white/20 shadow-2xl">
+            <div className="relative h-16 w-16 overflow-hidden rounded-2xl">
+              <Image
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiDZgyv3xrx8FaQu0jWkqAGASh3Okze46dKeMq8pD_YNWxU_Ppa3SXNr4ivAmYOijZ_Hx6j39vN819ohakBNXQZfu6gWgkzpt-SnSW3nbgpTQkKz36Tx3mLOSAhopmrryHYRnRXd_9jS1YnYI59RWPqi1lDTKR6TQH6mjgs0-AU2syp94WW0OnjAiF9XAS6uR2YOO2CRNtEdAyIcAthbpB6_vjyJIk-gh4ygBi_2qgHUECRdkSZAFrb458EiiwUtIcZ-MDBM3stCun"
+                alt="Global Network"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div>
+              <p className="text-sm font-bold text-white">Global Export Network</p>
+              <p className="mt-0.5 text-xs text-white/80">48k+ Tons Exported</p>
+              <div className="mt-2 flex items-center gap-2 text-xs font-semibold text-white/90">
+                <span>35+ Countries</span>
+                <a href="#about" className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-white hover:scale-110 transition-transform">
+                  ↗
+                </a>
+              </div>
+            </div>
           </div>
         </ScrollReveal>
       </div>

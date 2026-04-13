@@ -1,11 +1,13 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import MissionVision from "@/components/MissionVision";
-import TapiocaCollection from "@/components/TapiocaCollection";
-import BananaSpotlight from "@/components/BananaSpotlight";
+import OurProducts from "@/components/OurProducts";
 import QualityStandards from "@/components/QualityStandards";
+import IndustriesServed from "@/components/IndustriesServed";
+import ClientReviews from "@/components/ClientReviews";
 import InquiryForm from "@/components/InquiryForm";
 import Footer from "@/components/Footer";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import { getHomePageContent } from "@/lib/content";
 
 export const dynamic = "force-dynamic";
@@ -19,21 +21,17 @@ export default async function Home() {
       <main className="page-shell">
         <HeroSection hero={content.hero} image={content.heroImage} />
         <MissionVision content={content.missionVision} />
-        <TapiocaCollection
-          section={content.settings}
-          products={content.products}
-        />
-        <BananaSpotlight
-          section={content.settings}
-          images={content.bananaGallery}
-        />
+        <OurProducts />
         <QualityStandards standards={content.qualityStandards} />
+        <IndustriesServed />
+        <ClientReviews />
         <InquiryForm
           inquiryContent={content.settings}
           productOptions={content.products.map((product) => product.title)}
         />
       </main>
       <Footer settings={content.settings} />
+      <FloatingWhatsApp />
     </>
   );
 }

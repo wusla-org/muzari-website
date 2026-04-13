@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUZARI UI Theme Blueprint</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Brand colors */
+            --color-primary: #4e6700;
+            --color-on-primary: #ffffff;
+            --color-primary-dark: #3b4e00;
+            --color-primary-ink: #222e00;
+            --color-primary-soft: #c4d693;
+
+            /* Surface palette */
+            --color-surface: #faf9f8;
+            --color-surface-bright: #ffffff;
+            --color-surface-container: #f2f2ef;
+            --color-surface-container-low: #fdfdfc;
+            --color-surface-container-high: #eaeaea;
+            --color-surface-glass: rgba(255, 255, 255, 0.7);
+
+            /* Text colors */
+            --color-on-surface: #1c2616;
+            --color-on-surface-variant: #3b4e00;
+            --color-outline: #c4d693;
+            --color-secondary: #4e6700;
+            --color-outline-soft: rgba(0, 0, 0, 0.05);
+            --color-ambient-shadow: rgba(0, 0, 0, 0.04);
+
+            /* Fonts */
+            --font-headline: 'Manrope', sans-serif;
+            --font-body: 'Inter', sans-serif;
+
+            /* Radius */
+            --radius-card: 2.5rem;
+            --radius-pill: 999px;
+
+            /* Motion */
+            --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--color-surface);
+            color: var(--color-on-surface);
+            font-family: var(--font-body);
+            background-image:
+                radial-gradient(circle at top left, rgba(196, 214, 147, 0.3), transparent 40%),
+                radial-gradient(circle at top right, rgba(196, 214, 147, 0.1), transparent 42%);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-headline);
+            letter-spacing: -0.02em;
+            color: var(--color-primary-ink);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background: var(--color-surface-glass);
+            backdrop-filter: blur(12px);
+            border-radius: var(--radius-card);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        /* --- UI COMPONENTS --- */
+
+        .eyebrow {
+            color: var(--color-primary-ink);
+            text-transform: uppercase;
+            letter-spacing: 0.24em;
+            font-size: 0.72rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .button-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            min-height: 3.2rem;
+            padding: 0 1.5rem;
+            border-radius: var(--radius-pill);
+            color: var(--color-on-primary);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            background-image: linear-gradient(135deg, var(--color-primary-ink), var(--color-primary));
+            box-shadow: 0 14px 28px rgba(34, 46, 0, 0.16);
+            border: none;
+            cursor: pointer;
+            transition: transform 220ms var(--ease-soft), box-shadow 220ms var(--ease-soft);
+            text-decoration: none;
+        }
+
+        .button-primary:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 18px 38px rgba(34, 46, 0, 0.28);
+        }
+
+        .button-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            min-height: 3.2rem;
+            padding: 0 1.5rem;
+            border-radius: var(--radius-pill);
+            color: var(--color-primary-ink);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            background: rgba(196, 214, 147, 0.15);
+            border: 1px solid rgba(196, 214, 147, 0.4);
+            cursor: pointer;
+            transition: all 220ms var(--ease-soft);
+            text-decoration: none;
+        }
+
+        .button-secondary:hover {
+            background: rgba(196, 214, 147, 0.25);
+            transform: translateY(-1px);
+        }
+
+        .editorial-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: var(--radius-card);
+            box-shadow: 0 12px 40px var(--color-ambient-shadow);
+            padding: 2.5rem;
+            transition: transform 400ms var(--ease-soft), box-shadow 400ms var(--ease-soft);
+        }
+
+        .editorial-card:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 18px 48px rgba(0, 0, 0, 0.08);
+        }
+
+        .input-shell {
+            width: 100%;
+            border-radius: 1.4rem;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(196, 214, 147, 0.3);
+            padding: 1rem 1.25rem;
+            color: var(--color-on-surface);
+            outline: none;
+            font-family: inherit;
+            transition: all 220ms var(--ease-soft);
+        }
+
+        .input-shell:focus {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(196, 214, 147, 0.8);
+            box-shadow: 0 0 0 4px rgba(196, 214, 147, 0.2);
+        }
+
+        /* --- PREVIEWS --- */
+
+        .hero-preview {
+            text-align: center;
+            padding: 6rem 1rem;
+            background: linear-gradient(to bottom, transparent, rgba(196, 214, 147, 0.1));
+            border-radius: var(--radius-card);
+            margin-bottom: 4rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .hero-title span {
+            display: block;
+            color: var(--color-primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            color: var(--color-on-surface-variant);
+        }
+
+        .color-swatch {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .swatch {
+            height: 80px;
+            border-radius: 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .attention-dot {
+            display: inline-block;
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--color-primary-ink), var(--color-primary));
+            box-shadow: 0 0 0 6px rgba(78, 103, 0, 0.14);
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Brand Header -->
+        <header style="margin-bottom: 3rem;">
+            <span class="eyebrow">Visual Identity</span>
+            <h1 style="font-size: 2.5rem;">MUZARI Design System</h1>
+        </header>
+
+        <!-- Hero Preview -->
+        <section class="hero-preview">
+            <span class="eyebrow">Premier Agricultural Export</span>
+            <h2 class="hero-title">
+                Where Indian Soil <span>Meets International Standards</span>
+            </h2>
+            <p class="hero-subtitle">Bringing the finest harvest from the heart of India to the global market, with uncompromised quality and sustainable practices.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <a href="#" class="button-primary">Explore Products</a>
+                <a href="#" class="button-secondary">Contact Us</a>
+            </div>
+        </section>
+
+        <!-- Typography -->
+        <section class="section">
+            <h3 class="eyebrow">Typography</h3>
+            <div style="margin-top: 1.5rem;">
+                <h1 style="font-size: 3.5rem; margin-bottom: 1rem;">Headline 01 - Manrope Extra Bold</h1>
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Headline 02 - Manrope Bold</h2>
+                <h3 style="font-size: 1.75rem; margin-bottom: 1rem;">Headline 03 - Manrope Bold</h3>
+                <p style="font-size: 1.125rem; max-width: 800px;">Body Text - Inter Regular. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+        </section>
+
+        <!-- Colors -->
+        <section class="section">
+            <h3 class="eyebrow">Color Palette</h3>
+            <div class="grid">
+                <div class="color-swatch">
+                    <div class="swatch" style="background: var(--color-primary-ink);"></div>
+                    <strong>Primary Ink</strong>
+                    <code>#222e00</code>
+                </div>
+                <div class="color-swatch">
+                    <div class="swatch" style="background: var(--color-primary);"></div>
+                    <strong>Primary Olive</strong>
+                    <code>#4e6700</code>
+                </div>
+                <div class="color-swatch">
+                    <div class="swatch" style="background: var(--color-primary-soft);"></div>
+                    <strong>Primary Soft</strong>
+                    <code>#c4d693</code>
+                </div>
+                <div class="color-swatch">
+                    <div class="swatch" style="background: var(--color-surface);"></div>
+                    <strong>Surface</strong>
+                    <code>#faf9f8</code>
+                </div>
+            </div>
+        </section>
+
+        <!-- Components -->
+        <section class="section">
+            <h3 class="eyebrow">Core Components</h3>
+            <div class="grid">
+                <!-- Card -->
+                <div class="editorial-card">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <span class="attention-dot"></span>
+                        <span class="eyebrow" style="margin-bottom: 0;">Quality Assurance</span>
+                    </div>
+                    <h4>Sustainable Sourcing</h4>
+                    <p style="margin: 1rem 0; font-size: 0.9rem; color: var(--color-on-surface-variant);">We work directly with local farmers to ensure every product meets our rigorous global standards.</p>
+                    <a href="#" style="color: var(--color-primary); font-weight: 700; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">Learn More →</a>
+                </div>
+
+                <!-- Form -->
+                <div class="editorial-card" style="background: white;">
+                    <h4 style="margin-bottom: 1.5rem;">Inquiry Form</h4>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <input type="text" class="input-shell" placeholder="Your Name">
+                        <input type="email" class="input-shell" placeholder="Email Address">
+                        <button class="button-primary" style="width: 100%;">Send Message</button>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div style="display: flex; flex-direction: column; gap: 1rem; justify-content: center;">
+                    <button class="button-primary">Primary Action</button>
+                    <button class="button-secondary">Secondary Action</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>

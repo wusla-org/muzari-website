@@ -57,48 +57,28 @@ export default function InquiryForm({
   return (
     <section id="inquiry" className="section-shell">
       <ScrollReveal className="content-shell">
-      <div className="editorial-card overflow-hidden p-4 md:p-10">
-        <div className="grid gap-6 md:gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-10">
-          <ScrollReveal
-            className="rounded-[1.45rem] bg-primary-ink px-5 py-6 text-white md:rounded-[1.8rem] md:px-8 md:py-9"
-            direction="right"
-            delay={60}
-          >
-            <div className="mb-5 w-fit rounded-[1.1rem] bg-white px-4 py-3 md:mb-6 md:rounded-[1.35rem]">
-              <BrandLogo variant="compact" className="max-w-[7.5rem] md:max-w-[8.5rem]" />
-            </div>
-            <span className="mb-5 inline-block text-[0.72rem] font-extrabold uppercase tracking-[0.24em] text-white/70">
-              {inquiryContent.inquiryBadge}
-            </span>
-            <h2 className="text-[2rem] font-extrabold md:text-4xl">
-              {inquiryContent.inquiryTitle}
-            </h2>
-            <p className="mt-5 text-[0.97rem] leading-7 text-white/76">
-              {inquiryContent.inquiryDescription}
-            </p>
+        <div className="ag-card overflow-hidden p-6 md:p-10 lg:p-14">
+          <div className="mx-auto max-w-4xl text-center mb-12">
+             <span className="pill-tag mb-4">Trade Inquiry</span>
+             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-on-surface">
+                Partner For Global Supply
+             </h2>
+             <p className="mt-4 text-base text-on-surface-variant">
+                Our export desk is ready to facilitate bulk sourcing tailored to your regional compliance and volume demands.
+             </p>
+          </div>
 
-            <div className="mt-8 space-y-4 text-sm leading-7 text-white/76">
-              <p>{inquiryContent.inquiryResponseNote}</p>
-              <p>{inquiryContent.inquiryFocusNote}</p>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal
-            className="rounded-[1.45rem] bg-surface-bright p-5 md:rounded-[1.8rem] md:p-8"
-            direction="left"
-            delay={140}
-          >
+          <div className="mx-auto max-w-3xl">
             {submitted ? (
-              <div className="flex h-full min-h-[24rem] flex-col items-center justify-center text-center">
-                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary-soft text-primary-ink">
+              <div className="flex flex-col items-center justify-center text-center py-12">
+                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-surface text-primary">
                   <span className="text-4xl font-bold leading-none">✓</span>
                 </div>
-                <h3 className="mt-6 text-3xl font-bold text-on-surface">
+                <h3 className="mt-6 text-3xl font-bold text-on-surface tracking-tight">
                   Inquiry Received
                 </h3>
                 <p className="mt-4 max-w-md text-base leading-7 text-on-surface-variant">
-                  Our export desk will review the request and get back to you
-                  with the next steps shortly.
+                  Our export desk will review the request and get back to you with the next steps shortly.
                 </p>
                 <button
                   type="button"
@@ -109,15 +89,15 @@ export default function InquiryForm({
                 </button>
               </div>
             ) : (
-              <form className="space-y-8" onSubmit={handleSubmit}>
-                {error ? (
-                  <p className="rounded-2xl bg-primary-soft px-4 py-3 text-sm text-primary-ink">
+              <form className="space-y-6" onSubmit={handleSubmit}>
+                {error && (
+                  <p className="rounded-2xl bg-surface px-4 py-3 text-sm font-semibold text-red-600 outline outline-1 outline-red-200">
                     {error}
                   </p>
-                ) : null}
+                )}
                 <div className="grid gap-6 md:grid-cols-2">
                   <div>
-                    <label htmlFor="name" className="mb-3 block text-sm font-medium text-on-surface-variant">
+                    <label htmlFor="name" className="mb-2 block text-[0.8rem] font-bold text-on-surface">
                       Full Name
                     </label>
                     <input
@@ -132,7 +112,7 @@ export default function InquiryForm({
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="mb-3 block text-sm font-medium text-on-surface-variant">
+                    <label htmlFor="email" className="mb-2 block text-[0.8rem] font-bold text-on-surface">
                       Company Email
                     </label>
                     <input
@@ -150,7 +130,7 @@ export default function InquiryForm({
 
                 <div className="grid gap-6 md:grid-cols-2">
                   <div>
-                    <label htmlFor="organization" className="mb-3 block text-sm font-medium text-on-surface-variant">
+                    <label htmlFor="organization" className="mb-2 block text-[0.8rem] font-bold text-on-surface">
                       Organization
                     </label>
                     <input
@@ -164,7 +144,7 @@ export default function InquiryForm({
                     />
                   </div>
                   <div>
-                    <label htmlFor="product" className="mb-3 block text-sm font-medium text-on-surface-variant">
+                    <label htmlFor="product" className="mb-2 block text-[0.8rem] font-bold text-on-surface">
                       Product Interest
                     </label>
                     <select
@@ -172,7 +152,7 @@ export default function InquiryForm({
                       name="product"
                       value={form.product}
                       onChange={handleChange}
-                      className="input-shell appearance-none"
+                      className="input-shell"
                     >
                       {productOptions.map((opt) => (
                         <option key={opt}>{opt}</option>
@@ -182,7 +162,7 @@ export default function InquiryForm({
                 </div>
 
                 <div>
-                  <label htmlFor="details" className="mb-3 block text-sm font-medium text-on-surface-variant">
+                  <label htmlFor="details" className="mb-2 block text-[0.8rem] font-bold text-on-surface">
                     Requirement Details
                   </label>
                   <textarea
@@ -190,24 +170,25 @@ export default function InquiryForm({
                     name="details"
                     value={form.details}
                     onChange={handleChange}
-                    rows={6}
+                    rows={4}
                     placeholder="Volume requirements, destination port, and preferred timelines..."
                     className="input-shell resize-none"
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  className="button-primary w-full disabled:opacity-70 disabled:cursor-not-allowed"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Sending..." : "Send Export Inquiry"}
-                </button>
+                <div className="pt-2">
+                   <button
+                     type="submit"
+                     className="button-primary w-full disabled:opacity-70 disabled:cursor-not-allowed"
+                     disabled={isSubmitting}
+                   >
+                     {isSubmitting ? "Sending..." : "Send Export Inquiry"}
+                   </button>
+                </div>
               </form>
             )}
-          </ScrollReveal>
+          </div>
         </div>
-      </div>
       </ScrollReveal>
     </section>
   );
