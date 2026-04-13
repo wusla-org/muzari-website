@@ -16,7 +16,7 @@ export default function InquiryForm({
     name: "",
     email: "",
     organization: "",
-    product: productOptions[0] ?? "",
+    product: productOptions.length > 0 ? productOptions[0] : "",
     details: "",
   });
   const [submitted, setSubmitted] = useState(false);
@@ -49,6 +49,8 @@ export default function InquiryForm({
       }
 
       setSubmitted(true);
+    } catch {
+      setError("We could not send your inquiry. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -152,11 +154,16 @@ export default function InquiryForm({
                       name="product"
                       value={form.product}
                       onChange={handleChange}
+                      disabled={productOptions.length === 0}
                       className="input-shell"
                     >
-                      {productOptions.map((opt) => (
-                        <option key={opt}>{opt}</option>
-                      ))}
+                      {productOptions.length === 0 ? (
+                        <option value="">No products available</option>
+                      ) : (
+                        productOptions.map((opt) => (
+                          <option key={opt}>{opt}</option>
+                        ))
+                      )}
                     </select>
                   </div>
                 </div>
@@ -180,7 +187,7 @@ export default function InquiryForm({
                    <button
                      type="submit"
                      className="button-primary w-full disabled:opacity-70 disabled:cursor-not-allowed"
-                     disabled={isSubmitting}
+                     disabled={isSubmitting || !form.product}
                    >
                      {isSubmitting ? "Sending..." : "Send Export Inquiry"}
                    </button>

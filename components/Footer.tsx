@@ -4,13 +4,13 @@ import { SiteSettingsContent } from "@/lib/content";
 
 const companyLinks = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "#about" },
-  { label: "Solutions", href: "#collections" },
+  { label: "About Us", href: "/#about" },
+  { label: "Solutions", href: "/#collections" },
 ];
 
 const qualityLinks = [
-  { label: "Quality Standards", href: "#quality" },
-  { label: "Trade Inquiry", href: "#inquiry" },
+  { label: "Quality Standards", href: "/#workflow" },
+  { label: "Trade Inquiry", href: "/#inquiry" },
 ];
 
 export default function Footer({
@@ -31,7 +31,7 @@ export default function Footer({
                 {settings.footerDescription}
               </p>
               <div className="mt-8 flex gap-4">
-                 {/* Social placeholders matching 'AgFarm' minimal styling */}
+                 {/* TODO: wire to real social URLs when added to site settings */}
                  <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-surface text-on-surface transition-colors hover:bg-primary/10 hover:text-primary">in</a>
                  <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-surface text-on-surface transition-colors hover:bg-primary/10 hover:text-primary">tw</a>
               </div>
@@ -75,7 +75,7 @@ export default function Footer({
           </div>
 
           <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-black/5 pt-8 text-sm font-medium text-on-surface-variant md:flex-row">
-            <p>© 2024 Muzari Exports. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Muzari Exports. All rights reserved.</p>
             <div className="flex gap-6">
                <a href="#" className="hover:text-primary">Privacy Policy</a>
                <a href="#" className="hover:text-primary">Terms of Service</a>

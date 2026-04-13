@@ -136,8 +136,9 @@ export default function ThemeShowcase() {
           Bringing the finest harvest from the heart of India to the global market, with uncompromised quality and sustainable practices.
         </p>
         <div style={{ display: "flex", gap: "1rem", justifyContent: "center" }}>
-          <button style={buttonPrimaryStyle}>Explore Products</button>
+          <button type="button" style={buttonPrimaryStyle}>Explore Products</button>
           <button
+            type="button"
             style={{
               ...buttonPrimaryStyle,
               backgroundImage: "none",

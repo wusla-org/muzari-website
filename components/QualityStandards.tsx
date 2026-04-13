@@ -29,7 +29,7 @@ const workflowSteps = [
 
 export default function QualityStandards() {
   return (
-    <section id="workflow" className="section-shell bg-white py-16 md:py-24 border-y border-black/5">
+    <section id="quality" className="section-shell bg-white py-16 md:py-24 border-y border-black/5">
       <div className="content-shell">
         <ScrollReveal className="flex flex-col md:flex-row gap-8 md:items-end justify-between mb-16">
           <div className="max-w-2xl">

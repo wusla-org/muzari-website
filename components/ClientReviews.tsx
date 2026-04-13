@@ -1,5 +1,4 @@
 import ScrollReveal from "@/components/ScrollReveal";
-import Image from "next/image";
 
 const reviews = [
   {
@@ -51,7 +50,7 @@ export default function ClientReviews() {
             >
               {/* Subtle quote graphic */}
               <div className="absolute -top-6 -right-6 text-[8rem] text-primary opacity-5 font-serif leading-none">
-                "
+                &ldquo;
               </div>
               
               <div className="flex text-[#ffb800] text-lg mb-6">
@@ -59,7 +58,7 @@ export default function ClientReviews() {
               </div>
               
               <p className="text-[0.95rem] leading-relaxed text-on-surface-variant flex-grow mb-8 italic relative z-10">
-                "{review.quote}"
+                &ldquo;{review.quote}&rdquo;
               </p>
               
               <div className="flex items-center gap-4 mt-auto border-t border-black/5 pt-6">

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
 import { HeroContent, ImageAsset } from "@/lib/content";
 
@@ -31,24 +32,24 @@ export default function HeroSection({
         <div className="relative z-10 w-full max-w-3xl">
           <ScrollReveal delay={40}>
             <h1 className="text-[2.8rem] font-extrabold leading-[1.05] tracking-[-0.04em] text-white sm:text-5xl lg:text-[4.7rem]">
-              Smart Agriculture for a Greener Future
+              {hero.titleLineOne} {hero.titleLineTwo}
             </h1>
           </ScrollReveal>
 
           <ScrollReveal delay={120}>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-white/90 md:text-lg">
-              We help farmers and importers improve productivity and sustainability through innovative agricultural export solutions.
+              {hero.description}
             </p>
           </ScrollReveal>
 
           <ScrollReveal delay={200}>
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <a href="/#collections" className="inline-flex h-12 items-center justify-center rounded-full bg-white px-7 text-sm font-bold text-on-surface shadow-md hover:bg-surface">
-                Explore Solutions
-              </a>
-              <a href="/#inquiry" className="inline-flex h-12 items-center justify-center rounded-full border-2 border-white bg-transparent px-7 text-sm font-bold text-white hover:bg-white/10">
-                Contact Us
-              </a>
+              <Link href={hero.primaryCtaHref} className="inline-flex h-12 items-center justify-center rounded-full bg-white px-7 text-sm font-bold text-on-surface shadow-md hover:bg-surface">
+                {hero.primaryCtaLabel}
+              </Link>
+              <Link href={hero.secondaryCtaHref} className="inline-flex h-12 items-center justify-center rounded-full border-2 border-white bg-transparent px-7 text-sm font-bold text-white hover:bg-white/10">
+                {hero.secondaryCtaLabel}
+              </Link>
             </div>
           </ScrollReveal>
         </div>
@@ -72,9 +73,9 @@ export default function HeroSection({
               <p className="mt-0.5 text-xs text-white/80">48k+ Tons Exported</p>
               <div className="mt-2 flex items-center gap-2 text-xs font-semibold text-white/90">
                 <span>35+ Countries</span>
-                <a href="#about" className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-white hover:scale-110 transition-transform">
+                <Link href="/#about" className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-white hover:scale-110 transition-transform">
                   ↗
-                </a>
+                </Link>
               </div>
             </div>
           </div>

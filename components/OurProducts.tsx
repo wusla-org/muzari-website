@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const products = [
@@ -60,7 +61,7 @@ export default function OurProducts() {
                 key={product.title}
                 delay={index * 100}
               >
-                <a 
+                <Link
                   href={`/products/${slug}`}
                   className="flex flex-col h-full overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-black/5 hover:shadow-md transition-shadow group"
                 >
@@ -74,6 +75,7 @@ export default function OurProducts() {
 
                   {/* Bottom Half - Info */}
                   <div className="flex flex-col p-6 flex-grow">
+                    {/* TODO: replace with real product.rating and product.reviewsCount from DB */}
                     <div className="flex items-center gap-1.5 mb-2 mt-1">
                       <div className="flex text-[#ffb800] text-sm">
                         ★★★★★
@@ -94,7 +96,7 @@ export default function OurProducts() {
                       </span>
                     </div>
                   </div>
-                </a>
+                </Link>
               </ScrollReveal>
             );
           })}

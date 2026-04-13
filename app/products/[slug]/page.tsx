@@ -1,12 +1,27 @@
 import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import { getHomePageContent } from "@/lib/content";
 import ScrollReveal from "@/components/ScrollReveal";
 
+// TODO: Replace WHATSAPP_PHONE with the real Muzari Exports WhatsApp number
+const WHATSAPP_PHONE = process.env.NEXT_PUBLIC_WHATSAPP_PHONE ?? "";
+
+interface ProductData {
+  name: string;
+  localName?: string;
+  category: string;
+  rating: string;
+  reviews: string;
+  description: string;
+  images: string[];
+}
+
 // This simulates fetching detailed product info based on the slug.
-const placeholderProductData: Record<string, any> = {
+const placeholderProductData: Record<string, ProductData> = {
   "banana-blossom": {
     name: "Banana Blossom",
     localName: "വാഴ കൂമ്പ്",
@@ -29,20 +44,13 @@ export default async function ProductPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  const product = placeholderProductData[slug];
+
+  if (!product) {
+    notFound();
+  }
+
   const content = await getHomePageContent();
-  
-  // Lookup data or use a fallback.
-  const product = placeholderProductData[slug] || {
-    name: slug.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
-    category: "Agricultural Export",
-    rating: "5.0",
-    reviews: "New Export Request",
-    description: "Premium exported agricultural goods directly from our global network of top-tier growers. Sustainably harvested and quality verified.",
-    images: [
-       "https://lh3.googleusercontent.com/aida-public/AB6AXuDiDZgyv3xrx8FaQu0jWkqAGASh3Okze46dKeMq8pD_YNWxU_Ppa3SXNr4ivAmYOijZ_Hx6j39vN819ohakBNXQZfu6gWgkzpt-SnSW3nbgpTQkKz36Tx3mLOSAhopmrryHYRnRXd_9jS1YnYI59RWPqi1lDTKR6TQH6mjgs0-AU2syp94WW0OnjAiF9XAS6uR2YOO2CRNtEdAyIcAthbpB6_vjyJIk-gh4ygBi_2qgHUECRdkSZAFrb458EiiwUtIcZ-MDBM3stCun",
-       ...Array(3).fill("https://lh3.googleusercontent.com/aida-public/AB6AXuBIbS98a5PZu1Nji_0Z1in_TuoOR9O4fK0kEOZxVb3KDNK_UpYflpJYXTuMZhS6Tl1IYpeTAQcBqrlgtU8enKZjT-Bmb09YL29FwD2Tx300270p7U7OsUHwgDfwmf9xyfJg83V06axzAbjI7w0g7TRp1SP8mae1C2DwWAFAp4SiN10F3zmJ--GWtyr7zHoeuZMNC9Fl9-PlQ3c9mbySJVKDZxjGNTCbuEU00YGwBFACi5HxpMlqWL7D3nV86vGndfBtbnG7oZ0yaEsy")
-    ]
-  };
 
   return (
     <div className="bg-[#f9f9fa] min-h-screen font-sans">
@@ -52,7 +60,7 @@ export default async function ProductPage({
         {/* Breadcrumb matching the image */}
         <ScrollReveal>
           <div className="flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider text-on-surface-variant mb-6">
-            <a href="/" className="hover:text-primary transition-colors">Products</a>
+            <Link href="/" className="hover:text-primary transition-colors">Products</Link>
             <span>/</span>
             <span className="text-[#3a3a3a]">{product.category}</span>
             <span>/</span>
@@ -174,7 +182,7 @@ export default async function ProductPage({
                  </div>
 
                  <a 
-                   href={`https://wa.me/1234567890?text=${encodeURIComponent(`I want to inquire about Bulk ${product.name} exports.`)}`}
+                   href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(`I want to inquire about Bulk ${product.name} exports.`)}`}
                    className="flex-1 flex items-center justify-center h-14 rounded-full bg-[#202020] text-white font-bold tracking-wide shadow-xl hover:bg-black transition-colors min-w-[200px]"
                  >
                    Inquire For Export

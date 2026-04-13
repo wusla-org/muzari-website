@@ -5,7 +5,7 @@ export default function FloatingWhatsApp({ phoneNumber = "1234567890" }: { phone
     const text = encodeURIComponent(
       "Hello Muzari Exports, I'm interested in discussing wholesale agricultural export solutions."
     );
-    window.open(`https://wa.me/${phoneNumber}?text=${text}`, "_blank");
+    window.open(`https://wa.me/${phoneNumber}?text=${text}`, "_blank", "noopener,noreferrer");
   };
 
   return (

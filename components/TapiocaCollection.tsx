@@ -46,19 +46,19 @@ export default function TapiocaCollection({
                         {product.description}
                       </p>
                       <a 
-                        href={`https://wa.me/1234567890?text=${encodeURIComponent(`Hello Muzari, I am interested in ${product.title}`)}`}
+                        href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_PHONE ?? ""}?text=${encodeURIComponent(`Hello Muzari, I am interested in ${product.title}`)}`}
                         className="button-primary"
                       >
                         Inquire Grade A
                       </a>
                     </div>
                     <div className="relative h-48 md:h-64 w-full rounded-[1.5rem] overflow-hidden">
-                       <Image src={product.imageUrl} alt={product.title} fill className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
+                       <Image src={product.imageUrl} alt={product.title} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
                     </div>
                  </div>
                ) : (
                  <a 
-                   href={`https://wa.me/1234567890?text=${encodeURIComponent(`Hello Muzari, I am interested in ${product.title}`)}`}
+                   href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_PHONE ?? ""}?text=${encodeURIComponent(`Hello Muzari, I am interested in ${product.title}`)}`}
                    className="accordion-row group"
                  >
                     <div className="flex items-center gap-5">
