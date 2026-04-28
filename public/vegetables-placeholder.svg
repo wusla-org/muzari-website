@@ -1,0 +1,12 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="420" fill="#F6F1E6"/>
+  <rect x="22" y="22" width="596" height="376" fill="#FBF8EF" stroke="#D8D0BF" stroke-width="2"/>
+  <circle cx="238" cy="248" r="72" fill="#8CB167"/>
+  <circle cx="317" cy="218" r="62" fill="#E55E44"/>
+  <circle cx="400" cy="248" r="74" fill="#79A05B"/>
+  <ellipse cx="317" cy="301" rx="158" ry="42" fill="#D7C79B"/>
+  <path d="M311 142C323 122 341 112 360 112C355 135 339 149 319 154L311 142Z" fill="#56753D"/>
+  <path d="M214 173C189 149 182 128 188 108C212 119 227 140 230 167L214 173Z" fill="#5A7D43"/>
+  <text x="56" y="80" fill="#20301F" fill-opacity="0.58" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700" letter-spacing="4">PRODUCT IMAGE SLOT</text>
+  <text x="56" y="116" fill="#20301F" font-size="44" font-family="Arial, Helvetica, sans-serif" font-weight="700">Fresh Vegetables</text>
+</svg>

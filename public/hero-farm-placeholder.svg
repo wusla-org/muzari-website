@@ -1,0 +1,18 @@
+<svg width="1200" height="780" viewBox="0 0 1200 780" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="780" fill="#F3EDDF"/>
+  <rect x="36" y="36" width="1128" height="708" fill="#F8F4EA" stroke="#D8D0BF" stroke-width="2"/>
+  <path d="M37 522C184 480 246 416 357 416C469 416 505 467 627 467C748 467 798 414 919 414C1035 414 1096 462 1163 490V742H37V522Z" fill="#D9C890"/>
+  <path d="M37 565C162 521 270 528 364 528C488 528 546 586 650 586C784 586 809 519 954 519C1038 519 1107 542 1163 564V742H37V565Z" fill="#9EB879"/>
+  <path d="M37 607C166 584 257 619 358 619C474 619 551 661 676 661C803 661 878 616 987 616C1065 616 1115 639 1163 657V742H37V607Z" fill="#547345"/>
+  <circle cx="932" cy="178" r="62" fill="#F0D79A"/>
+  <rect x="136" y="398" width="16" height="196" fill="#715639"/>
+  <path d="M145 374C198 374 221 336 221 300C169 300 145 336 145 374Z" fill="#6E9554"/>
+  <path d="M148 418C212 418 249 388 249 342C184 342 148 374 148 418Z" fill="#7EAA61"/>
+  <path d="M160 455C224 455 260 425 260 380C196 380 160 410 160 455Z" fill="#95BD72"/>
+  <rect x="921" y="454" width="88" height="60" rx="8" fill="#FFFDF8" stroke="#D8D0BF" stroke-width="2"/>
+  <text x="965" y="478" text-anchor="middle" fill="#20301F" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="700">FARM</text>
+  <text x="965" y="498" text-anchor="middle" fill="#20301F" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="700">SOURCE</text>
+  <text x="80" y="92" fill="#20301F" fill-opacity="0.58" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700" letter-spacing="4">MUZARI EXPORTS</text>
+  <text x="80" y="126" fill="#20301F" font-size="54" font-family="Arial, Helvetica, sans-serif" font-weight="700">Fresh produce exporter from India</text>
+  <text x="80" y="160" fill="#20301F" fill-opacity="0.72" font-size="24" font-family="Arial, Helvetica, sans-serif">Semantic placeholder ready for real farm and export imagery.</text>
+</svg>

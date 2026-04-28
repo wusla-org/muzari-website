@@ -1,119 +1,60 @@
 import type { Metadata } from "next";
-import { Manrope, Inter } from "next/font/google";
+import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
-import SchemaOrg from "@/components/SchemaOrg";
 
 const manrope = Manrope({
   subsets: ["latin"],
-  display: "optional",
   variable: "--font-manrope",
 });
 
-const inter = Inter({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  display: "optional",
-  variable: "--font-inter",
+  variable: "--font-cormorant",
+  weight: ["400", "500", "600", "700"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://muzariexports.com";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: {
-    default: "Muzari Exports | Kerala's Finest Export Partner",
-    template: "%s | Muzari Exports",
-  },
+  metadataBase: new URL('https://www.muzariexports.com'),
+  title: "Muzari Farms | Premium Agricultural Produce Exporter from India",
   description:
-    "Premium Kerala Tapioca and Nendran Banana exports to 35+ countries. ISO-certified, Global GAP compliant. B2B bulk sourcing from Kerala's agricultural heartland.",
-  keywords: [
-    "Kerala exports",
-    "Tapioca export",
-    "Nendran banana export",
-    "cassava export India",
-    "India produce export",
-    "B2B agriculture",
-    "bulk banana export",
-    "organic tapioca starch",
-    "Kerala agricultural products",
-    "Wayanad bananas",
-    "food grade cassava",
-    "cold chain produce export",
-  ],
-  icons: {
-    icon: "/logo/muzari-logo-mark.png",
-    shortcut: "/favicon.ico",
-    apple: "/logo/muzari-logo-mark.png",
+    "Muzari Exports is a premium fresh produce exporter from India, supplying farm-direct Cavendish bananas, tapioca roots, and fresh vegetables to global buyers. CIF/FOB pricing available.",
+  keywords: ["fresh produce exporter India", "farm direct exporter", "Cavendish bananas exporter", "raw tapioca roots supplier", "fresh vegetables export India", "agricultural supply chain", "global fresh produce trade"],
+  alternates: {
+    canonical: '/',
   },
   openGraph: {
-    title: "Muzari Exports | Kerala's Finest Export Partner",
-    description:
-      "Premium Kerala Tapioca and Nendran Banana exports to 35+ countries. ISO-certified, Global GAP compliant.",
-    type: "website",
-    locale: "en_US",
-    siteName: "Muzari Exports",
+    title: "Muzari Farms | Premium Agricultural Produce Exporter",
+    description: "Farm-direct Cavendish bananas, tapioca, and fresh vegetables from India to global ports.",
+    url: 'https://www.muzariexports.com',
+    siteName: 'Muzari Exports',
     images: [
       {
-        url: "/logo/muzari-logo-full.png",
-        width: 2240,
-        height: 980,
-        alt: "Muzari Exports — Kerala's premium agricultural exporter",
+        url: '/hero_background.png',
+        width: 1200,
+        height: 630,
+        alt: 'Muzari Farms - Sunlit Agricultural Farm in India',
       },
     ],
+    locale: 'en_US',
+    type: 'website',
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Muzari Exports | Kerala's Finest Export Partner",
-    description:
-      "Premium Kerala Tapioca and Nendran Banana exports. ISO-certified, 35+ countries.",
-    images: [
-      {
-        url: "/logo/muzari-logo-full.png",
-        alt: "Muzari Exports",
-      },
-    ],
+    card: 'summary_large_image',
+    title: "Muzari Farms | Premium Produce Exporter",
+    description: "Farm-direct produce from India to global ports.",
+    images: ['/hero_background.png'],
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true },
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
-  alternates: {
-    canonical: siteUrl,
-  },
-};
-
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Muzari Exports",
-  url: siteUrl,
-  logo: `${siteUrl}/logo/muzari-logo-full.png`,
-  description:
-    "Kerala-based premium agricultural exporter of Tapioca and Nendran Bananas to 35+ countries worldwide.",
-  address: {
-    "@type": "PostalAddress",
-    addressRegion: "Kerala",
-    addressCountry: "IN",
-  },
-  contactPoint: {
-    "@type": "ContactPoint",
-    contactType: "sales",
-    availableLanguage: ["English", "Malayalam"],
-  },
-  knowsAbout: [
-    "Tapioca Export",
-    "Nendran Banana Export",
-    "Kerala Agriculture",
-    "Cassava Processing",
-    "Cold Chain Logistics",
-  ],
-};
-
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "Muzari Exports",
-  url: siteUrl,
 };
 
 export default function RootLayout({
@@ -121,12 +62,58 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Muzari Exports',
+    url: 'https://www.muzariexports.com',
+    logo: 'https://www.muzariexports.com/icon.png',
+    description: 'Premium fresh produce exporter from India supplying farm-direct Cavendish bananas, tapioca, and fresh vegetables to global buyers.',
+    location: {
+      '@type': 'Place',
+      address: {
+        '@type': 'PostalAddress',
+        addressCountry: 'IN',
+      }
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: process.env.NEXT_PUBLIC_WHATSAPP_PHONE || '+919747522318',
+      contactType: 'sales',
+      availableLanguage: ['English', 'Hindi', 'Malayalam']
+    },
+    offers: {
+      '@type': 'Offer',
+      itemOffered: [
+        {
+          '@type': 'Product',
+          name: 'Premium Cavendish Bananas',
+          description: 'Export grade green Cavendish bananas from India.'
+        },
+        {
+          '@type': 'Product',
+          name: 'Raw Tapioca Roots',
+          description: 'High-starch premium cassava roots from India.'
+        },
+        {
+          '@type': 'Product',
+          name: 'Fresh Vegetables',
+          description: 'Farm-fresh export vegetables from India.'
+        }
+      ]
+    }
+  };
+
   return (
-    <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
-      <body className="bg-surface font-body text-on-surface antialiased">
+    <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className={`${manrope.variable} ${cormorant.variable} antialiased`}>
         {children}
-        <SchemaOrg data={organizationSchema} />
-        <SchemaOrg data={websiteSchema} />
       </body>
     </html>
   );
