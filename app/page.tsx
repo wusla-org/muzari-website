@@ -11,9 +11,11 @@ import SiteHeader from "@/components/SiteHeader";
 import {
   aboutPreview,
   getWhatsAppHref,
+  missionVision,
   whyChooseUs,
   products,
 } from "@/lib/site-data";
+import { Users, Leaf, Briefcase, Award } from "lucide-react";
 
 export default function Home() {
   const whatsappHref = getWhatsAppHref();
@@ -22,52 +24,65 @@ export default function Home() {
     <main className="min-h-screen bg-white text-green-950 selection:bg-green-900 selection:text-white">
       <SiteHeader />
 
-      <section className="relative flex min-h-screen items-end overflow-hidden pb-20 pt-20 md:items-center md:pb-0">
+      {/* Hero Section */}
+      <section className="relative flex min-h-screen items-center justify-center overflow-hidden pb-32 pt-32">
         <h1 className="sr-only">Muzari Farms: Premium Agricultural Produce Exporter from India</h1>
 
         <div className="absolute inset-0 z-0">
           <Image
-            src="/hero_background.png"
-            alt="Muzari Farms agricultural fields in India"
+            src="/hero_premium.png"
+            alt="Muzari Farms cinematic agricultural fields"
             fill
             sizes="100vw"
-            className="object-cover"
+            className="object-cover scale-105"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-green-950/90 via-green-950/60 to-green-950/20" />
-          <div className="absolute inset-0 bg-gradient-to-t from-green-950/70 via-transparent to-transparent" />
+          {/* Branded Watermark Overlay */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-[0.05] pointer-events-none select-none">
+            <Image 
+              src="/logo/logo-dark.png" 
+              alt="" 
+              width={1000} 
+              height={1000} 
+              className="object-contain scale-[1.5] brightness-0 invert" 
+            />
+          </div>
+          {/* Sophisticated Gradient Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-b from-green-950/60 via-green-950/40 to-green-950" />
+          <div className="absolute inset-0 bg-green-950/20" />
         </div>
 
-        <div className="relative z-10 mx-auto w-[min(1280px,calc(100%-2rem))]">
-          <div className="max-w-2xl">
-            <Badge className="mb-6 rounded-full border-0 bg-amber-500 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-amber-950 shadow-sm hover:bg-amber-500">
-              100% Authentic Agriculture
+        <div className="relative z-10 mx-auto w-[min(1440px,calc(100%-4rem))] px-4 text-center">
+          <div className="mx-auto max-w-5xl">
+            <Badge className="mb-10 rounded-full border border-amber-400/30 bg-amber-500/10 px-6 py-2 text-[10px] font-black uppercase tracking-[0.3em] text-amber-400 backdrop-blur-sm shadow-xl">
+              100% Authentic Indian Agriculture
             </Badge>
 
             <h2
-              className="mb-6 font-serif text-5xl font-bold leading-[1] text-white drop-shadow-lg sm:text-6xl md:text-7xl lg:text-7xl"
+              className="mb-8 font-serif text-6xl font-medium leading-[0.9] tracking-tight text-white sm:text-8xl md:text-9xl lg:text-[11rem]"
               aria-hidden="true"
             >
-              When Indian Produce <br />
-              Meets <span className="text-amber-400">International Standards.</span>
+              Indian Produce <br />
+              <span className="italic font-light text-amber-400">Meets Perfection.</span>
             </h2>
 
-            <div className="mb-10 max-w-xl drop-shadow-md">
-              <p className="mb-4 font-serif text-2xl font-bold leading-relaxed text-white md:text-3xl">
-                Muzari Exports Combines Modern Farming & Global Exporting.
+            <div className="mx-auto mb-14 max-w-3xl">
+              <p className="mb-6 font-serif text-2xl italic leading-relaxed text-green-50 md:text-4xl opacity-90">
+                &ldquo;Combining Modern Farming & Global Excellence.&rdquo;
               </p>
               
-              <p className="text-base leading-relaxed text-green-100 md:text-lg">
-                We export premium-quality bananas, tapioca, and fresh vegetables — from India to our global customer base. Every shipment is delivered with trust, care, and a commitment to excellence.
+              <p className="mx-auto max-w-2xl text-lg leading-relaxed text-green-100/80 md:text-xl font-medium tracking-wide">
+                We export premium-quality bananas, tapioca, and fresh vegetables from the heart of India to the global stage. 
+                Built on trust, delivered with care.
               </p>
             </div>
 
-            <div className="flex flex-col gap-4 sm:flex-row">
+            <div className="flex flex-col items-center justify-center gap-6 sm:flex-row">
               <Link
                 href={whatsappHref}
                 className={cn(
                   buttonVariants({ size: "lg" }),
-                  "h-14 rounded-full bg-green-600 px-8 text-base font-bold text-white shadow-lg transition-all hover:bg-green-500 hover:shadow-xl"
+                  "h-16 rounded-full bg-green-600 px-10 text-lg font-bold text-white shadow-[0_0_40px_rgba(22,163,74,0.3)] transition-all hover:bg-green-500 hover:scale-105 active:scale-95"
                 )}
               >
                 Order Farm Fresh
@@ -76,7 +91,7 @@ export default function Home() {
                 href="/products"
                 className={cn(
                   buttonVariants({ variant: "outline", size: "lg" }),
-                  "h-14 rounded-full border-2 border-white/80 bg-white/10 px-8 text-base font-bold text-white backdrop-blur-sm transition-all hover:bg-white hover:text-green-900"
+                  "h-16 rounded-full border-2 border-white/30 bg-white/5 px-10 text-lg font-bold text-white backdrop-blur-md transition-all hover:bg-white hover:text-green-950 hover:border-white"
                 )}
               >
                 View Our Harvest
@@ -84,46 +99,91 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
 
-        <div className="absolute bottom-0 left-0 right-0 z-10 hidden md:block">
-          <div className="mx-auto w-[min(1280px,calc(100%-2rem))]">
-            <div className="mb-8 inline-flex gap-12 rounded-2xl border border-white/20 bg-white/10 px-10 py-5 backdrop-blur-md">
-              {[
-                { value: "15+", label: "Countries Supplied" },
-                { value: "100%", label: "Farm Direct" },
-                { value: "CIF/FOB", label: "Shipping Terms" },
-              ].map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <p className="font-serif text-2xl font-bold text-amber-400">{stat.value}</p>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-green-100">
+      {/* Stats Section */}
+      <section className="bg-green-950 py-16 border-y border-white/5">
+        <div className="mx-auto w-[min(1280px,calc(100%-2rem))]">
+          <div className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 md:grid-cols-4 md:gap-y-0">
+            {[
+              { icon: Users, value: "+50", label: "Local producers" },
+              { icon: Leaf, value: "10T", label: "Exported fruit" },
+              { icon: Briefcase, value: "5+", label: "Years of Experience" },
+              { icon: Award, value: "100%", label: "Quality of Fruit" },
+            ].map((stat, i) => (
+              <div
+                key={i}
+                className={cn(
+                  "flex flex-row items-center justify-center gap-6 px-4 transition-all duration-500 hover:opacity-80",
+                  i !== 0 && "md:border-l md:border-white/10"
+                )}
+              >
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#82E076]/10 text-[#82E076]">
+                  <stat.icon className="h-6 w-6" />
+                </div>
+                <div className="text-left">
+                  <p className="font-manrope text-3xl font-bold tracking-tighter text-white">
+                    {stat.value}
+                  </p>
+                  <p className="whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.2em] text-green-300/40">
                     {stat.label}
                   </p>
                 </div>
-              ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Mission & Vision Section */}
+      <section className="bg-white py-32 border-b border-green-50">
+        <div className="mx-auto w-[min(1280px,calc(100%-2rem))] px-4">
+          <div className="grid gap-20 md:grid-cols-2 md:gap-32">
+            <div className="relative">
+              <div className="absolute -left-8 -top-12 pointer-events-none select-none text-[12rem] font-serif text-green-50/80 leading-none">“</div>
+              <div className="relative z-10">
+                <p className="mb-6 text-[10px] font-black uppercase tracking-[0.4em] text-amber-600/80">
+                  {missionVision.mission.title}
+                </p>
+                <h3 className="font-serif text-4xl font-medium leading-[1.2] text-green-950 md:text-5xl italic tracking-tight">
+                  {missionVision.mission.text}
+                </h3>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="absolute -left-8 -top-12 pointer-events-none select-none text-[12rem] font-serif text-green-50/80 leading-none">“</div>
+              <div className="relative z-10">
+                <p className="mb-6 text-[10px] font-black uppercase tracking-[0.4em] text-amber-600/80">
+                  {missionVision.vision.title}
+                </p>
+                <h3 className="font-serif text-4xl font-medium leading-[1.2] text-green-950 md:text-5xl italic tracking-tight">
+                  {missionVision.vision.text}
+                </h3>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-green-50 py-24">
-        <div className="mx-auto grid w-[min(1280px,calc(100%-2rem))] gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+      <section className="bg-green-50 py-32">
+        <div className="mx-auto grid w-[min(1280px,calc(100%-2rem))] gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
-            <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-amber-600">
+            <p className="mb-6 font-label text-[10px] font-black uppercase tracking-[0.4em] text-amber-600">
               {aboutPreview.eyebrow}
             </p>
-            <h2 className="mb-6 max-w-2xl font-serif text-4xl font-bold text-green-900 md:text-5xl">
+            <h2 className="mb-8 max-w-2xl font-heritage text-5xl font-bold leading-[1.1] text-green-900 md:text-6xl tracking-tight">
               {aboutPreview.title}
             </h2>
-            <p className="mb-5 max-w-2xl text-base leading-relaxed text-green-800">
+            <p className="mb-6 max-w-2xl text-lg font-medium leading-relaxed text-green-800 italic opacity-80">
               {aboutPreview.intro}
             </p>
-            <p className="mb-8 max-w-2xl text-base leading-relaxed text-green-700">
+            <p className="mb-10 max-w-2xl text-base leading-relaxed text-green-700/90">
               {aboutPreview.body}
             </p>
-            <div className="space-y-3">
+            <div className="space-y-4">
               {aboutPreview.points.map((point) => (
-                <div key={point} className="flex items-start gap-3 text-sm font-medium text-green-900">
-                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-amber-500" />
+                <div key={point} className="flex items-center gap-4 text-sm font-bold text-green-900 group">
+                  <span className="h-2 w-2 shrink-0 rounded-full bg-amber-500 transition-transform group-hover:scale-150" />
                   <span>{point}</span>
                 </div>
               ))}
@@ -134,10 +194,10 @@ export default function Home() {
             <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-amber-400/20 blur-3xl" />
             <div className="absolute -bottom-16 -left-16 h-40 w-40 rounded-full bg-green-700/40 blur-3xl" />
             <div className="relative">
-              <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-amber-300">
+              <p className="mb-4 font-label text-xs font-bold uppercase tracking-[0.3em] text-amber-300">
                 Why Muzari
               </p>
-              <h3 className="mb-5 font-serif text-3xl font-bold leading-tight">
+              <h3 className="mb-5 font-heritage text-3xl font-bold leading-tight">
                 Close to the farm, prepared for export, committed to repeat trust.
               </h3>
               <p className="mb-8 text-sm leading-7 text-green-100/90">
@@ -189,39 +249,35 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="why-choose-us" className="relative overflow-hidden bg-green-900 py-24 text-white">
-        <div className="pointer-events-none absolute -right-32 -top-32 h-80 w-80 rounded-full bg-green-800 opacity-60 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-32 -left-32 h-80 w-80 rounded-full bg-green-950 opacity-60 blur-3xl" />
-        <div
-          className="pointer-events-none absolute inset-0 opacity-5"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
-        />
-
-        <div className="relative z-10 mx-auto w-[min(1280px,calc(100%-2rem))]">
-          <div className="mb-16 text-center">
-            <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-amber-400">
-              Why Choose Us
-            </p>
-            <h2 className="font-serif text-4xl font-bold leading-tight text-white md:text-5xl">
-              Built for <span className="text-amber-400">Global Excellence.</span>
+      <section id="why-choose-us" className="relative overflow-hidden bg-green-950 py-32 text-white">
+        <div className="mx-auto w-[min(1280px,calc(100%-2rem))] px-4">
+          <div className="mb-24 text-center">
+            <Badge className="mb-6 rounded-full border border-green-800 bg-green-900/50 px-6 py-2 text-[10px] font-black uppercase tracking-[0.4em] text-green-300/80">
+              Our Principles
+            </Badge>
+            <h2 className="font-serif text-5xl font-medium leading-[1.1] md:text-7xl tracking-tight">
+              Setting the <span className="italic text-amber-400 font-light">Gold Standard</span> in <br />
+              Agricultural Exports.
             </h2>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-x-16 gap-y-24 sm:grid-cols-2 lg:grid-cols-3">
             {whyChooseUs.map((point, index) => (
               <div
                 key={point.title}
-                className="group rounded-2xl border border-green-700/50 bg-green-800/50 p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-green-600 hover:bg-green-800 hover:shadow-xl hover:shadow-green-950/50"
+                className="group relative"
               >
-                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-amber-500 font-serif text-xl font-bold text-green-950 transition-colors group-hover:bg-amber-400">
-                  {index + 1}
+                {/* Decorative Number */}
+                <div className="absolute -left-6 -top-10 pointer-events-none select-none font-serif text-[10rem] font-black text-white/[0.02] transition-all duration-700 group-hover:text-amber-400/[0.05] group-hover:-translate-y-4">
+                  0{index + 1}
                 </div>
-                <h3 className="mb-3 text-xl font-bold text-white">{point.title}</h3>
-                <p className="text-sm leading-relaxed text-green-200">{point.text}</p>
+                
+                <div className="relative z-10">
+                  <div className="mb-8 h-px w-16 bg-amber-500/30 transition-all duration-700 group-hover:w-full group-hover:bg-amber-400" />
+                  <h3 className="font-serif text-3xl font-medium leading-[1.2] text-white transition-all duration-500 group-hover:text-amber-400 md:text-4xl">
+                    {point.title}
+                  </h3>
+                </div>
               </div>
             ))}
           </div>
@@ -270,6 +326,27 @@ export default function Home() {
               </Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="bg-[#C5A54B] py-24 text-center">
+        <div className="mx-auto w-[min(1280px,calc(100%-2rem))]">
+          <h2 className="mb-6 font-serif text-4xl font-bold text-green-950 md:text-6xl">
+            Ready to Source Premium <br /> Indian Produce?
+          </h2>
+          <p className="mx-auto mb-10 max-w-2xl text-lg font-medium text-green-900 md:text-xl">
+            Let&apos;s grow together. Reach out to our team for pricing, <br className="hidden md:block" />
+            availability, and bulk enquiries.
+          </p>
+          <Link
+            href={whatsappHref}
+            className={cn(
+              buttonVariants({ size: "lg" }),
+              "h-16 rounded-full bg-green-950 px-12 text-lg font-bold !text-white shadow-2xl transition-all hover:bg-green-900 hover:scale-105"
+            )}
+          >
+            Get in Touch <span className="ml-2">→</span>
+          </Link>
         </div>
       </section>
 

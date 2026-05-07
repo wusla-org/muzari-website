@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Manrope, Geist } from "next/font/google";
+import { Cormorant_Garamond, Manrope, Geist, Fraunces, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -14,6 +14,18 @@ const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-cormorant",
   weight: ["400", "500", "600", "700"],
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  display: "swap",
+});
+
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-bricolage",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -70,7 +82,7 @@ export default function RootLayout({
     '@type': 'Organization',
     name: 'Muzari Exports',
     url: 'https://www.muzariexports.com',
-    logo: 'https://www.muzariexports.com/icon.png',
+    logo: 'https://www.muzariexports.com/logo/logo-dark.png',
     description: 'Premium fresh produce exporter from India supplying farm-direct Cavendish bananas, tapioca, and fresh vegetables to global buyers.',
     location: {
       '@type': 'Place',
@@ -115,7 +127,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${manrope.variable} ${cormorant.variable} antialiased`}>
+      <body className={`${manrope.variable} ${cormorant.variable} ${fraunces.variable} ${bricolage.variable} antialiased`}>
         {children}
       </body>
     </html>

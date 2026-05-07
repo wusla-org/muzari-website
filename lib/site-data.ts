@@ -9,31 +9,31 @@ export type Product = {
 
 export const products: Product[] = [
   {
-    name: "Farm-Fresh Bananas",
-    label: "Harvested Daily",
-    image: "/bananas.png",
-    imageAlt: "Freshly harvested green Cavendish bananas",
+    name: "Robusta Banana",
+    label: "Premium Variety",
+    image: "/robusta_banana.png",
+    imageAlt: "Professional studio shot of green Robusta bananas",
     summary:
-      "Grown under the tropical sun and hand-harvested at the exact moment of maturity for dependable export quality.",
-    details: ["Hand-selected bunches", "Sun-ripened origin", "Direct from our orchards"],
+      "High-quality Robusta bananas, known for their consistent size and vibrant flavor, harvested at peak maturity.",
+    details: ["Uniform grading", "Global demand", "Cold-chain ready"],
   },
   {
-    name: "Earthy Tapioca Roots",
+    name: "Nethra Banana",
+    label: "Elite Variety",
+    image: "/nethra_banana.png",
+    imageAlt: "Premium Nethra bananas (Plantains) studio shot",
+    summary:
+      "Prized Nethra (Plantain) bananas, hand-picked for their distinct texture and nutritional value.",
+    details: ["Hand-harvested", "Rich nutrition", "Export standard"],
+  },
+  {
+    name: "Premium Tapioca",
     label: "Soil to Port",
-    image: "/tapioca.png",
-    imageAlt: "Fresh tapioca roots from the farm",
+    image: "/tapioca_premium.png",
+    imageAlt: "Cleaned and graded Tapioca roots studio shot",
     summary:
-      "Cultivated in nutrient-rich soil, our cassava roots are thick, healthy, and rigorously cleaned before export.",
-    details: ["Deep-rooted nutrition", "Carefully unearthed", "High starch yield"],
-  },
-  {
-    name: "Sunlit Vegetables",
-    label: "Field to Freight",
-    image: "/vegetables.png",
-    imageAlt: "Vibrant vegetables in a wooden crate",
-    summary:
-      "Crisp, vibrant, and packed with flavor. Our vegetables are cooled immediately after picking to lock in farm-freshness.",
-    details: ["Morning harvest", "Vibrant colors", "Crisp texture retained"],
+      "Superior grade Tapioca (Cassava) roots, meticulously cleaned and graded for the global market.",
+    details: ["Meticulously cleaned", "Thick healthy roots", "Long shelf life"],
   },
 ];
 
@@ -57,46 +57,58 @@ export const processSteps = [
 ];
 
 export const aboutPreview = {
-  eyebrow: "Who We Are",
-  title: "A farm-rooted export partner built for long-term buyers.",
+  eyebrow: "Our Heritage",
+  title: "Cultivators with a 30-Year Agricultural Legacy.",
   intro:
-    "Muzari Exports connects international markets to carefully grown Indian produce with a direct, practical sourcing model.",
+    "Muzari Exports is built on over three decades of hands-on farming experience, rooted deeply in India’s rich agricultural soil.",
   body:
-    "We combine field knowledge, disciplined handling, and export-minded coordination so buyers receive produce that is fresh, consistent, and ready for global shipment.",
+    "We are not just exporters — we are cultivators. Our journey began with the cultivation of bananas, paddy, and traditional vegetables, evolving into a trusted bridge that delivers premium Indian produce to international markets with absolute consistency.",
   points: [
-    "Farm-direct sourcing with hands-on crop oversight",
-    "Buyer-focused quality checks before dispatch",
-    "Reliable communication for repeat export orders",
+    "30+ years of direct hands-on farming experience",
+    "Exporters who understand cultivation at the root level",
+    "Direct bridge from Indian farms to global ports",
   ],
+};
+
+export const missionVision = {
+  mission: {
+    title: "Mission",
+    text: "Delivering premium Indian vegetables, fruits, and spices globally with quality, reliability, and sustainability.",
+  },
+  vision: {
+    title: "Vision",
+    text: "To become a globally trusted brand, representing India’s excellence in fresh produce.",
+  },
 };
 
 export const aboutPageContent = {
   eyebrow: "About Muzari",
-  title: "We grow trust the same way we grow produce: carefully, consistently, and close to the source.",
+  title: "Indian Exporter of Fresh Vegetables, Fruits & Spices",
   intro:
-    "Muzari Exports is a farm-connected agricultural export business serving buyers who need fresh produce, dependable handling, and straightforward supply relationships from India.",
+    "Our journey began over three decades ago, deeply rooted in India’s rich agricultural heritage. What started with the cultivation of bananas, paddy, and a variety of vegetables has evolved into a trusted agricultural export company.",
   sections: [
     {
-      heading: "Who We Are",
+      heading: "Our Farming Roots",
       text:
-        "We are a produce-focused export partner with roots in practical farming. Our work starts close to the fields, where crop quality, harvesting discipline, and timing matter most.",
+        "We are not just exporters — we are cultivators with over 30 years of hands-on farming experience. This foundation gives us a distinct advantage in quality control, seasonal sourcing, and supply chain consistency, ensuring reliable delivery from farm to export.",
     },
     {
-      heading: "How We Work",
+      heading: "Expertise in Quality",
       text:
-        "We keep the process direct: careful sourcing, close product observation, export-ready packing, and clear communication with buyers who need dependable supply.",
+        "Our core export portfolio includes fresh vegetables (especially banana and tapioca), fruits, and spices, sourced directly from farms and handled in compliance with international food safety and export standards.",
     },
     {
-      heading: "Why Buyers Choose Us",
+      heading: "A Direct Bridge",
       text:
-        "International buyers work with Muzari for consistency, responsiveness, and a sourcing model that stays grounded in the realities of farming rather than pure brokerage.",
+        "Today, we operate as a direct bridge from Indian farms to global markets, while ensuring authenticity, consistency, and quality in every shipment. We focus on dependable supply relationships and shipment-ready handling that supports long-term global buyers.",
     },
   ],
   values: [
-    "Consistency in harvest and handling",
-    "Transparency from inquiry to shipment",
-    "Respect for long-term buyer relationships",
-    "A practical farm-to-port mindset",
+    "30+ Years of Agricultural Heritage",
+    "Farm-Direct Sourcing Excellence",
+    "International Food Safety Compliance",
+    "Consistency in Every Global Shipment",
+    "Authenticity and Sustainability",
   ],
 };
 
@@ -104,8 +116,8 @@ export const navigationLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Products", href: "/products" },
-  { label: "Farming", href: "/#farming" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Farming", href: "/farming" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const whyChooseUs = [
@@ -139,7 +151,8 @@ export const footerLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Products", href: "/products" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Farming", href: "/farming" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function getWhatsAppHref() {

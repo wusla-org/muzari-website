@@ -4,12 +4,12 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
-import { aboutPageContent, getWhatsAppHref } from "@/lib/site-data";
+import { aboutPageContent, missionVision, getWhatsAppHref } from "@/lib/site-data";
 
 export const metadata: Metadata = {
-  title: "About Muzari | Farm-Connected Produce Export Partner",
+  title: "About Muzari | Indian Exporter of Fresh Vegetables, Fruits & Spices",
   description:
-    "Learn who Muzari Exports is, how we work, and why international buyers trust our farm-connected sourcing and export handling.",
+    "Discover the 30-year agricultural heritage of Muzari Exports. We are cultivators and exporters of premium Indian produce, dedicated to quality, reliability, and global sustainability.",
 };
 
 export default function AboutPage() {
@@ -19,17 +19,46 @@ export default function AboutPage() {
     <main className="min-h-screen bg-white text-green-950">
       <SiteHeader />
 
-      <section className="bg-gradient-to-b from-green-950 via-green-900 to-green-950 px-0 pb-24 pt-36 text-white">
-        <div className="mx-auto w-[min(1180px,calc(100%-2rem))]">
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-amber-300">
+      <section className="bg-gradient-to-b from-green-950 via-green-900 to-green-950 px-0 pb-32 pt-40 text-white">
+        <div className="mx-auto w-[min(1180px,calc(100%-2rem))] px-4 text-center">
+          <p className="mb-6 text-[10px] font-black uppercase tracking-[0.4em] text-amber-400">
             {aboutPageContent.eyebrow}
           </p>
-          <h1 className="mb-6 max-w-4xl font-serif text-5xl font-bold leading-tight md:text-6xl">
+          <h1 className="mx-auto mb-8 max-w-5xl font-serif text-5xl font-medium leading-[1.1] md:text-7xl tracking-tight">
             {aboutPageContent.title}
           </h1>
-          <p className="max-w-3xl text-lg leading-relaxed text-green-100/90">
+          <p className="mx-auto max-w-3xl text-xl leading-relaxed text-green-100/80 italic font-serif">
             {aboutPageContent.intro}
           </p>
+        </div>
+      </section>
+
+      <section className="bg-white py-32 border-b border-green-50">
+        <div className="mx-auto w-[min(1180px,calc(100%-2rem))] px-4">
+          <div className="grid gap-20 md:grid-cols-2 md:gap-32">
+            <div className="relative">
+              <div className="absolute -left-8 -top-12 pointer-events-none select-none text-[12rem] font-serif text-green-50/80 leading-none">“</div>
+              <div className="relative z-10">
+                <p className="mb-6 text-[10px] font-black uppercase tracking-[0.4em] text-amber-600/80">
+                  {missionVision.mission.title}
+                </p>
+                <h3 className="font-serif text-4xl font-medium leading-[1.2] text-green-950 md:text-5xl italic tracking-tight">
+                  {missionVision.mission.text}
+                </h3>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="absolute -left-8 -top-12 pointer-events-none select-none text-[12rem] font-serif text-green-50/80 leading-none">“</div>
+              <div className="relative z-10">
+                <p className="mb-6 text-[10px] font-black uppercase tracking-[0.4em] text-amber-600/80">
+                  {missionVision.vision.title}
+                </p>
+                <h3 className="font-serif text-4xl font-medium leading-[1.2] text-green-950 md:text-5xl italic tracking-tight">
+                  {missionVision.vision.text}
+                </h3>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
