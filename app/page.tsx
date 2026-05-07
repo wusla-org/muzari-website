@@ -316,7 +316,7 @@ export default function Home() {
                 Message via WhatsApp
               </Link>
               <Link
-                href="mailto:farm@muzari.com"
+                href="mailto:farm@muzariexports.com"
                 className={cn(
                   buttonVariants({ variant: "outline", size: "lg" }),
                   "h-14 rounded-full border-2 border-green-200 px-10 text-base font-bold text-green-800 transition-all hover:border-green-400 hover:bg-green-50"

@@ -63,7 +63,7 @@ export default function SiteFooter() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 shrink-0 text-amber-400" />
-                <a href="mailto:farm@muzari.com" className="transition-colors hover:text-amber-400">farm@muzari.com</a>
+                <a href="mailto:farm@muzariexports.com" className="transition-colors hover:text-amber-400">farm@muzariexports.com</a>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-5 w-5 shrink-0 text-amber-400" />

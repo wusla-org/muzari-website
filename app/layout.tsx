@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.muzariexports.com'),
   title: "Muzari Farms | Premium Agricultural Produce Exporter from India",
   description:
-    "Muzari Exports is a premium fresh produce exporter from India, supplying farm-direct Cavendish bananas, tapioca roots, and fresh vegetables to global buyers. CIF/FOB pricing available.",
+    "Muzari Farms is a premium fresh produce exporter from India, supplying farm-direct Cavendish bananas, tapioca roots, and fresh vegetables to global buyers. CIF/FOB pricing available.",
   keywords: ["fresh produce exporter India", "farm direct exporter", "Cavendish bananas exporter", "raw tapioca roots supplier", "fresh vegetables export India", "agricultural supply chain", "global fresh produce trade"],
   alternates: {
     canonical: '/',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: "Muzari Farms | Premium Agricultural Produce Exporter",
     description: "Farm-direct Cavendish bananas, tapioca, and fresh vegetables from India to global ports.",
     url: 'https://www.muzariexports.com',
-    siteName: 'Muzari Exports',
+    siteName: 'Muzari Farms',
     images: [
       {
         url: '/hero_background.png',
@@ -80,7 +80,7 @@ export default function RootLayout({
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Muzari Exports',
+    name: 'Muzari Farms',
     url: 'https://www.muzariexports.com',
     logo: 'https://www.muzariexports.com/logo/logo-dark.png',
     description: 'Premium fresh produce exporter from India supplying farm-direct Cavendish bananas, tapioca, and fresh vegetables to global buyers.',
@@ -124,7 +124,9 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ 
+            __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') 
+          }}
         />
       </head>
       <body className={`${manrope.variable} ${cormorant.variable} ${fraunces.variable} ${bricolage.variable} antialiased`}>
