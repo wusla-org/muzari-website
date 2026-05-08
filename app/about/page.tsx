@@ -22,11 +22,11 @@ export default function AboutPage() {
       <SiteHeader />
 
       {/* "Smart" Architectural About Hero */}
-      <section className="relative h-[90vh] min-h-[700px] w-full overflow-hidden pt-24 bg-white">
+      <section className="relative lg:h-[90vh] lg:min-h-[700px] w-full lg:overflow-hidden pt-24 bg-white pb-6 lg:pb-0">
         <div className="mx-auto flex h-full w-[min(1440px,calc(100%-2rem))] flex-col gap-6 lg:flex-row">
           
           {/* Left Panel: Solid Brand Block (Smart Content) */}
-          <div className="relative flex h-full flex-col justify-center rounded-[2.5rem] bg-[#82E076] p-12 lg:w-[45%]">
+          <div className="relative flex h-auto lg:h-full flex-col justify-center rounded-[2.5rem] bg-[#82E076] p-12 lg:w-[45%]">
             {/* Precision Grid Detail */}
             <div className="absolute inset-0 pointer-events-none opacity-20">
               <div className="absolute left-10 top-0 h-full w-px bg-white/30" />
@@ -48,7 +48,7 @@ export default function AboutPage() {
           </div>
 
           {/* Right Panel: Framed Cinematic Visual */}
-          <div className="relative h-full overflow-hidden rounded-[2.5rem] bg-green-950 lg:w-[55%] group">
+          <div className="relative h-[400px] lg:h-full overflow-hidden rounded-[2.5rem] bg-green-950 lg:w-[55%] group">
             <Image
               src="/hero_heritage.png" 
               alt="Muzari Heritage Fields"
