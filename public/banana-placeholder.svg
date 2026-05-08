@@ -1,0 +1,10 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="420" fill="#F6F1E6"/>
+  <rect x="22" y="22" width="596" height="376" fill="#FBF8EF" stroke="#D8D0BF" stroke-width="2"/>
+  <ellipse cx="320" cy="240" rx="170" ry="96" fill="#E5D67C"/>
+  <path d="M214 254C276 201 362 177 446 194C395 246 319 279 241 280C230 280 220 271 214 254Z" fill="#C5B248"/>
+  <path d="M175 226C247 165 351 133 452 149C388 216 295 252 200 252C187 252 177 241 175 226Z" fill="#EFD95A"/>
+  <circle cx="462" cy="152" r="16" fill="#7E6B30"/>
+  <text x="56" y="80" fill="#20301F" fill-opacity="0.58" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700" letter-spacing="4">PRODUCT IMAGE SLOT</text>
+  <text x="56" y="116" fill="#20301F" font-size="44" font-family="Arial, Helvetica, sans-serif" font-weight="700">Bananas</text>
+</svg>
