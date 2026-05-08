@@ -5,6 +5,10 @@ export type Product = {
   imageAlt: string;
   summary: string;
   details: string[];
+  specs?: {
+    label: string;
+    value: string;
+  }[];
 };
 
 export const products: Product[] = [
@@ -16,6 +20,12 @@ export const products: Product[] = [
     summary:
       "High-quality Robusta bananas, known for their consistent size and vibrant flavor, harvested at peak maturity.",
     details: ["Uniform grading", "Global demand", "Cold-chain ready"],
+    specs: [
+      { label: "Origin", value: "Kerala, India" },
+      { label: "Shelf Life", value: "25-30 Days" },
+      { label: "Packaging", value: "13.5kg / 18.5kg Boxes" },
+      { label: "Temp", value: "13.5°C" }
+    ],
   },
   {
     name: "Nethra Banana",
@@ -25,6 +35,12 @@ export const products: Product[] = [
     summary:
       "Prized Nethra (Plantain) bananas, hand-picked for their distinct texture and nutritional value.",
     details: ["Hand-harvested", "Rich nutrition", "Export standard"],
+    specs: [
+      { label: "Origin", value: "Tamil Nadu, India" },
+      { label: "Shelf Life", value: "20-25 Days" },
+      { label: "Packaging", value: "7kg / 13kg Boxes" },
+      { label: "Variety", value: "Traditional Nendran" }
+    ],
   },
   {
     name: "Premium Tapioca",
@@ -34,6 +50,12 @@ export const products: Product[] = [
     summary:
       "Superior grade Tapioca (Cassava) roots, meticulously cleaned and graded for the global market.",
     details: ["Meticulously cleaned", "Thick healthy roots", "Long shelf life"],
+    specs: [
+      { label: "Origin", value: "South India" },
+      { label: "Shelf Life", value: "30-40 Days" },
+      { label: "Packaging", value: "5kg / 10kg Jute Bags" },
+      { label: "Type", value: "Fresh / Semi-Processed" }
+    ],
   },
 ];
 

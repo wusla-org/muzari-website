@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope, Geist, Fraunces, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -131,6 +132,7 @@ export default function RootLayout({
       </head>
       <body className={`${manrope.variable} ${cormorant.variable} ${fraunces.variable} ${bricolage.variable} antialiased`}>
         {children}
+        <WhatsAppFloat />
       </body>
     </html>
   );

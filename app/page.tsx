@@ -16,6 +16,7 @@ import {
   products,
 } from "@/lib/site-data";
 import { Users, Leaf, Briefcase, Award } from "lucide-react";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 export default function Home() {
   const whatsappHref = getWhatsAppHref();
@@ -59,7 +60,7 @@ export default function Home() {
             </Badge>
 
             <h2
-              className="mb-8 font-serif text-6xl font-medium leading-[0.9] tracking-tight text-white sm:text-8xl md:text-9xl lg:text-[11rem]"
+              className="mb-8 font-heritage text-6xl font-bold leading-[0.9] tracking-tight text-white sm:text-8xl md:text-9xl lg:text-[11rem]"
               aria-hidden="true"
             >
               Indian Produce <br />
@@ -67,13 +68,12 @@ export default function Home() {
             </h2>
 
             <div className="mx-auto mb-14 max-w-3xl">
-              <p className="mb-6 font-serif text-2xl italic leading-relaxed text-green-50 md:text-4xl opacity-90">
-                &ldquo;Combining Modern Farming & Global Excellence.&rdquo;
+              <p className="mb-6 font-heritage text-2xl italic leading-relaxed text-green-50 md:text-4xl opacity-90">
+                &ldquo;Muzari Exports combines modern farming and global exporting.&rdquo;
               </p>
               
               <p className="mx-auto max-w-2xl text-lg leading-relaxed text-green-100/80 md:text-xl font-medium tracking-wide">
-                We export premium-quality bananas, tapioca, and fresh vegetables from the heart of India to the global stage. 
-                Built on trust, delivered with care.
+                We export premium-quality bananas, tapioca, and fresh vegetables — from India to our global customer base. Every shipment is delivered with trust, care, and a commitment to excellence.
               </p>
             </div>
 
@@ -139,28 +139,32 @@ export default function Home() {
       <section className="bg-white py-32 border-b border-green-50">
         <div className="mx-auto w-[min(1280px,calc(100%-2rem))] px-4">
           <div className="grid gap-20 md:grid-cols-2 md:gap-32">
-            <div className="relative">
-              <div className="absolute -left-8 -top-12 pointer-events-none select-none text-[12rem] font-serif text-green-50/80 leading-none">“</div>
-              <div className="relative z-10">
-                <p className="mb-6 text-[10px] font-black uppercase tracking-[0.4em] text-amber-600/80">
-                  {missionVision.mission.title}
-                </p>
-                <h3 className="font-serif text-4xl font-medium leading-[1.2] text-green-950 md:text-5xl italic tracking-tight">
-                  {missionVision.mission.text}
-                </h3>
+            <ScrollReveal>
+              <div className="relative">
+                <div className="absolute -left-8 -top-12 pointer-events-none select-none text-[12rem] font-heritage text-green-50/80 leading-none">“</div>
+                <div className="relative z-10">
+                  <p className="mb-6 font-label text-[10px] font-black uppercase tracking-[0.4em] text-amber-600/80">
+                    {missionVision.mission.title}
+                  </p>
+                  <h3 className="font-heritage text-4xl font-bold leading-[1.2] text-green-950 md:text-5xl italic tracking-tight">
+                    {missionVision.mission.text}
+                  </h3>
+                </div>
               </div>
-            </div>
-            <div className="relative">
-              <div className="absolute -left-8 -top-12 pointer-events-none select-none text-[12rem] font-serif text-green-50/80 leading-none">“</div>
-              <div className="relative z-10">
-                <p className="mb-6 text-[10px] font-black uppercase tracking-[0.4em] text-amber-600/80">
-                  {missionVision.vision.title}
-                </p>
-                <h3 className="font-serif text-4xl font-medium leading-[1.2] text-green-950 md:text-5xl italic tracking-tight">
-                  {missionVision.vision.text}
-                </h3>
+            </ScrollReveal>
+            <ScrollReveal delay={0.4}>
+              <div className="relative">
+                <div className="absolute -left-8 -top-12 pointer-events-none select-none text-[12rem] font-heritage text-green-50/80 leading-none">“</div>
+                <div className="relative z-10">
+                  <p className="mb-6 font-label text-[10px] font-black uppercase tracking-[0.4em] text-amber-600/80">
+                    {missionVision.vision.title}
+                  </p>
+                  <h3 className="font-heritage text-4xl font-bold leading-[1.2] text-green-950 md:text-5xl italic tracking-tight">
+                    {missionVision.vision.text}
+                  </h3>
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -219,17 +223,17 @@ export default function Home() {
       <section id="produce" className="bg-white py-24">
         <div className="mx-auto w-[min(1280px,calc(100%-2rem))]">
           <div className="mx-auto mb-16 max-w-3xl text-center">
-            <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-amber-600">
+            <p className="mb-4 font-label text-xs font-bold uppercase tracking-[0.2em] text-amber-600">
               What We Export
             </p>
-            <h2 className="mb-6 font-serif text-4xl font-bold text-green-900 md:text-5xl">
+            <h2 className="mb-6 font-heritage text-4xl font-bold text-green-900 md:text-5xl tracking-tight">
               Our Fresh{" "}
               <span className="relative inline-block">
                 Harvest
-                <span className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-amber-500" />
+                <span className="absolute -bottom-1 left-0 right-0 h-1 rounded-full bg-amber-500" />
               </span>
             </h2>
-            <p className="text-base leading-relaxed text-green-700">
+            <p className="text-base leading-relaxed text-green-700 italic font-heritage opacity-80">
               We focus on cultivating the highest quality crops, ensuring that the natural taste
               and nutrition are preserved from the moment they are picked.
             </p>
@@ -255,7 +259,7 @@ export default function Home() {
             <Badge className="mb-6 rounded-full border border-green-800 bg-green-900/50 px-6 py-2 text-[10px] font-black uppercase tracking-[0.4em] text-green-300/80">
               Our Principles
             </Badge>
-            <h2 className="font-serif text-5xl font-medium leading-[1.1] md:text-7xl tracking-tight">
+            <h2 className="font-heritage text-5xl font-bold leading-[1.1] md:text-7xl tracking-tight">
               Setting the <span className="italic text-amber-400 font-light">Gold Standard</span> in <br />
               Agricultural Exports.
             </h2>
@@ -268,13 +272,13 @@ export default function Home() {
                 className="group relative"
               >
                 {/* Decorative Number */}
-                <div className="absolute -left-6 -top-10 pointer-events-none select-none font-serif text-[10rem] font-black text-white/[0.02] transition-all duration-700 group-hover:text-amber-400/[0.05] group-hover:-translate-y-4">
+                <div className="absolute -left-6 -top-10 pointer-events-none select-none font-heritage text-[10rem] font-black text-white/[0.02] transition-all duration-700 group-hover:text-amber-400/[0.05] group-hover:-translate-y-4">
                   0{index + 1}
                 </div>
                 
                 <div className="relative z-10">
                   <div className="mb-8 h-px w-16 bg-amber-500/30 transition-all duration-700 group-hover:w-full group-hover:bg-amber-400" />
-                  <h3 className="font-serif text-3xl font-medium leading-[1.2] text-white transition-all duration-500 group-hover:text-amber-400 md:text-4xl">
+                  <h3 className="font-heritage text-3xl font-bold leading-[1.2] text-white transition-all duration-500 group-hover:text-amber-400 md:text-4xl">
                     {point.title}
                   </h3>
                 </div>
@@ -295,7 +299,7 @@ export default function Home() {
               Ready to Import?
             </p>
 
-            <h2 className="mb-6 font-serif text-4xl font-bold text-green-900 md:text-5xl">
+            <h2 className="mb-6 font-heritage text-4xl font-bold text-green-900 md:text-5xl tracking-tight">
               Bring Our Harvest <br className="hidden md:block" />
               to You.
             </h2>
@@ -331,7 +335,7 @@ export default function Home() {
 
       <section className="bg-[#C5A54B] py-24 text-center">
         <div className="mx-auto w-[min(1280px,calc(100%-2rem))]">
-          <h2 className="mb-6 font-serif text-4xl font-bold text-green-950 md:text-6xl">
+          <h2 className="mb-6 font-heritage text-4xl font-bold text-green-950 md:text-6xl tracking-tight">
             Ready to Source Premium <br /> Indian Produce?
           </h2>
           <p className="mx-auto mb-10 max-w-2xl text-lg font-medium text-green-900 md:text-xl">
