@@ -1,31 +1,29 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Manrope, Geist, Fraunces, Bricolage_Grotesque } from "next/font/google";
+import { Nunito, Plus_Jakarta_Sans, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
-const manrope = Manrope({
+// Nunito — rounded, warm display font for headings
+const nunito = Nunito({
   subsets: ["latin"],
-  variable: "--font-manrope",
-});
-
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  variable: "--font-cormorant",
-  weight: ["400", "500", "600", "700"],
-});
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
+  variable: "--font-nunito",
+  weight: ["400", "500", "600", "700", "800", "900"],
   display: "swap",
 });
 
-const bricolage = Bricolage_Grotesque({
+// Plus Jakarta Sans — clean rounded geometric for labels & UI
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-bricolage",
+  variable: "--font-jakarta",
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+});
+
+// DM Sans — slightly rounded, highly readable for body text
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-dm-sans",
   display: "swap",
 });
 
@@ -121,7 +119,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
+    <html lang="en" className={cn("font-sans", dmSans.variable, nunito.variable, jakarta.variable)}>
       <head>
         <script
           type="application/ld+json"
@@ -130,7 +128,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${manrope.variable} ${cormorant.variable} ${fraunces.variable} ${bricolage.variable} antialiased`}>
+      <body className={`${nunito.variable} ${jakarta.variable} ${dmSans.variable} antialiased`}>
         {children}
         <WhatsAppFloat />
       </body>

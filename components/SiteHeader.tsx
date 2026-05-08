@@ -26,28 +26,29 @@ export default function SiteHeader() {
       className={cn(
         "fixed top-0 left-0 z-50 w-full transition-all duration-500",
         isScrolled || mobileOpen
-          ? "bg-white/95 py-3 shadow-xl shadow-green-950/5 backdrop-blur-xl border-b border-green-50"
-          : "bg-transparent py-6"
+          ? "bg-white/90 py-1 shadow-2xl shadow-green-950/5 backdrop-blur-2xl border-b border-green-950/5"
+          : "bg-transparent py-2"
       )}
     >
-      <div className="mx-auto flex w-[min(1280px,calc(100%-2rem))] items-center justify-between px-4">
-        {/* Logo — fixed height, generous width, never shrinks */}
+      <div className="mx-auto flex w-[min(1440px,calc(100%-2rem))] items-center justify-between px-6">
+        {/* Logo — Force-zoomed and Digitally Cropped */}
         <Link
           href="/"
-          className="relative flex-shrink-0 h-10 w-36 sm:h-12 sm:w-44 transition-transform hover:scale-105 active:scale-95"
+          className="relative flex-shrink-0 h-20 w-48 sm:h-24 sm:w-64 overflow-hidden flex items-center group"
         >
-          <Image
-            src={(isScrolled || mobileOpen) ? "/logo/logo-dark.png" : "/logo/logo-light.png"}
-            alt="Muzari Farms"
-            fill
-            className="object-contain object-left"
-            priority
-            sizes="(max-width: 640px) 144px, 176px"
-          />
+          <div className="relative h-full w-full transition-transform duration-300 group-hover:scale-105">
+            <Image
+              src="/logo/logo-dark.png"
+              alt="Muzari Farms"
+              fill
+              className="object-contain object-left scale-[2.2] origin-left"
+              priority
+            />
+          </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-10 md:flex">
           {navigationLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
@@ -55,30 +56,31 @@ export default function SiteHeader() {
                 key={link.label}
                 href={link.href}
                 className={cn(
-                  "relative font-label text-[10px] font-black uppercase tracking-[0.3em] transition-all",
-                  isScrolled ? "text-green-950/70" : "text-white/80",
-                  "hover:text-amber-500",
-                  isActive && (isScrolled ? "text-green-950" : "text-white")
+                  "group relative font-label text-[10px] font-black uppercase tracking-[0.4em] transition-all duration-300",
+                  "text-green-950/70 hover:text-green-950",
+                  isActive && "text-green-950"
                 )}
               >
-                {link.label}
-                {isActive && (
-                  <span className="absolute -bottom-2 left-0 h-0.5 w-full bg-amber-500 rounded-full" />
-                )}
+                <span className="relative z-10 flex items-center gap-2">
+                  {link.label}
+                  {isActive && <div className="h-1.5 w-1.5 rounded-full bg-[#82E076] animate-pulse" />}
+                </span>
+                <span className={cn(
+                  "absolute -bottom-2 left-0 h-0.5 rounded-full bg-[#82E076] transition-all duration-300",
+                  isActive ? "w-full" : "w-0 group-hover:w-full"
+                )} />
               </Link>
             );
           })}
         </nav>
 
         {/* Right side: CTA + mobile hamburger */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-6">
           <Link
             href="/contact"
             className={cn(
-              "hidden md:inline-flex rounded-full px-6 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] transition-all hover:scale-105 active:scale-95",
-              isScrolled
-                ? "bg-green-900 text-white shadow-lg shadow-green-900/20 hover:bg-green-800"
-                : "bg-white/10 text-white backdrop-blur-md ring-1 ring-white/30 hover:bg-white/20"
+              "hidden md:inline-flex rounded-2xl px-10 py-3 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl shadow-amber-500/20",
+              "bg-amber-400 text-green-950 hover:bg-amber-300"
             )}
           >
             Export Inquiry
@@ -86,27 +88,22 @@ export default function SiteHeader() {
 
           {/* Mobile hamburger */}
           <button
-            className="flex md:hidden h-10 w-10 items-center justify-center rounded-full transition-colors"
+            className="flex md:hidden h-10 w-10 items-center justify-center rounded-full bg-green-950/5 transition-colors hover:bg-green-950/10"
             onClick={() => setMobileOpen((v) => !v)}
             aria-label="Toggle menu"
           >
-            <span className={cn(
-              "relative flex h-5 w-6 flex-col justify-between transition-all",
-            )}>
+            <span className="relative flex h-4 w-6 flex-col justify-between">
               <span className={cn(
-                "block h-0.5 w-full rounded-full transition-all duration-300",
-                isScrolled || mobileOpen ? "bg-green-950" : "bg-white",
-                mobileOpen && "translate-y-2 rotate-45"
+                "block h-0.5 w-full rounded-full bg-green-950 transition-all duration-300",
+                mobileOpen && "translate-y-1.5 rotate-45"
               )} />
               <span className={cn(
-                "block h-0.5 w-full rounded-full transition-all duration-300",
-                isScrolled || mobileOpen ? "bg-green-950" : "bg-white",
+                "block h-0.5 w-full rounded-full bg-green-950 transition-all duration-300",
                 mobileOpen && "opacity-0"
               )} />
               <span className={cn(
-                "block h-0.5 w-full rounded-full transition-all duration-300",
-                isScrolled || mobileOpen ? "bg-green-950" : "bg-white",
-                mobileOpen && "-translate-y-2 -rotate-45"
+                "block h-0.5 w-full rounded-full bg-green-950 transition-all duration-300",
+                mobileOpen && "-translate-y-1.5 -rotate-45"
               )} />
             </span>
           </button>
@@ -115,25 +112,28 @@ export default function SiteHeader() {
 
       {/* Mobile Dropdown Menu */}
       <div className={cn(
-        "md:hidden overflow-hidden transition-all duration-500",
-        mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        "md:hidden overflow-hidden transition-all duration-500 bg-white/95 backdrop-blur-xl",
+        mobileOpen ? "max-h-96 border-t border-green-50 shadow-2xl" : "max-h-0"
       )}>
-        <nav className="flex flex-col gap-1 px-6 pb-6 pt-2">
+        <nav className="flex flex-col gap-1 px-8 pb-10 pt-4">
           {navigationLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
               className={cn(
-                "py-3 font-label text-xs font-black uppercase tracking-[0.3em] text-green-950 border-b border-green-50 transition-colors hover:text-amber-600",
-                pathname === link.href && "text-amber-600"
+                "py-4 font-label text-xs font-black uppercase tracking-[0.3em] text-green-950/70 border-b border-green-50 transition-colors hover:text-green-950",
+                pathname === link.href && "text-green-950 font-black"
               )}
             >
-              {link.label}
+              <div className="flex items-center justify-between">
+                {link.label}
+                {pathname === link.href && <div className="h-1.5 w-1.5 rounded-full bg-[#82E076]" />}
+              </div>
             </Link>
           ))}
           <Link
             href="/contact"
-            className="mt-4 rounded-full bg-green-900 py-3 text-center text-[10px] font-black uppercase tracking-[0.2em] text-white"
+            className="mt-6 rounded-2xl bg-amber-400 py-4 text-center text-[10px] font-black uppercase tracking-[0.2em] text-green-950 shadow-xl shadow-amber-500/20"
           >
             Export Inquiry
           </Link>
