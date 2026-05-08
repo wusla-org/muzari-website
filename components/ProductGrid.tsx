@@ -52,14 +52,38 @@ export default function ProductGrid({
             </p>
 
             {/* Details - Revealed on hover/focus */}
-            <div className="max-h-0 overflow-hidden opacity-0 transition-all duration-700 group-hover:max-h-40 group-hover:opacity-100 group-hover:mt-6 group-focus-within:max-h-40 group-focus-within:opacity-100 group-focus-within:mt-6 pt-0 group-hover:pt-6 group-focus-within:pt-6 border-t border-green-50">
-              <div className="space-y-2.5">
-                {product.details.map((detail) => (
-                  <div key={detail} className="flex items-center gap-3 text-[10px] font-black uppercase tracking-wider text-green-900/40">
-                    <span className="h-1 w-1 shrink-0 rounded-full bg-amber-500" />
-                    {detail}
+            <div className="max-h-0 overflow-hidden opacity-0 transition-all duration-700 group-hover:max-h-[30rem] group-hover:opacity-100 group-hover:mt-6 group-focus-within:max-h-[30rem] group-focus-within:opacity-100 group-focus-within:mt-6 pt-0 group-hover:pt-6 group-focus-within:pt-6 border-t border-green-50">
+              <div className="space-y-6">
+                {/* Selling Points */}
+                <div className="space-y-2.5">
+                  {product.details.map((detail) => (
+                    <div key={detail} className="flex items-center gap-3 text-[10px] font-black uppercase tracking-wider text-green-900/40">
+                      <span className="h-1 w-1 shrink-0 rounded-full bg-amber-500" />
+                      {detail}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Technical Spec Sheet */}
+                {product.specs && (
+                  <div className="rounded-2xl bg-green-50/50 p-4 ring-1 ring-green-100/50">
+                    <p className="mb-3 text-[9px] font-black uppercase tracking-[0.2em] text-green-950/30">
+                      Technical Specs
+                    </p>
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-3">
+                      {product.specs.map((spec) => (
+                        <div key={spec.label}>
+                          <p className="text-[8px] font-black uppercase tracking-wider text-amber-600/60">
+                            {spec.label}
+                          </p>
+                          <p className="text-[10px] font-bold text-green-900 truncate">
+                            {spec.value}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                ))}
+                )}
               </div>
             </div>
 

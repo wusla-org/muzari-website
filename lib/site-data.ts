@@ -5,6 +5,10 @@ export type Product = {
   imageAlt: string;
   summary: string;
   details: string[];
+  specs?: {
+    label: string;
+    value: string;
+  }[];
 };
 
 export const products: Product[] = [
@@ -16,6 +20,12 @@ export const products: Product[] = [
     summary:
       "High-quality Robusta bananas, known for their consistent size and vibrant flavor, harvested at peak maturity.",
     details: ["Uniform grading", "Global demand", "Cold-chain ready"],
+    specs: [
+      { label: "Origin", value: "Kerala, India" },
+      { label: "Shelf Life", value: "25-30 Days" },
+      { label: "Packaging", value: "13.5kg / 18.5kg Boxes" },
+      { label: "Temp", value: "13.5°C" }
+    ],
   },
   {
     name: "Nethra Banana",
@@ -25,6 +35,12 @@ export const products: Product[] = [
     summary:
       "Prized Nethra (Plantain) bananas, hand-picked for their distinct texture and nutritional value.",
     details: ["Hand-harvested", "Rich nutrition", "Export standard"],
+    specs: [
+      { label: "Origin", value: "Tamil Nadu, India" },
+      { label: "Shelf Life", value: "20-25 Days" },
+      { label: "Packaging", value: "7kg / 13kg Boxes" },
+      { label: "Variety", value: "Traditional Nendran" }
+    ],
   },
   {
     name: "Premium Tapioca",
@@ -34,6 +50,12 @@ export const products: Product[] = [
     summary:
       "Superior grade Tapioca (Cassava) roots, meticulously cleaned and graded for the global market.",
     details: ["Meticulously cleaned", "Thick healthy roots", "Long shelf life"],
+    specs: [
+      { label: "Origin", value: "South India" },
+      { label: "Shelf Life", value: "30-40 Days" },
+      { label: "Packaging", value: "5kg / 10kg Jute Bags" },
+      { label: "Type", value: "Fresh / Semi-Processed" }
+    ],
   },
 ];
 
@@ -57,23 +79,22 @@ export const processSteps = [
 ];
 
 export const aboutPreview = {
-  eyebrow: "Our Heritage",
-  title: "Cultivators with a 30-Year Agricultural Legacy.",
+  eyebrow: "Our Story",
+  title: "A Legacy Grown from the Soil",
   intro:
-    "Muzari Exports is built on over three decades of hands-on farming experience, rooted deeply in India’s rich agricultural soil.",
+    "Our journey began over 30 years ago, rooted in the age-old tradition of Indian farming. What started as a passion for cultivating the finest produce — from fragrant banana blossoms to golden paddy fields — has grown into a trusted export enterprise that carries India's agricultural spirit to the world.",
   body:
-    "We are not just exporters — we are cultivators. Our journey began with the cultivation of bananas, paddy, and traditional vegetables, evolving into a trusted bridge that delivers premium Indian produce to international markets with absolute consistency.",
+    "We are not just exporters. We are farmers at heart. Our founders built this company on the belief that great produce begins long before the harvest — in the care of the soil, the discipline of cultivation, and the integrity of every transaction.",
   points: [
-    "30+ years of direct hands-on farming experience",
-    "Exporters who understand cultivation at the root level",
-    "Direct bridge from Indian farms to global ports",
+    "Farm-Direct Sourcing",
+    "Precision Grading Standards",
+    "30+ Years of Agricultural Heritage",
   ],
 };
-
 export const missionVision = {
   mission: {
     title: "Mission",
-    text: "Delivering premium Indian vegetables, fruits, and spices globally with quality, reliability, and sustainability.",
+    text: "Delivering premium Indian vegetables, fruits and spices globally with quality, reliability, and sustainability.",
   },
   vision: {
     title: "Vision",
@@ -85,7 +106,7 @@ export const aboutPageContent = {
   eyebrow: "About Muzari",
   title: "Indian Exporter of Fresh Vegetables, Fruits & Spices",
   intro:
-    "Our journey began over three decades ago, deeply rooted in India’s rich agricultural heritage. What started with the cultivation of bananas, paddy, and a variety of vegetables has evolved into a trusted agricultural export company.",
+    "Our journey began over three decades ago, deeply rooted in India's rich agricultural heritage. What started with the cultivation of bananas, paddy, and a variety of vegetables has evolved into a trusted agricultural export company, delivering premium Indian produce to international markets.",
   sections: [
     {
       heading: "Our Farming Roots",
@@ -95,12 +116,12 @@ export const aboutPageContent = {
     {
       heading: "Expertise in Quality",
       text:
-        "Our core export portfolio includes fresh vegetables (especially banana and tapioca), fruits, and spices, sourced directly from farms and handled in compliance with international food safety and export standards.",
+        "Our core export portfolio includes fresh vegetables (especially banana, tapioca), fruits, and spices, sourced directly from farms and handled in compliance with international food safety and export standards.",
     },
     {
       heading: "A Direct Bridge",
       text:
-        "Today, we operate as a direct bridge from Indian farms to global markets, while ensuring authenticity, consistency, and quality in every shipment. We focus on dependable supply relationships and shipment-ready handling that supports long-term global buyers.",
+        "Today, we operate as a direct bridge from Indian farms to global markets, while ensuring authenticity, consistency, and quality in every shipment.",
     },
   ],
   values: [
@@ -130,7 +151,7 @@ export const whyChooseUs = [
     text: "Every product undergoes a rigorous, uniform grading process aligned with international export benchmarks. Our standardized system ensures consistency in size, color, and quality across every shipment, so buyers always receive exactly what they expect.",
   },
   {
-    title: "Cold Chain & Shelf Life Optimization",
+    title: "Advance Cold Chain & Shelf Life Optimization",
     text: "From harvest to port, our end-to-end cold chain infrastructure maintains optimal temperature and humidity at every stage. This scientifically managed process significantly extends shelf life, reducing spoilage and maximizing value for our international partners.",
   },
   {
