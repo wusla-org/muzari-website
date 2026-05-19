@@ -20,48 +20,36 @@ export default function ProductsPage() {
       <SiteHeader />
 
       {/* "Smart" Architectural Products Hero */}
-      <section className="relative h-[85vh] min-h-[650px] w-full overflow-hidden bg-white pt-24">
-        <div className="mx-auto flex h-full w-[min(1440px,calc(100%-2rem))] flex-col gap-6 lg:flex-row">
-          
-          {/* Left Panel: Solid Brand Block (Catalog Focus) */}
-          <div className="relative flex h-full flex-col justify-center rounded-[2.5rem] bg-[#82E076] p-12 lg:w-[45%]">
+      <section className="relative w-full pt-28 bg-white pb-6">
+        <div className="mx-auto w-[min(1440px,calc(100%-2rem))]">
+          <div className="relative overflow-hidden rounded-[3rem] bg-[#062016] p-12 md:p-24 text-white shadow-2xl flex flex-col justify-center min-h-[450px] lg:min-h-[500px]">
             {/* Precision Grid Detail */}
             <div className="absolute inset-0 pointer-events-none opacity-20">
-              <div className="absolute left-10 top-0 h-full w-px bg-white/30" />
-              <div className="absolute left-0 top-1/2 h-px w-full bg-white/30" />
+              <div className="absolute left-10 top-0 h-full w-px bg-white/10" />
+              <div className="absolute left-0 top-1/2 h-px w-full bg-white/10" />
             </div>
 
-            <ScrollReveal>
-              <Badge className="relative z-10 mb-8 border-none bg-green-950 px-6 py-1.5 text-[10px] font-black uppercase tracking-[0.4em] text-white">
-                Our Catalog
-              </Badge>
-              <h1 className="relative z-10 mb-8 font-heritage text-[32px] font-bold leading-[1.2] tracking-tight text-green-950">
-                Export-ready produce <br />
-                from India&apos;s finest harvests.
-              </h1>
-              <div className="relative z-10 h-1.5 w-20 bg-green-950 mb-8 rounded-full" />
-              <p className="relative z-10 max-w-md text-lg leading-relaxed text-green-950/80 font-medium italic">
-                Our catalog highlights premium products cultivated to meet the highest international standards for quality and consistency.
-              </p>
-            </ScrollReveal>
-          </div>
-
-          {/* Right Panel: Framed Cinematic Visual */}
-          <div className="relative h-full overflow-hidden rounded-[2.5rem] bg-green-950 lg:w-[55%] group">
-            <Image
-              src="/hero_products.png" 
-              alt="Premium Agricultural Harvest"
-              fill
-              className="object-cover transition-transform duration-[20s] group-hover:scale-110 brightness-75"
-              priority
-            />
-            {/* Glassmorphism Badge */}
-            <div className="absolute bottom-10 right-10 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-              <p className="text-[9px] font-black uppercase tracking-[0.3em] text-white/40 mb-2">Quality Assurance</p>
-              <p className="font-heritage text-2xl font-bold text-white italic">Export Grade A</p>
+            <div className="relative z-10 max-w-4xl space-y-8">
+              <ScrollReveal>
+                <span className="inline-block rounded-full bg-[#82E076]/10 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.4em] text-[#82E076] border border-[#82E076]/20">
+                  Our Catalog
+                </span>
+                <h1 className="mt-6 font-heritage text-4xl font-bold leading-[1.1] text-white md:text-7xl tracking-tighter">
+                  Export-ready produce <br />
+                  from India&apos;s finest harvests.
+                </h1>
+                <div className="h-1.5 w-24 bg-[#82E076] rounded-full" />
+                <p className="max-w-2xl text-xl leading-relaxed text-green-100/80 font-medium italic">
+                  Our catalog highlights premium products cultivated to meet the highest international standards for quality and consistency.
+                </p>
+                {/* Visual Detail Badge */}
+                <div className="inline-flex items-center gap-3 pt-4">
+                  <span className="h-2 w-2 rounded-full bg-[#82E076] animate-pulse" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/50">Export Grade A Quality Guaranteed</span>
+                </div>
+              </ScrollReveal>
             </div>
           </div>
-
         </div>
       </section>
 

@@ -28,11 +28,11 @@ export default function ContactPage() {
       <SiteHeader />
 
       {/* "Smart" Architectural Contact Hero & Form */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-white pt-24 pb-20">
-        <div className="mx-auto flex h-full min-h-[750px] w-[min(1440px,calc(100%-2rem))] flex-col gap-6 lg:flex-row">
+      <section className="relative h-auto lg:min-h-screen w-full overflow-hidden bg-white pt-24 pb-12 lg:pb-20">
+        <div className="mx-auto flex h-auto lg:h-full lg:min-h-[750px] w-[min(1440px,calc(100%-2rem))] flex-col gap-6 lg:flex-row">
           
           {/* Left Panel: Solid Brand Block (Inquiry Focus) */}
-          <div className="relative flex h-full flex-col justify-center rounded-[2.5rem] bg-[#82E076] p-12 lg:w-[40%]">
+          <div className="relative flex h-auto lg:h-full flex-col justify-center rounded-[2.5rem] bg-[#82E076] px-6 py-12 sm:px-12 sm:py-16 lg:w-[40%]">
             {/* Precision Grid Detail */}
             <div className="absolute inset-0 pointer-events-none opacity-20">
               <div className="absolute left-10 top-0 h-full w-px bg-white/30" />
@@ -68,17 +68,50 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="text-[10px] font-black uppercase tracking-widest text-green-950/40 mb-1">Email Support</h4>
-                    <p className="font-heritage text-lg font-bold text-green-950 italic">farm@muzariexports.com</p>
+                    <a href="mailto:muzariexports@muzari.in" className="font-heritage text-lg font-bold text-green-950 italic hover:underline decoration-green-950/30">
+                      muzariexports@muzari.in
+                    </a>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-6 group">
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/20 text-green-950 transition-colors group-hover:bg-white group-hover:scale-110">
-                    <MessageCircle className="h-6 w-6" />
+                    <Phone className="h-6 w-6" />
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-[10px] font-black uppercase tracking-widest text-green-950/40 mb-1">Phone & WhatsApp</h4>
+                    
+                    <div className="space-y-2">
+                      <p className="font-heritage text-lg font-bold text-green-950 italic leading-none">+91 85908 38554</p>
+                      <div className="flex gap-4 text-xs font-bold uppercase tracking-wider text-green-900">
+                        <a href="tel:+918590838554" className="hover:text-green-950 hover:underline">Call</a>
+                        <span className="text-green-950/20">|</span>
+                        <a href="https://wa.me/918590838554" target="_blank" rel="noopener noreferrer" className="hover:text-green-950 hover:underline">WhatsApp</a>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2 pt-3 border-t border-green-950/10">
+                      <p className="font-heritage text-lg font-bold text-green-950 italic leading-none">+91 96568 08554</p>
+                      <div className="flex gap-4 text-xs font-bold uppercase tracking-wider text-green-900">
+                        <a href="tel:+919656808554" className="hover:text-green-950 hover:underline">Call</a>
+                        <span className="text-green-950/20">|</span>
+                        <a href="https://wa.me/919656808554" target="_blank" rel="noopener noreferrer" className="hover:text-green-950 hover:underline">WhatsApp</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-6 group">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/20 text-green-950 transition-colors group-hover:bg-white group-hover:scale-110">
+                    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                    </svg>
                   </div>
                   <div>
-                    <h4 className="text-[10px] font-black uppercase tracking-widest text-green-950/40 mb-1">WhatsApp Business</h4>
-                    <a href={whatsappHref} className="font-heritage text-lg font-bold text-green-950 italic hover:underline decoration-green-950/30">Connect Now</a>
+                    <h4 className="text-[10px] font-black uppercase tracking-widest text-green-950/40 mb-1">Social Media</h4>
+                    <a href="https://www.facebook.com/search/top/?q=Muzari%20exports" target="_blank" rel="noopener noreferrer" className="font-heritage text-lg font-bold text-green-950 italic hover:underline decoration-green-950/30">
+                      Muzari Exports (Facebook)
+                    </a>
                   </div>
                 </div>
               </div>
@@ -92,7 +125,7 @@ export default function ContactPage() {
           </div>
 
           {/* Right Panel: Framed Inquiry Form */}
-          <div className="relative h-full overflow-hidden rounded-[2.5rem] bg-green-50 lg:w-[60%] p-10 md:p-16 flex items-center shadow-inner">
+          <div className="relative h-auto lg:h-full overflow-hidden rounded-[2.5rem] bg-green-50 lg:w-[60%] px-6 py-12 sm:px-12 sm:py-16 flex items-center shadow-inner">
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
               <div className="h-full w-full bg-[radial-gradient(#064e3b_1px,transparent_1px)] [background-size:24px_24px]" />
             </div>
