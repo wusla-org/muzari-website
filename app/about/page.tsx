@@ -22,47 +22,46 @@ export default function AboutPage() {
       <SiteHeader />
 
       {/* "Smart" Architectural About Hero */}
-      <section className="relative lg:h-[90vh] lg:min-h-[700px] w-full lg:overflow-hidden pt-24 bg-white pb-6 lg:pb-0">
-        <div className="mx-auto flex h-full w-[min(1440px,calc(100%-2rem))] flex-col gap-6 lg:flex-row">
-          
-          {/* Left Panel: Solid Brand Block (Smart Content) */}
-          <div className="relative flex h-auto lg:h-full flex-col justify-center rounded-[2.5rem] bg-[#82E076] p-12 lg:w-[45%]">
+      <section className="relative w-full pt-28 bg-white pb-6">
+        <div className="mx-auto w-[min(1440px,calc(100%-2rem))]">
+          <div className="relative overflow-hidden rounded-[3rem] bg-[#062016] p-12 md:p-24 text-white shadow-2xl flex flex-col justify-center min-h-[500px] lg:min-h-[600px] group">
+            {/* Background Image Overlay */}
+            <div className="absolute inset-0 pointer-events-none opacity-15">
+              <Image
+                src="/hero_heritage.png" 
+                alt="Muzari Heritage Fields"
+                fill
+                className="object-cover transition-transform duration-[20s] group-hover:scale-105 brightness-75"
+                priority
+              />
+            </div>
+
             {/* Precision Grid Detail */}
             <div className="absolute inset-0 pointer-events-none opacity-20">
-              <div className="absolute left-10 top-0 h-full w-px bg-white/30" />
-              <div className="absolute left-0 top-1/2 h-px w-full bg-white/30" />
+              <div className="absolute left-10 top-0 h-full w-px bg-white/10" />
+              <div className="absolute left-0 top-1/2 h-px w-full bg-white/10" />
             </div>
 
-            <ScrollReveal>
-              <p className="relative z-10 mb-6 font-label text-[10px] font-black uppercase tracking-[0.6em] text-green-950/60">
-                {aboutPageContent.eyebrow}
-              </p>
-              <h1 className="relative z-10 mb-8 font-heritage text-5xl font-bold leading-[1.1] text-green-950 md:text-7xl tracking-tighter">
-                {aboutPageContent.title}
-              </h1>
-              <div className="relative z-10 h-1 w-20 bg-green-950 mb-8" />
-              <p className="relative z-10 max-w-md text-lg leading-relaxed text-green-950/80 font-medium italic">
-                {aboutPageContent.intro}
-              </p>
-            </ScrollReveal>
-          </div>
-
-          {/* Right Panel: Framed Cinematic Visual */}
-          <div className="relative h-[400px] lg:h-full overflow-hidden rounded-[2.5rem] bg-green-950 lg:w-[55%] group">
-            <Image
-              src="/hero_heritage.png" 
-              alt="Muzari Heritage Fields"
-              fill
-              className="object-cover transition-transform duration-[20s] group-hover:scale-110 brightness-75"
-              priority
-            />
-            {/* Glassmorphism Badge */}
-            <div className="absolute bottom-10 right-10 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-              <p className="text-[9px] font-black uppercase tracking-[0.3em] text-white/40 mb-2">Heritage Established</p>
-              <p className="font-heritage text-2xl font-bold text-white italic">Since 1995</p>
+            <div className="relative z-10 max-w-4xl space-y-8">
+              <ScrollReveal>
+                <span className="inline-block rounded-full bg-[#82E076]/10 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.4em] text-[#82E076] border border-[#82E076]/20">
+                  {aboutPageContent.eyebrow}
+                </span>
+                <h1 className="mt-6 font-heritage text-4xl font-bold leading-[1.1] text-white md:text-7xl tracking-tighter">
+                  {aboutPageContent.title}
+                </h1>
+                <div className="h-1.5 w-24 bg-[#82E076] rounded-full" />
+                <p className="max-w-2xl text-xl leading-relaxed text-green-100/80 font-medium italic">
+                  {aboutPageContent.intro}
+                </p>
+                {/* Heritage Established Badge */}
+                <div className="inline-flex items-center gap-3 pt-4">
+                  <span className="h-2 w-2 rounded-full bg-[#82E076] animate-pulse" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/50">Heritage Established Since 1931</span>
+                </div>
+              </ScrollReveal>
             </div>
           </div>
-
         </div>
       </section>
 
@@ -176,10 +175,10 @@ export default function AboutPage() {
                     href={whatsappHref}
                     className={cn(
                       buttonVariants({ size: "lg" }),
-                      "h-16 w-full rounded-2xl bg-green-900 px-8 text-sm font-black uppercase tracking-widest text-white hover:bg-green-800 hover:scale-[1.02] transition-all"
+                      "h-16 w-full rounded-2xl bg-[#062016] px-8 text-sm font-black uppercase tracking-widest !text-white hover:bg-green-900 hover:scale-[1.02] transition-all"
                     )}
                   >
-                    Start an Inquiry
+                    Start Enquiry
                   </Link>
                 </div>
               </div>

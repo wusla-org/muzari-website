@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { footerLinks, getWhatsAppHref } from "@/lib/site-data";
-import { Camera, Link as LinkIcon, Share, Mail, MapPin, Phone } from "lucide-react";
+import { MessageCircle, Mail, MapPin, Phone } from "lucide-react";
 
 export default function SiteFooter() {
   const whatsappHref = getWhatsAppHref();
@@ -27,15 +27,14 @@ export default function SiteFooter() {
               Grown with tradition, exported with precision.
             </p>
             <div className="flex gap-4">
-              <Link href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-green-900 transition-colors hover:bg-amber-400 hover:text-green-950">
-                <Camera className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-green-900 transition-colors hover:bg-amber-400 hover:text-green-950">
-                <LinkIcon className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-green-900 transition-colors hover:bg-amber-400 hover:text-green-950">
-                <Share className="h-5 w-5" />
-              </Link>
+              <a href="https://www.facebook.com/search/top/?q=Muzari%20exports" target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full bg-green-900 transition-colors hover:bg-amber-400 hover:text-green-950" aria-label="Facebook">
+                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                </svg>
+              </a>
+              <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full bg-green-900 transition-colors hover:bg-amber-400 hover:text-green-950" aria-label="WhatsApp">
+                <MessageCircle className="h-5 w-5" />
+              </a>
             </div>
           </div>
 
@@ -63,11 +62,14 @@ export default function SiteFooter() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 shrink-0 text-amber-400" />
-                <a href="mailto:farm@muzariexports.com" className="transition-colors hover:text-amber-400">farm@muzariexports.com</a>
+                <a href="mailto:muzariexports@muzari.in" className="transition-colors hover:text-amber-400">muzariexports@muzari.in</a>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="h-5 w-5 shrink-0 text-amber-400" />
-                <a href={whatsappHref} className="transition-colors hover:text-amber-400">WhatsApp Inquiry</a>
+              <li className="flex items-start gap-3">
+                <Phone className="mt-0.5 h-5 w-5 shrink-0 text-amber-400" />
+                <div className="space-y-1">
+                  <a href="tel:+918590838554" className="block transition-colors hover:text-amber-400">+91 85908 38554</a>
+                  <a href="tel:+919656808554" className="block transition-colors hover:text-amber-400">+91 96568 08554</a>
+                </div>
               </li>
             </ul>
           </div>

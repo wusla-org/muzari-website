@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
@@ -13,6 +16,15 @@ export default function ProductGrid({
   products,
   showInquiryLinks = false,
 }: ProductGridProps) {
+  const [expandedProducts, setExpandedProducts] = useState<Record<string, boolean>>({});
+
+  const toggleExpand = (name: string) => {
+    setExpandedProducts((prev) => ({
+      ...prev,
+      [name]: !prev[name],
+    }));
+  };
+
   return (
     <div className="grid gap-x-12 gap-y-32 md:grid-cols-2 lg:grid-cols-3">
       {products.map((product) => (
@@ -51,8 +63,21 @@ export default function ProductGrid({
               {product.summary}
             </p>
 
-            {/* Details - Revealed on hover/focus */}
-            <div className="max-h-0 overflow-hidden opacity-0 transition-all duration-700 group-hover:max-h-[30rem] group-hover:opacity-100 group-hover:mt-6 group-focus-within:max-h-[30rem] group-focus-within:opacity-100 group-focus-within:mt-6 pt-0 group-hover:pt-6 group-focus-within:pt-6 border-t border-green-50">
+            {/* Mobile-Only Specification Toggle Button */}
+            <button
+              onClick={() => toggleExpand(product.name)}
+              className="mt-4 flex items-center justify-between w-full rounded-xl bg-green-50 px-4 py-3 text-[10px] font-black uppercase tracking-widest text-green-950 transition-all hover:bg-green-100 md:hidden active:scale-[0.98]"
+            >
+              <span>{expandedProducts[product.name] ? "Hide Specifications" : "View Specifications"}</span>
+              <span className="text-amber-500 text-xs font-black">{expandedProducts[product.name] ? "−" : "+"}</span>
+            </button>
+
+            {/* Details - Revealed on hover/focus (desktop) or expand toggle (mobile) */}
+            <div className={`overflow-hidden transition-all duration-700 border-green-50 md:max-h-0 md:opacity-0 md:group-hover:max-h-[30rem] md:group-hover:opacity-100 md:group-hover:mt-6 md:group-focus-within:max-h-[30rem] md:group-focus-within:opacity-100 md:group-focus-within:mt-6 md:pt-0 md:group-hover:pt-6 md:group-focus-within:pt-6 md:border-t ${
+              expandedProducts[product.name]
+                ? "max-h-[30rem] opacity-100 mt-6 pt-6 border-t"
+                : "max-h-0 opacity-0 pt-0 border-t-0"
+            }`}>
               <div className="space-y-6">
                 {/* Selling Points */}
                 <div className="space-y-2.5">

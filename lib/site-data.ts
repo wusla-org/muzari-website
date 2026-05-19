@@ -82,13 +82,13 @@ export const aboutPreview = {
   eyebrow: "Our Story",
   title: "A Legacy Grown from the Soil",
   intro:
-    "Our journey began over 30 years ago, rooted in the age-old tradition of Indian farming. What started as a passion for cultivating the finest produce — from fragrant banana blossoms to golden paddy fields — has grown into a trusted export enterprise that carries India's agricultural spirit to the world.",
+    "Our journey began over 95 years ago, rooted in the age-old tradition of Indian farming. What started as a passion for cultivating the finest produce — from fragrant banana blossoms to golden paddy fields — has grown into a trusted export enterprise that carries India's agricultural spirit to the world.",
   body:
     "We are not just exporters. We are farmers at heart. Our founders built this company on the belief that great produce begins long before the harvest — in the care of the soil, the discipline of cultivation, and the integrity of every transaction.",
   points: [
     "Farm-Direct Sourcing",
     "Precision Grading Standards",
-    "30+ Years of Agricultural Heritage",
+    "95+ Years of Agricultural Heritage",
   ],
 };
 export const missionVision = {
@@ -106,12 +106,12 @@ export const aboutPageContent = {
   eyebrow: "About Muzari",
   title: "Indian Exporter of Fresh Vegetables, Fruits & Spices",
   intro:
-    "Our journey began over three decades ago, deeply rooted in India's rich agricultural heritage. What started with the cultivation of bananas, paddy, and a variety of vegetables has evolved into a trusted agricultural export company, delivering premium Indian produce to international markets.",
+    "Our journey began over nine decades ago, deeply rooted in India's rich agricultural heritage. What started with the cultivation of bananas, paddy, and a variety of vegetables has evolved into a trusted agricultural export company, delivering premium Indian produce to international markets.",
   sections: [
     {
       heading: "Our Farming Roots",
       text:
-        "We are not just exporters — we are cultivators with over 30 years of hands-on farming experience. This foundation gives us a distinct advantage in quality control, seasonal sourcing, and supply chain consistency, ensuring reliable delivery from farm to export.",
+        "We are not just exporters — we are cultivators with over 95 years of hands-on farming experience. This foundation gives us a distinct advantage in quality control, seasonal sourcing, and supply chain consistency, ensuring reliable delivery from farm to export.",
     },
     {
       heading: "Expertise in Quality",
@@ -125,7 +125,8 @@ export const aboutPageContent = {
     },
   ],
   values: [
-    "30+ Years of Agricultural Heritage",
+    "95+ Years of Agricultural Heritage",
+    "Partnerships with 35+ Verified Farmers",
     "Farm-Direct Sourcing Excellence",
     "International Food Safety Compliance",
     "Consistency in Every Global Shipment",
@@ -163,8 +164,8 @@ export const whyChooseUs = [
     text: "We work in close collaboration with a network of over 35 contracted farmers who meet our strict quality and sustainability criteria. This robust supply network ensures consistent volume availability and uninterrupted supply even during peak demand seasons.",
   },
   {
-    title: "30+ Years of Agricultural Heritage",
-    text: "Rooted in three decades of farming expertise, our deep agronomic knowledge sets us apart in the export industry. This generational experience informs every decision we make — from crop selection to post-harvest handling — delivering produce of exceptional and dependable quality.",
+    title: "95+ Years of Agricultural Heritage",
+    text: "Rooted in nine decades of farming expertise, our deep agronomic knowledge sets us apart in the export industry. This generational experience informs every decision we make — from crop selection to post-harvest handling — delivering produce of exceptional and dependable quality.",
   },
 ];
 
