@@ -18,7 +18,6 @@ export default function SiteHeader() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => { setMobileOpen(false); }, [pathname]);
 
   return (
@@ -26,29 +25,30 @@ export default function SiteHeader() {
       className={cn(
         "fixed top-0 left-0 z-50 w-full transition-all duration-500",
         isScrolled || mobileOpen
-          ? "bg-white/90 py-1 shadow-2xl shadow-green-950/5 backdrop-blur-2xl border-b border-green-950/5"
-          : "bg-transparent py-2"
+          ? "bg-[#faf8f3]/97 backdrop-blur-xl border-b border-[#e4dfd5] py-1 shadow-sm"
+          : "bg-[#faf8f3]/90 backdrop-blur-md py-2"
       )}
     >
-      <div className="mx-auto flex w-[min(1440px,calc(100%-2rem))] items-center justify-between px-6">
-        {/* Logo — Force-zoomed and Digitally Cropped */}
+      <div className="mx-auto flex w-[min(1440px,calc(100%-2rem))] items-center justify-between px-6 lg:px-12">
+
+        {/* Logo */}
         <Link
           href="/"
-          className="relative flex-shrink-0 h-20 w-48 sm:h-24 sm:w-64 overflow-hidden flex items-center group"
+          className="relative flex-shrink-0 h-14 w-36 sm:h-16 sm:w-44 flex items-center group"
         >
           <div className="relative h-full w-full transition-transform duration-300 group-hover:scale-105">
             <Image
-              src="/logo/logo-dark.png"
-              alt="Muzari Farms"
+              src="/logo/logo-light.png"
+              alt="Muzari Exports"
               fill
-              className="object-contain object-left scale-[2.2] origin-left"
+              className="object-contain object-left"
               priority
             />
           </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-10 md:flex">
+        <nav className="hidden items-center gap-8 md:flex">
           {navigationLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
@@ -56,84 +56,68 @@ export default function SiteHeader() {
                 key={link.label}
                 href={link.href}
                 className={cn(
-                  "group relative font-label text-[10px] font-black uppercase tracking-[0.4em] transition-all duration-300",
-                  "text-green-950/70 hover:text-green-950",
-                  isActive && "text-green-950"
+                  "relative font-sans text-[11px] font-medium uppercase tracking-[1.5px] transition-colors duration-300",
+                  isActive ? "text-[#1a1a14]" : "text-[#7a6b4f] hover:text-[#1a1a14]"
                 )}
               >
-                <span className="relative z-10 flex items-center gap-2">
-                  {link.label}
-                  {isActive && <div className="h-1.5 w-1.5 rounded-full bg-[#82E076] animate-pulse" />}
-                </span>
-                <span className={cn(
-                  "absolute -bottom-2 left-0 h-0.5 rounded-full bg-[#82E076] transition-all duration-300",
-                  isActive ? "w-full" : "w-0 group-hover:w-full"
-                )} />
+                {link.label}
+                <span
+                  className={cn(
+                    "absolute -bottom-1 left-0 h-px bg-[#5a8a3c] transition-all duration-300",
+                    isActive ? "w-full" : "w-0 group-hover:w-full"
+                  )}
+                />
               </Link>
             );
           })}
         </nav>
 
-        {/* Right side: CTA + mobile hamburger */}
-        <div className="flex items-center gap-6">
+        {/* CTA + hamburger */}
+        <div className="flex items-center gap-4">
           <Link
             href="/contact"
-            className={cn(
-              "hidden md:inline-flex rounded-2xl px-10 py-3 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl shadow-amber-500/20",
-              "bg-amber-400 text-green-950 hover:bg-amber-300"
-            )}
+            className="hidden md:inline-flex items-center justify-center border border-[#1a1a14] text-[#1a1a14] font-sans text-[11px] font-medium uppercase tracking-[1.5px] px-5 py-2.5 transition-all duration-300 hover:bg-[#1a1a14] hover:text-[#faf8f3]"
           >
             Export Inquiry
           </Link>
 
-          {/* Mobile hamburger */}
           <button
-            className="flex md:hidden h-10 w-10 items-center justify-center rounded-full bg-green-950/5 transition-colors hover:bg-green-950/10"
+            className="flex md:hidden h-9 w-9 items-center justify-center transition-colors hover:bg-[#e4dfd5]"
             onClick={() => setMobileOpen((v) => !v)}
             aria-label="Toggle menu"
           >
-            <span className="relative flex h-4 w-6 flex-col justify-between">
-              <span className={cn(
-                "block h-0.5 w-full rounded-full bg-green-950 transition-all duration-300",
-                mobileOpen && "translate-y-1.5 rotate-45"
-              )} />
-              <span className={cn(
-                "block h-0.5 w-full rounded-full bg-green-950 transition-all duration-300",
-                mobileOpen && "opacity-0"
-              )} />
-              <span className={cn(
-                "block h-0.5 w-full rounded-full bg-green-950 transition-all duration-300",
-                mobileOpen && "-translate-y-1.5 -rotate-45"
-              )} />
+            <span className="relative flex h-3.5 w-5 flex-col justify-between">
+              <span className={cn("block h-px w-full bg-[#1a1a14] transition-all duration-300", mobileOpen && "translate-y-1.5 rotate-45")} />
+              <span className={cn("block h-px w-full bg-[#1a1a14] transition-all duration-300", mobileOpen && "opacity-0")} />
+              <span className={cn("block h-px w-full bg-[#1a1a14] transition-all duration-300", mobileOpen && "-translate-y-1.5 -rotate-45")} />
             </span>
           </button>
         </div>
       </div>
 
-      {/* Mobile Dropdown Menu */}
-      <div className={cn(
-        "md:hidden overflow-hidden transition-all duration-500 bg-white/95 backdrop-blur-xl",
-        mobileOpen ? "max-h-96 border-t border-green-50 shadow-2xl" : "max-h-0"
-      )}>
-        <nav className="flex flex-col gap-1 px-8 pb-10 pt-4">
+      {/* Mobile dropdown */}
+      <div
+        className={cn(
+          "md:hidden overflow-hidden transition-all duration-500 bg-[#faf8f3]",
+          mobileOpen ? "max-h-96 border-t border-[#e4dfd5]" : "max-h-0"
+        )}
+      >
+        <nav className="flex flex-col px-8 pb-8 pt-4">
           {navigationLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
               className={cn(
-                "py-4 font-label text-xs font-black uppercase tracking-[0.3em] text-green-950/70 border-b border-green-50 transition-colors hover:text-green-950",
-                pathname === link.href && "text-green-950 font-black"
+                "py-4 font-sans text-[11px] font-medium uppercase tracking-[1.5px] border-b border-[#e4dfd5] transition-colors",
+                pathname === link.href ? "text-[#1a1a14]" : "text-[#7a6b4f] hover:text-[#1a1a14]"
               )}
             >
-              <div className="flex items-center justify-between">
-                {link.label}
-                {pathname === link.href && <div className="h-1.5 w-1.5 rounded-full bg-[#82E076]" />}
-              </div>
+              {link.label}
             </Link>
           ))}
           <Link
             href="/contact"
-            className="mt-6 rounded-2xl bg-amber-400 py-4 text-center text-[10px] font-black uppercase tracking-[0.2em] text-green-950 shadow-xl shadow-amber-500/20"
+            className="mt-6 border border-[#1a1a14] text-[#1a1a14] font-sans text-[11px] font-medium uppercase tracking-[1.5px] py-3 text-center transition-all hover:bg-[#1a1a14] hover:text-[#faf8f3]"
           >
             Export Inquiry
           </Link>

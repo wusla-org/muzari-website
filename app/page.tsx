@@ -19,9 +19,31 @@ import {
 import { Users, Leaf, Briefcase, Award } from "lucide-react";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
+const HOME_DEFAULTS = {
+  eyebrow: "Premium Export Quality",
+  headline: "Where Indian Produce",
+  headlineAccent: "Meets International Standards.",
+  body: "Muzari combines 95 years of agricultural legacy with cutting-edge global logistics — delivering the finest bananas, tapioca, and fresh vegetables from India's fertile soil directly to international markets with absolute trust.",
+  ctaPrimary: "Order Now",
+  ctaSecondary: "Our Harvest",
+  origin: "Kerala, India",
+};
+
 export default function Home() {
   const whatsappHref = getWhatsAppHref();
   const [activeSlide, setActiveSlide] = useState(0);
+  const [hero, setHero] = useState(HOME_DEFAULTS);
+
+  useEffect(() => {
+    fetch("/api/site-content")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data?.heroes?.home) {
+          setHero({ ...HOME_DEFAULTS, ...data.heroes.home });
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const slides = [
     {
@@ -49,149 +71,80 @@ export default function Home() {
     <main className="min-h-screen bg-white text-green-950 selection:bg-green-900 selection:text-white">
       <SiteHeader />
 
-      {/* "Smart" Architectural Homepage Hero */}
-      <section className="relative h-auto lg:h-screen lg:min-h-[750px] w-full overflow-hidden bg-white p-4 pt-28 lg:p-6 lg:pt-32 pb-8 lg:pb-6">
-        <h1 className="sr-only">Muzari Farms: Premium Agricultural Produce Exporter from India</h1>
-        
-        <div className="mx-auto flex h-auto lg:h-full w-full flex-col gap-4 lg:flex-row lg:gap-6">
-          
-          {/* Left Panel: Solid Dark Brand Block */}
-          <div className="relative flex h-auto lg:h-full flex-col justify-center rounded-[2.5rem] bg-green-950 px-6 py-12 sm:px-12 sm:py-16 lg:w-[50%] lg:px-20 lg:py-16">
-            {/* Precision Grid Lines */}
-            <div className="absolute inset-0 pointer-events-none opacity-20">
-              <div className="absolute left-1/2 top-0 h-full w-px bg-white/20" />
-              <div className="absolute left-0 top-1/2 h-px w-full bg-white/20" />
+      {/* Hero — client-approved cream/olive/Playfair design */}
+      <section className="w-full bg-[#faf8f3] pt-24 lg:pt-28 px-4 sm:px-6 pb-0">
+        <h1 className="sr-only">Muzari Exports: Premium Agricultural Produce Exporter from India</h1>
+        <div className="mx-auto max-w-[860px] overflow-hidden rounded-[20px] border border-[#e4dfd5] bg-[#faf8f3]">
+          <div className="flex flex-col items-center px-8 py-16 text-center sm:px-16 sm:py-20">
+
+            {/* Eyebrow */}
+            <div className="mb-8 flex items-center gap-3">
+              <div className="h-px w-[30px] bg-[#7a6b4f]" />
+              <span className="font-sans text-[11px] font-medium uppercase tracking-[3px] text-[#7a6b4f]">{hero.eyebrow}</span>
+              <div className="h-px w-[30px] bg-[#7a6b4f]" />
             </div>
 
-            <div className="relative z-10 max-w-2xl">
-              <Badge className="mb-8 border-none bg-[#82E076] px-6 py-1.5 text-[10px] font-black uppercase tracking-[0.4em] !text-green-950">
-                Premium Export Quality
-              </Badge>
+            {/* Headlines */}
+            <p className="font-playfair text-[2.6rem] font-bold leading-[1.0] text-[#1a1a14] sm:text-[3.8rem]">
+              {hero.headline}
+            </p>
+            <p className="mb-6 font-playfair text-[2.6rem] font-bold italic leading-[1.1] text-[#5a8a3c] sm:text-[3.8rem]">
+              {hero.headlineAccent}
+            </p>
 
-              <h2 className="mb-8 font-heritage text-[32px] sm:text-[40px] lg:text-[44px] font-bold leading-[1.2] tracking-tight !text-white">
-                Where Indian Produce <br />
-                Meets <span className="!text-[#82E076]">International Standards.</span>
-              </h2>
+            {/* Rule */}
+            <div className="mb-7 h-[2px] w-[60px] bg-[#5a8a3c]" />
 
-              {/* Non-Alcoholic Guarantee Badge - High Visibility Glassmorphism */}
-              <div className="relative z-10 mb-8 inline-flex items-center gap-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md p-4 ring-1 ring-white/5 transition-all duration-300 hover:scale-[1.02] hover:bg-white/10">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#82E076] text-green-950 shadow-lg shadow-[#82E076]/20">
-                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-[9px] font-black uppercase tracking-widest !text-white/40">Our Guarantee</p>
-                  <p className="font-heritage text-sm font-bold !text-white italic">100% Pure & Premium Harvest</p>
-                </div>
-              </div>
+            {/* Body */}
+            <p className="mb-10 max-w-[520px] font-sans text-[15px] font-light italic leading-[1.9] text-[#5a5548]">
+              {hero.body}
+            </p>
 
-              <div className="mb-10 h-1.5 w-24 bg-[#82E076] rounded-full" />
+            {/* CTAs */}
+            <div className="mb-14 flex flex-col items-center gap-4 sm:flex-row">
+              <Link
+                href={whatsappHref}
+                className="bg-[#1a1a14] px-9 py-4 font-sans text-[12px] font-medium uppercase tracking-[1.5px] text-[#faf8f3] transition-all hover:bg-[#2d2d22] active:scale-95"
+              >
+                {hero.ctaPrimary}
+              </Link>
+              <Link
+                href="/products"
+                className="font-sans text-[13px] text-[#7a6b4f] underline underline-offset-4 transition-colors hover:text-[#1a1a14]"
+              >
+                {hero.ctaSecondary}
+              </Link>
+            </div>
 
-              <p className="mb-12 max-w-lg text-lg font-medium leading-relaxed !text-white/70 italic">
-                Muzari combines 95 years of agricultural legacy with cutting-edge global logistics &mdash; 
-                delivering the finest bananas, tapioca, and fresh vegetables from India's fertile soil directly to international markets with absolute trust.
-              </p>
-
-              <div className="flex flex-col gap-4 sm:flex-row">
-                <Link
-                  href={whatsappHref}
+            {/* Stats */}
+            <div className="flex w-full max-w-[500px]" style={{ gap: "2px" }}>
+              {[
+                { num: "95+", lbl: "Years Legacy" },
+                { num: "20+", lbl: "Countries" },
+                { num: "100%", lbl: "Farm Direct" },
+              ].map((stat, i) => (
+                <div
+                  key={i}
                   className={cn(
-                    "inline-flex items-center justify-center h-14 rounded-full bg-[#82E076] px-10 text-[11px] font-black uppercase tracking-widest !text-green-950 transition-all hover:scale-105 hover:bg-[#82E076]/90 shadow-xl shadow-[#82E076]/20"
+                    "flex-1 border border-[#e4dfd5] bg-white px-3 py-5 text-center",
+                    i === 0 && "rounded-l-[10px]",
+                    i === 2 && "rounded-r-[10px]"
                   )}
                 >
-                  Order Now
-                </Link>
-                <Link
-                  href="/products"
-                  className={cn(
-                    "inline-flex items-center justify-center h-14 rounded-full border-2 border-white/20 bg-transparent px-10 text-[11px] font-black uppercase tracking-widest !text-white transition-all hover:bg-white hover:!text-green-950"
-                  )}
-                >
-                  Our Harvest
-                </Link>
-              </div>
+                  <div className="mb-1 font-playfair text-[1.8rem] font-bold leading-none text-[#1a1a14]">{stat.num}</div>
+                  <div className="mt-1 font-sans text-[10px] uppercase tracking-[1.5px] text-[#7a6b4f]">{stat.lbl}</div>
+                </div>
+              ))}
             </div>
+
+            {/* Origin */}
+            <div className="mb-4 mt-6 flex items-center gap-2 font-sans text-[11px] uppercase tracking-[2px] text-[#b0a898]">
+              <div className="h-px w-5 bg-[#d8d2c8]" />
+              {hero.origin}
+              <div className="h-px w-5 bg-[#d8d2c8]" />
+            </div>
+
           </div>
-
-          {/* Right Panel: Cinematic Visual & Glassmorphism Hub */}
-          <div className="relative h-[320px] sm:h-[400px] lg:h-full overflow-hidden rounded-[2.5rem] bg-green-950 lg:w-[50%] group">
-            <Image
-              src="/hero_luxury_crate.png"
-              alt="Muzari Farms premium produce in luxury export crate"
-              fill
-              className="object-cover transition-all duration-[10s] group-hover:scale-110 brightness-[0.5]"
-              priority
-            />
-            {/* The "Luxe Depth" Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-green-950 via-green-950/20 to-green-950/60" />
-            
-            {/* Dynamic Elements - Floating Badges */}
-            <div className="absolute top-6 right-6 lg:top-10 lg:right-10 z-20 transition-transform duration-700 hover:scale-105 hover:-translate-y-1">
-              <div className="flex items-center gap-3 rounded-full bg-white/5 border border-white/10 backdrop-blur-md px-4 py-2 sm:px-5 sm:py-2.5 shadow-2xl">
-                <div className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                </div>
-                <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-white/90">Global Reach</span>
-              </div>
-            </div>
-
-            <div className="absolute top-1/4 left-6 lg:left-8 z-20 animate-[pulse_4s_ease-in-out_infinite] transition-transform duration-700 hover:scale-105">
-              <div className="flex flex-col items-start rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl p-4 shadow-2xl">
-                <span className="text-3xl font-heritage font-bold text-amber-400 leading-none mb-1">95+</span>
-                <span className="text-[8px] font-black uppercase tracking-[0.2em] text-white/60">Years Legacy</span>
-              </div>
-            </div>
-            
-            <div className="absolute bottom-32 right-6 lg:right-10 z-20 hidden sm:block transition-transform duration-700 hover:scale-105">
-              <div className="flex items-center gap-3 rounded-2xl bg-emerald-900/40 border border-emerald-500/20 backdrop-blur-xl p-3 shadow-2xl">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400">
-                  <Leaf className="h-4 w-4" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-[10px] font-bold text-white">Farm Direct</span>
-                  <span className="text-[8px] font-black uppercase tracking-[0.1em] text-emerald-400/80">Sourcing</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Premium Logo Hub (No Glass) */}
-            <div className="absolute inset-0 flex items-center justify-center p-8 z-10 pointer-events-none">
-              {/* Subtle Glow behind the logo for readability */}
-              <div className="absolute h-64 w-64 rounded-full bg-[#82E076]/20 blur-[100px] transition-opacity duration-700 group-hover:opacity-100 opacity-60" />
-              
-              <div className="relative h-64 w-64 sm:h-80 sm:w-80 lg:h-[28rem] lg:w-[28rem] transition-transform duration-700 group-hover:scale-110 drop-shadow-2xl">
-                <Image 
-                  src="/logo/logo-light.png" 
-                  alt="Muzari Brand Hub" 
-                  fill 
-                  className="object-contain scale-125" 
-                />
-              </div>
-            </div>
-
-            {/* Bottom Info Strip */}
-            <div className="absolute bottom-6 left-6 right-6 lg:bottom-8 lg:left-8 lg:right-8 z-20">
-              <div className="flex items-center justify-between rounded-2xl bg-black/20 backdrop-blur-md border border-white/10 p-4 sm:p-5 text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-white/60 shadow-2xl">
-                <div className="flex items-center gap-4 sm:gap-6">
-                  <span className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-amber-400 shadow-[0_0_10px_#fbbf24]" />
-                    <span className="hidden sm:inline">PREMIUM EXPORT</span>
-                    <span className="inline sm:hidden">EXPORT</span>
-                  </span>
-                </div>
-                <div className="flex items-center gap-2 sm:gap-3 text-white/90">
-                  <svg className="h-4 w-4 text-[#82E076]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <span>KERALA, INDIA</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
       </section>
 

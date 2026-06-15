@@ -1,14 +1,11 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
-import { getWhatsAppHref } from "@/lib/site-data";
 import { Mail, MapPin, Phone, MessageSquare, MessageCircle } from "lucide-react";
 import { useState } from "react";
 
 export default function ContactPage() {
-  const whatsappHref = getWhatsAppHref();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -27,195 +24,168 @@ export default function ContactPage() {
     <main className="min-h-screen bg-white">
       <SiteHeader />
 
-      {/* "Smart" Architectural Contact Hero & Form */}
-      <section className="relative h-auto lg:min-h-screen w-full overflow-hidden bg-white pt-24 pb-12 lg:pb-20">
-        <div className="mx-auto flex h-auto lg:h-full lg:min-h-[750px] w-[min(1440px,calc(100%-2rem))] flex-col gap-6 lg:flex-row">
-          
-          {/* Left Panel: Solid Brand Block (Inquiry Focus) */}
-          <div className="relative flex h-auto lg:h-full flex-col justify-center rounded-[2.5rem] bg-[#82E076] px-6 py-12 sm:px-12 sm:py-16 lg:w-[40%]">
-            {/* Precision Grid Detail */}
-            <div className="absolute inset-0 pointer-events-none opacity-20">
-              <div className="absolute left-10 top-0 h-full w-px bg-white/30" />
-              <div className="absolute left-0 top-1/2 h-px w-full bg-white/30" />
-            </div>
+      {/* Hero — cream/olive/Playfair design with contact info + form */}
+      <section className="w-full bg-[#faf8f3] pt-24 lg:pt-28 px-4 sm:px-6 pb-0">
+        <div className="mx-auto max-w-[1100px] overflow-hidden rounded-[20px] border border-[#e4dfd5] bg-[#faf8f3]">
+          <div className="grid lg:grid-cols-[1fr_1.4fr]">
 
-            <div className="relative z-10 space-y-12">
-              <div>
-                <Badge className="mb-8 border-none bg-green-950 px-6 py-1.5 text-[10px] font-black uppercase tracking-[0.4em] text-white">
-                  Get in Touch
-                </Badge>
-                <h1 className="mb-8 font-heritage text-[32px] font-bold leading-[1.2] tracking-tight text-green-950">
-                  Start your global <br />
-                  sourcing inquiry.
-                </h1>
-                <div className="h-1.5 w-20 bg-green-950 mb-8 rounded-full" />
+            {/* Left: Contact Info */}
+            <div className="flex flex-col justify-center border-b border-[#e4dfd5] px-8 py-12 sm:px-12 lg:border-b-0 lg:border-r lg:py-16">
+
+              {/* Eyebrow */}
+              <div className="mb-8 flex items-center gap-3">
+                <div className="h-px w-[30px] bg-[#7a6b4f]" />
+                <span className="font-sans text-[11px] font-medium uppercase tracking-[3px] text-[#7a6b4f]">Get in Touch</span>
               </div>
 
-              <div className="space-y-8">
-                <div className="flex items-start gap-6 group">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/20 text-green-950 transition-colors group-hover:bg-white group-hover:scale-110">
-                    <MapPin className="h-6 w-6" />
+              <h1 className="mb-2 font-playfair text-[2.2rem] font-bold leading-[1.0] text-[#1a1a14] sm:text-[2.8rem]">
+                Start Your Global
+              </h1>
+              <p className="mb-6 font-playfair text-[2.2rem] font-bold italic leading-[1.1] text-[#5a8a3c] sm:text-[2.8rem]">
+                Sourcing Inquiry.
+              </p>
+              <div className="mb-8 h-[2px] w-[60px] bg-[#5a8a3c]" />
+
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[#e4dfd5] bg-white">
+                    <MapPin className="h-4 w-4 text-[#5a8a3c]" />
                   </div>
                   <div>
-                    <h4 className="text-[10px] font-black uppercase tracking-widest text-green-950/40 mb-1">Export Hub</h4>
-                    <p className="font-heritage text-lg font-bold text-green-950 italic">Kerala, India</p>
+                    <p className="mb-0.5 font-sans text-[10px] uppercase tracking-[2px] text-[#b0a898]">Export Hub</p>
+                    <p className="font-playfair text-base font-bold italic text-[#1a1a14]">Kerala, India</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-6 group">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/20 text-green-950 transition-colors group-hover:bg-white group-hover:scale-110">
-                    <Mail className="h-6 w-6" />
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[#e4dfd5] bg-white">
+                    <Mail className="h-4 w-4 text-[#5a8a3c]" />
                   </div>
                   <div>
-                    <h4 className="text-[10px] font-black uppercase tracking-widest text-green-950/40 mb-1">Email Support</h4>
-                    <a href="mailto:muzariexports@muzari.in" className="font-heritage text-lg font-bold text-green-950 italic hover:underline decoration-green-950/30">
+                    <p className="mb-0.5 font-sans text-[10px] uppercase tracking-[2px] text-[#b0a898]">Email</p>
+                    <a href="mailto:muzariexports@muzari.in" className="font-playfair text-base font-bold italic text-[#1a1a14] hover:text-[#5a8a3c] transition-colors">
                       muzariexports@muzari.in
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-6 group">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/20 text-green-950 transition-colors group-hover:bg-white group-hover:scale-110">
-                    <Phone className="h-6 w-6" />
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[#e4dfd5] bg-white">
+                    <Phone className="h-4 w-4 text-[#5a8a3c]" />
                   </div>
-                  <div className="space-y-4">
-                    <h4 className="text-[10px] font-black uppercase tracking-widest text-green-950/40 mb-1">Phone & WhatsApp</h4>
-                    
-                    <div className="space-y-2">
-                      <p className="font-heritage text-lg font-bold text-green-950 italic leading-none">+91 85908 38554</p>
-                      <div className="flex gap-4 text-xs font-bold uppercase tracking-wider text-green-900">
-                        <a href="tel:+918590838554" className="hover:text-green-950 hover:underline">Call</a>
-                        <span className="text-green-950/20">|</span>
-                        <a href="https://wa.me/918590838554" target="_blank" rel="noopener noreferrer" className="hover:text-green-950 hover:underline">WhatsApp</a>
+                  <div className="space-y-3">
+                    <p className="font-sans text-[10px] uppercase tracking-[2px] text-[#b0a898]">Phone & WhatsApp</p>
+                    <div>
+                      <p className="font-playfair text-base font-bold italic text-[#1a1a14]">+91 85908 38554</p>
+                      <div className="mt-1 flex gap-3 font-sans text-[11px] uppercase tracking-wider text-[#7a6b4f]">
+                        <a href="tel:+918590838554" className="hover:text-[#1a1a14] transition-colors">Call</a>
+                        <span className="text-[#e4dfd5]">|</span>
+                        <a href="https://wa.me/918590838554" target="_blank" rel="noopener noreferrer" className="hover:text-[#1a1a14] transition-colors">WhatsApp</a>
                       </div>
                     </div>
-
-                    <div className="space-y-2 pt-3 border-t border-green-950/10">
-                      <p className="font-heritage text-lg font-bold text-green-950 italic leading-none">+91 96568 08554</p>
-                      <div className="flex gap-4 text-xs font-bold uppercase tracking-wider text-green-900">
-                        <a href="tel:+919656808554" className="hover:text-green-950 hover:underline">Call</a>
-                        <span className="text-green-950/20">|</span>
-                        <a href="https://wa.me/919656808554" target="_blank" rel="noopener noreferrer" className="hover:text-green-950 hover:underline">WhatsApp</a>
+                    <div className="border-t border-[#e4dfd5] pt-3">
+                      <p className="font-playfair text-base font-bold italic text-[#1a1a14]">+91 96568 08554</p>
+                      <div className="mt-1 flex gap-3 font-sans text-[11px] uppercase tracking-wider text-[#7a6b4f]">
+                        <a href="tel:+919656808554" className="hover:text-[#1a1a14] transition-colors">Call</a>
+                        <span className="text-[#e4dfd5]">|</span>
+                        <a href="https://wa.me/919656808554" target="_blank" rel="noopener noreferrer" className="hover:text-[#1a1a14] transition-colors">WhatsApp</a>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-6 group">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/20 text-green-950 transition-colors group-hover:bg-white group-hover:scale-110">
-                    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                    </svg>
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[#e4dfd5] bg-white">
+                    <MessageCircle className="h-4 w-4 text-[#5a8a3c]" />
                   </div>
                   <div>
-                    <h4 className="text-[10px] font-black uppercase tracking-widest text-green-950/40 mb-1">Social Media</h4>
-                    <a href="https://www.facebook.com/search/top/?q=Muzari%20exports" target="_blank" rel="noopener noreferrer" className="font-heritage text-lg font-bold text-green-950 italic hover:underline decoration-green-950/30">
+                    <p className="mb-0.5 font-sans text-[10px] uppercase tracking-[2px] text-[#b0a898]">Social</p>
+                    <a href="https://www.facebook.com/search/top/?q=Muzari%20exports" target="_blank" rel="noopener noreferrer" className="font-playfair text-base font-bold italic text-[#1a1a14] hover:text-[#5a8a3c] transition-colors">
                       Muzari Exports (Facebook)
                     </a>
                   </div>
                 </div>
               </div>
 
-              <div className="rounded-3xl bg-green-950/5 p-8 border border-white/20">
-                <p className="text-xs leading-relaxed text-green-950/70 italic font-heritage">
-                  The fastest way to reach our export team is via WhatsApp. We typically respond within an hour for volume inquiries.
+              <div className="mt-8 border-t border-[#e4dfd5] pt-6">
+                <p className="font-sans text-[13px] italic leading-relaxed text-[#7a6b4f]">
+                  Fastest response via WhatsApp — typically within an hour for volume inquiries.
                 </p>
               </div>
             </div>
-          </div>
 
-          {/* Right Panel: Framed Inquiry Form */}
-          <div className="relative h-auto lg:h-full overflow-hidden rounded-[2.5rem] bg-green-50 lg:w-[60%] px-6 py-12 sm:px-12 sm:py-16 flex items-center shadow-inner">
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-              <div className="h-full w-full bg-[radial-gradient(#064e3b_1px,transparent_1px)] [background-size:24px_24px]" />
-            </div>
-
-            <div className="relative z-10 w-full">
+            {/* Right: Form */}
+            <div className="bg-white px-8 py-12 sm:px-12 lg:py-16">
               {isSubmitted ? (
-                <div className="flex flex-col items-center justify-center text-center py-20 animate-in fade-in zoom-in duration-500">
-                  <div className="h-20 w-20 bg-green-950 rounded-full flex items-center justify-center mb-6 text-[#82E076]">
-                    <MessageSquare className="h-10 w-10" />
+                <div className="flex h-full flex-col items-center justify-center py-20 text-center animate-in fade-in zoom-in duration-500">
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center bg-[#1a1a14]">
+                    <MessageSquare className="h-8 w-8 text-[#5a8a3c]" />
                   </div>
-                  <h3 className="text-3xl font-heritage font-bold text-green-950 mb-4">Inquiry Received</h3>
-                  <p className="text-green-800/60 max-w-sm">
+                  <h3 className="mb-3 font-playfair text-2xl font-bold text-[#1a1a14]">Inquiry Received</h3>
+                  <p className="mb-8 max-w-sm font-sans text-sm leading-relaxed text-[#7a6b4f]">
                     Thank you for reaching out. Our export specialists will review your requirements and get back to you within 24 hours.
                   </p>
-                  <button 
+                  <button
                     onClick={() => setIsSubmitted(false)}
-                    className="mt-10 text-sm font-black uppercase tracking-widest text-green-950 hover:text-[#82E076] transition-colors"
+                    className="font-sans text-[11px] font-medium uppercase tracking-[1.5px] text-[#5a8a3c] underline underline-offset-4 transition-colors hover:text-[#1a1a14]"
                   >
                     Send Another Message
                   </button>
                 </div>
               ) : (
-                <form className="grid gap-8" onSubmit={handleSubmit}>
-                  <div className="grid gap-8 md:grid-cols-2">
+                <form className="grid gap-6" onSubmit={handleSubmit}>
+                  <div className="grid gap-6 md:grid-cols-2">
                     <div className="space-y-2">
-                      <label htmlFor="fullName" className="text-[10px] font-black uppercase tracking-widest text-green-950/40 px-2 cursor-pointer">Full Name</label>
-                      <input 
-                        id="fullName"
-                        name="fullName"
-                        type="text" 
-                        required
-                        placeholder="John Doe" 
-                        className="w-full h-14 rounded-2xl border border-green-100 bg-white px-6 text-sm font-medium shadow-sm transition-all focus:ring-2 focus:ring-[#82E076]"
+                      <label htmlFor="fullName" className="font-sans text-[10px] font-medium uppercase tracking-[2px] text-[#b0a898]">Full Name</label>
+                      <input
+                        id="fullName" name="fullName" type="text" required placeholder="John Doe"
+                        className="w-full h-12 border border-[#e4dfd5] bg-[#faf8f3] px-4 font-sans text-sm text-[#1a1a14] placeholder:text-[#b0a898] transition-all focus:border-[#5a8a3c] focus:bg-white focus:outline-none"
                       />
                     </div>
                     <div className="space-y-2">
-                      <label htmlFor="email" className="text-[10px] font-black uppercase tracking-widest text-green-950/40 px-2 cursor-pointer">Email Address</label>
-                      <input 
-                        id="email"
-                        name="email"
-                        type="email" 
-                        required
-                        placeholder="john@company.com" 
-                        className="w-full h-14 rounded-2xl border border-green-100 bg-white px-6 text-sm font-medium shadow-sm transition-all focus:ring-2 focus:ring-[#82E076]"
+                      <label htmlFor="email" className="font-sans text-[10px] font-medium uppercase tracking-[2px] text-[#b0a898]">Email Address</label>
+                      <input
+                        id="email" name="email" type="email" required placeholder="john@company.com"
+                        className="w-full h-12 border border-[#e4dfd5] bg-[#faf8f3] px-4 font-sans text-sm text-[#1a1a14] placeholder:text-[#b0a898] transition-all focus:border-[#5a8a3c] focus:bg-white focus:outline-none"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="inquiryType" className="text-[10px] font-black uppercase tracking-widest text-green-950/40 px-2 cursor-pointer">Inquiry Type</label>
+                    <label htmlFor="inquiryType" className="font-sans text-[10px] font-medium uppercase tracking-[2px] text-[#b0a898]">Inquiry Type</label>
                     <div className="relative">
-                      <select 
-                        id="inquiryType"
-                        name="inquiryType"
-                        required
-                        className="w-full h-14 rounded-2xl border border-green-100 bg-white px-6 text-sm font-medium shadow-sm transition-all focus:ring-2 focus:ring-[#82E076] appearance-none"
+                      <select
+                        id="inquiryType" name="inquiryType" required
+                        className="w-full h-12 appearance-none border border-[#e4dfd5] bg-[#faf8f3] px-4 font-sans text-sm text-[#1a1a14] transition-all focus:border-[#5a8a3c] focus:bg-white focus:outline-none"
                       >
                         <option value="">Select inquiry type...</option>
                         <option value="export">Export Volume Inquiry</option>
                         <option value="partnership">Partnership Opportunity</option>
                         <option value="general">General Question</option>
                       </select>
-                      <div className="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 text-green-950/20">↓</div>
+                      <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#b0a898] text-xs">↓</div>
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="message" className="text-[10px] font-black uppercase tracking-widest text-green-950/40 px-2 cursor-pointer">Your Message</label>
-                    <textarea 
-                      id="message"
-                      name="message"
-                      rows={6}
-                      required
-                      placeholder="Tell us about your requirements..." 
-                      className="w-full rounded-2xl border border-green-100 bg-white p-6 text-sm font-medium shadow-sm transition-all focus:ring-2 focus:ring-[#82E076] resize-none"
+                    <label htmlFor="message" className="font-sans text-[10px] font-medium uppercase tracking-[2px] text-[#b0a898]">Your Message</label>
+                    <textarea
+                      id="message" name="message" rows={6} required placeholder="Tell us about your requirements..."
+                      className="w-full resize-none border border-[#e4dfd5] bg-[#faf8f3] p-4 font-sans text-sm text-[#1a1a14] placeholder:text-[#b0a898] transition-all focus:border-[#5a8a3c] focus:bg-white focus:outline-none"
                     />
                   </div>
 
-                  <button 
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="h-16 w-full rounded-2xl bg-green-950 text-sm font-black uppercase tracking-[0.2em] text-white transition-all hover:bg-green-900 hover:shadow-xl active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+                  <button
+                    type="submit" disabled={isSubmitting}
+                    className="h-12 w-full bg-[#1a1a14] font-sans text-[11px] font-medium uppercase tracking-[1.5px] text-[#faf8f3] transition-all hover:bg-[#2d2d22] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     {isSubmitting ? "Sending..." : "Send Inquiry"}
                   </button>
                 </form>
               )}
             </div>
-          </div>
 
+          </div>
         </div>
       </section>
 

@@ -12,6 +12,14 @@
   --font-heading: var(--font-jakarta);
   --font-manrope: var(--font-dm-sans);
   --font-cormorant: var(--font-jakarta);
+  --font-playfair: var(--font-playfair-display);
+  --color-cream: #faf8f3;
+  --color-charcoal: #1a1a14;
+  --color-olive: #5a8a3c;
+  --color-warm-muted: #7a6b4f;
+  --color-warm-body: #5a5548;
+  --color-warm-border: #e4dfd5;
+  --color-warm-subtle: #b0a898;
   --color-brand-dark: #062016;
   --color-green-950: #062016;
   --color-green-900: #0a2d1f;

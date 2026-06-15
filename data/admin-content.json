@@ -1,0 +1,34 @@
+{
+  "heroes": {
+    "home": {
+      "eyebrow": "Premium Export Quality",
+      "headline": "Where Indian Produce",
+      "headlineAccent": "Meets International Standards.",
+      "body": "Muzari combines 95 years of agricultural legacy with cutting-edge global logistics — delivering the finest bananas, tapioca, and fresh vegetables from India's fertile soil directly to international markets with absolute trust.",
+      "ctaPrimary": "Order Now",
+      "ctaSecondary": "Our Harvest",
+      "origin": "Kerala, India"
+    },
+    "about": {
+      "eyebrow": "Our Heritage",
+      "headline": "95 Years of Indian",
+      "headlineAccent": "Agricultural Legacy.",
+      "body": "Our journey began over nine decades ago, deeply rooted in India's rich agricultural heritage.",
+      "origin": "Established 1931 · Kerala, India"
+    },
+    "products": {
+      "eyebrow": "Our Catalog",
+      "headline": "From India's Farms",
+      "headlineAccent": "To Your Markets.",
+      "body": "Our catalog highlights premium products cultivated to meet the highest international standards for quality and consistency.",
+      "origin": "Kerala & South India"
+    },
+    "farming": {
+      "eyebrow": "Our Legacy",
+      "headline": "Grown by Generations,",
+      "headlineAccent": "Harvested for the World.",
+      "body": "Our heritage is rooted in the soil. We cultivate our own fields to ensure every export meets our generational standard of quality.",
+      "origin": "Red Soil of Kerala, India"
+    }
+  }
+}

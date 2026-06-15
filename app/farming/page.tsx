@@ -1,60 +1,92 @@
-"use client";
-
+import type { Metadata } from "next";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { processSteps } from "@/lib/site-data";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { getAdminContent } from "@/lib/get-site-content";
 
-export default function FarmingPage() {
+export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Farming Heritage | Muzari Exports — 95 Years of Kerala Agriculture",
+  description:
+    "Discover the farming heritage behind Muzari Exports. For over 95 years, our family has cultivated bananas, tapioca, and vegetables in Kerala's fertile soil — from seed to global shipment.",
+  alternates: { canonical: "/farming" },
+};
+
+export default async function FarmingPage() {
+  const adminContent = await getAdminContent();
+  const heroAdmin = (adminContent?.heroes as Record<string, Record<string, string>> | undefined)?.farming ?? {};
+  const eyebrow = heroAdmin.eyebrow ?? "Our Legacy";
+  const headline = heroAdmin.headline ?? "Grown by Generations,";
+  const headlineAccent = heroAdmin.headlineAccent ?? "Harvested for the World.";
+  const body = heroAdmin.body ?? "Our heritage is rooted in the soil. We cultivate our own fields to ensure every export meets our generational standard of quality — from the first seed to the final port clearance.";
+  const origin = heroAdmin.origin ?? "Red Soil of Kerala, India";
+
   return (
     <main className="min-h-screen bg-white">
       <SiteHeader />
 
-      {/* "Smart" Architectural Farming Hero */}
-      <section className="relative h-auto lg:h-[85vh] lg:min-h-[650px] w-full overflow-hidden bg-white pt-24 pb-8 lg:pb-0">
-        <div className="mx-auto flex h-auto lg:h-full w-[min(1440px,calc(100%-2rem))] flex-col gap-6 lg:flex-row">
-          
-          {/* Left Panel: Solid Brand Block (Heritage Focus) */}
-          <div className="relative flex h-auto lg:h-full flex-col justify-center rounded-[2.5rem] bg-[#062016] px-6 py-12 sm:px-12 sm:py-16 lg:w-[45%] text-white shadow-xl">
-            {/* Precision Grid Detail */}
-            <div className="absolute inset-0 pointer-events-none opacity-20">
-              <div className="absolute left-10 top-0 h-full w-px bg-white/10" />
-              <div className="absolute left-0 top-1/2 h-px w-full bg-white/10" />
+      {/* Hero — cream/olive/Playfair design */}
+      <section className="w-full bg-[#faf8f3] pt-24 lg:pt-28 px-4 sm:px-6 pb-0">
+        <div className="mx-auto max-w-[860px] overflow-hidden rounded-[20px] border border-[#e4dfd5] bg-[#faf8f3]">
+          <div className="flex flex-col items-center px-8 py-16 text-center sm:px-16 sm:py-20">
+
+            {/* Eyebrow */}
+            <div className="mb-8 flex items-center gap-3">
+              <div className="h-px w-[30px] bg-[#7a6b4f]" />
+              <span className="font-sans text-[11px] font-medium uppercase tracking-[3px] text-[#7a6b4f]">{eyebrow}</span>
+              <div className="h-px w-[30px] bg-[#7a6b4f]" />
             </div>
 
-            <ScrollReveal>
-              <span className="relative z-10 inline-block rounded-full bg-[#82E076]/10 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.4em] text-[#82E076] border border-[#82E076]/20 mb-8">
-                Our Legacy
-              </span>
-              <h1 className="relative z-10 mb-8 font-heritage text-[32px] font-bold leading-[1.2] tracking-tight text-white">
-                Grown by Generations, <br />
-                Harvested for the World.
-              </h1>
-              <div className="relative z-10 h-1.5 w-20 bg-[#82E076] mb-8 rounded-full" />
-              <p className="relative z-10 max-w-md text-lg leading-relaxed text-green-100/80 font-medium italic">
-                Our heritage is rooted in the soil. We cultivate our own fields to ensure every export meets our generational standard of quality.
-              </p>
-            </ScrollReveal>
-          </div>
+            {/* Headlines */}
+            <h1 className="font-playfair text-[2.6rem] font-bold leading-[1.0] text-[#1a1a14] sm:text-[3.8rem]">
+              {headline}
+            </h1>
+            <p className="mb-6 font-playfair text-[2.6rem] font-bold italic leading-[1.1] text-[#5a8a3c] sm:text-[3.8rem]">
+              {headlineAccent}
+            </p>
 
-          {/* Right Panel: Framed Cinematic Visual */}
-          <div className="relative h-[300px] sm:h-[380px] lg:h-full overflow-hidden rounded-[2.5rem] bg-green-950 lg:w-[55%] group">
-            <Image
-              src="/farming_hero.png" 
-              alt="Muzari Heritage Farms"
-              fill
-              className="object-cover transition-transform duration-[20s] group-hover:scale-110 brightness-75"
-              priority
-            />
-            {/* Glassmorphism Badge */}
-            <div className="absolute bottom-10 right-10 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-              <p className="text-[9px] font-black uppercase tracking-[0.3em] text-white/40 mb-2">Since 1931</p>
-              <p className="font-heritage text-2xl font-bold text-white italic">Generational Soil</p>
+            {/* Rule */}
+            <div className="mb-7 h-[2px] w-[60px] bg-[#5a8a3c]" />
+
+            {/* Body */}
+            <p className="mb-10 max-w-[520px] font-sans text-[15px] font-light italic leading-[1.9] text-[#5a5548]">
+              {body}
+            </p>
+
+            {/* Stats */}
+            <div className="flex w-full max-w-[500px]" style={{ gap: "2px" }}>
+              {[
+                { num: "1931", lbl: "Est. Year" },
+                { num: "95+", lbl: "Years Farming" },
+                { num: "35+", lbl: "Farm Partners" },
+              ].map((stat, i) => (
+                <div
+                  key={i}
+                  className={cn(
+                    "flex-1 border border-[#e4dfd5] bg-white px-3 py-5 text-center",
+                    i === 0 && "rounded-l-[10px]",
+                    i === 2 && "rounded-r-[10px]"
+                  )}
+                >
+                  <div className="mb-1 font-playfair text-[1.8rem] font-bold leading-none text-[#1a1a14]">{stat.num}</div>
+                  <div className="mt-1 font-sans text-[10px] uppercase tracking-[1.5px] text-[#7a6b4f]">{stat.lbl}</div>
+                </div>
+              ))}
             </div>
-          </div>
 
+            {/* Origin */}
+            <div className="mb-4 mt-6 flex items-center gap-2 font-sans text-[11px] uppercase tracking-[2px] text-[#b0a898]">
+              <div className="h-px w-5 bg-[#d8d2c8]" />
+              {origin}
+              <div className="h-px w-5 bg-[#d8d2c8]" />
+            </div>
+
+          </div>
         </div>
       </section>
 
