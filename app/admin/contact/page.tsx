@@ -5,7 +5,7 @@ import AdminShell from "@/components/admin/AdminShell";
 import { Field, SectionCard, inputCls } from "@/components/admin/AdminField";
 
 const DEFAULTS = {
-  email: "muzariexports@muzari.in",
+  email: "muzariexports@gmail.com",
   phone1: "+91 85908 38554",
   phone1wa: "918590838554",
   phone2: "+91 96568 08554",

@@ -2,138 +2,188 @@
 
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
-import { Mail, MapPin, Phone, MessageSquare, MessageCircle } from "lucide-react";
+import { Mail, MapPin, Phone, MessageCircle } from "lucide-react";
 import { useState } from "react";
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    setError(null);
+
+    const form = e.currentTarget;
+    const data = {
+      fullName: (form.elements.namedItem('fullName') as HTMLInputElement).value,
+      email: (form.elements.namedItem('email') as HTMLInputElement).value,
+      inquiryType: (form.elements.namedItem('inquiryType') as HTMLSelectElement).value,
+      message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
+    };
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error('Submission failed');
+
+      const waMessage = encodeURIComponent(
+        `Hi Muzari Team!\n\nName: ${data.fullName}\nEmail: ${data.email}\nInquiry: ${data.inquiryType}\n\n${data.message}`
+      );
+      window.open(`https://wa.me/918590838554?text=${waMessage}`, '_blank');
+
+      setIsSubmitted(true);
+    } catch {
+      setError('Something went wrong. Please try WhatsApp or email us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-[#faf8f3] animate-in fade-in duration-500">
       <SiteHeader />
 
-      {/* Hero — cream/olive/Playfair design with contact info + form */}
-      <section className="w-full bg-[#faf8f3] pt-24 lg:pt-28 px-4 sm:px-6 pb-0">
-        <div className="mx-auto max-w-[1100px] overflow-hidden rounded-[20px] border border-[#e4dfd5] bg-[#faf8f3]">
-          <div className="grid lg:grid-cols-[1fr_1.4fr]">
+      {/* Statement Header */}
+      <section className="w-full bg-[#faf8f3] pt-24 lg:pt-32 pb-14 px-6 lg:px-12">
+        <div className="mx-auto max-w-[1280px]">
+
+          <div className="mb-8 flex items-center gap-3">
+            <div className="h-px w-[30px] bg-[#7a6b4f]" />
+            <span className="font-sans text-[11px] font-medium uppercase tracking-[3px] text-[#7a6b4f]">Get in Touch</span>
+          </div>
+
+          <h1 className="font-playfair text-[2.6rem] font-bold leading-[1.0] text-[#1a1a14] sm:text-[4rem] lg:text-[5.5rem]">
+            Start Your Global
+          </h1>
+          <p className="mb-6 font-playfair text-[2.6rem] font-bold italic leading-[1.1] text-[#5a8a3c] sm:text-[4rem] lg:text-[5.5rem]">
+            Sourcing Inquiry.
+          </p>
+          <div className="mb-6 h-[2px] w-[60px] bg-[#5a8a3c]" />
+          <p className="font-sans text-[14px] italic leading-relaxed text-[#7a6b4f]">
+            Fastest response via WhatsApp — typically within an hour for volume inquiries.
+          </p>
+        </div>
+      </section>
+
+      {/* Two Column Layout */}
+      <section className="w-full bg-[#faf8f3] pb-28 px-6 lg:px-12">
+        <div className="mx-auto max-w-[1280px]">
+          <div className="grid gap-16 lg:grid-cols-[380px_1fr] lg:gap-24">
 
             {/* Left: Contact Info */}
-            <div className="flex flex-col justify-center border-b border-[#e4dfd5] px-8 py-12 sm:px-12 lg:border-b-0 lg:border-r lg:py-16">
+            <div className="space-y-8">
 
-              {/* Eyebrow */}
-              <div className="mb-8 flex items-center gap-3">
-                <div className="h-px w-[30px] bg-[#7a6b4f]" />
-                <span className="font-sans text-[11px] font-medium uppercase tracking-[3px] text-[#7a6b4f]">Get in Touch</span>
+              <div className="flex items-start gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-[#e4dfd5] bg-white">
+                  <MapPin className="h-4 w-4 text-[#5a8a3c]" />
+                </div>
+                <div>
+                  <p className="mb-0.5 font-sans text-[10px] uppercase tracking-[2px] text-[#b0a898]">Export Hub</p>
+                  <p className="font-sans text-base font-semibold text-[#1a1a14]">Kerala, India</p>
+                </div>
               </div>
 
-              <h1 className="mb-2 font-playfair text-[2.2rem] font-bold leading-[1.0] text-[#1a1a14] sm:text-[2.8rem]">
-                Start Your Global
-              </h1>
-              <p className="mb-6 font-playfair text-[2.2rem] font-bold italic leading-[1.1] text-[#5a8a3c] sm:text-[2.8rem]">
-                Sourcing Inquiry.
-              </p>
-              <div className="mb-8 h-[2px] w-[60px] bg-[#5a8a3c]" />
-
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[#e4dfd5] bg-white">
-                    <MapPin className="h-4 w-4 text-[#5a8a3c]" />
-                  </div>
-                  <div>
-                    <p className="mb-0.5 font-sans text-[10px] uppercase tracking-[2px] text-[#b0a898]">Export Hub</p>
-                    <p className="font-playfair text-base font-bold italic text-[#1a1a14]">Kerala, India</p>
-                  </div>
+              <div className="flex items-start gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-[#e4dfd5] bg-white">
+                  <Mail className="h-4 w-4 text-[#5a8a3c]" />
                 </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[#e4dfd5] bg-white">
-                    <Mail className="h-4 w-4 text-[#5a8a3c]" />
-                  </div>
-                  <div>
-                    <p className="mb-0.5 font-sans text-[10px] uppercase tracking-[2px] text-[#b0a898]">Email</p>
-                    <a href="mailto:muzariexports@muzari.in" className="font-playfair text-base font-bold italic text-[#1a1a14] hover:text-[#5a8a3c] transition-colors">
-                      muzariexports@muzari.in
-                    </a>
-                  </div>
+                <div>
+                  <p className="mb-0.5 font-sans text-[10px] uppercase tracking-[2px] text-[#b0a898]">Email</p>
+                  <a href="mailto:muzariexports@gmail.com" className="font-sans text-base font-semibold text-[#1a1a14] transition-colors hover:text-[#5a8a3c]">
+                    muzariexports@gmail.com
+                  </a>
                 </div>
+              </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[#e4dfd5] bg-white">
-                    <Phone className="h-4 w-4 text-[#5a8a3c]" />
-                  </div>
-                  <div className="space-y-3">
-                    <p className="font-sans text-[10px] uppercase tracking-[2px] text-[#b0a898]">Phone & WhatsApp</p>
-                    <div>
-                      <p className="font-playfair text-base font-bold italic text-[#1a1a14]">+91 85908 38554</p>
-                      <div className="mt-1 flex gap-3 font-sans text-[11px] uppercase tracking-wider text-[#7a6b4f]">
-                        <a href="tel:+918590838554" className="hover:text-[#1a1a14] transition-colors">Call</a>
-                        <span className="text-[#e4dfd5]">|</span>
-                        <a href="https://wa.me/918590838554" target="_blank" rel="noopener noreferrer" className="hover:text-[#1a1a14] transition-colors">WhatsApp</a>
-                      </div>
-                    </div>
-                    <div className="border-t border-[#e4dfd5] pt-3">
-                      <p className="font-playfair text-base font-bold italic text-[#1a1a14]">+91 96568 08554</p>
-                      <div className="mt-1 flex gap-3 font-sans text-[11px] uppercase tracking-wider text-[#7a6b4f]">
-                        <a href="tel:+919656808554" className="hover:text-[#1a1a14] transition-colors">Call</a>
-                        <span className="text-[#e4dfd5]">|</span>
-                        <a href="https://wa.me/919656808554" target="_blank" rel="noopener noreferrer" className="hover:text-[#1a1a14] transition-colors">WhatsApp</a>
-                      </div>
+              <div className="flex items-start gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-[#e4dfd5] bg-white">
+                  <Phone className="h-4 w-4 text-[#5a8a3c]" />
+                </div>
+                <div className="space-y-4">
+                  <p className="font-sans text-[10px] uppercase tracking-[2px] text-[#b0a898]">Phone & WhatsApp</p>
+                  <div>
+                    <p className="font-sans text-base font-semibold text-[#1a1a14]">+91 85908 38554</p>
+                    <div className="mt-1 flex gap-3 font-sans text-[11px] uppercase tracking-wider text-[#7a6b4f]">
+                      <a href="tel:+918590838554" className="transition-colors hover:text-[#1a1a14]">Call</a>
+                      <span className="text-[#e4dfd5]">|</span>
+                      <a href="https://wa.me/918590838554" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-[#1a1a14]">WhatsApp</a>
                     </div>
                   </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[#e4dfd5] bg-white">
-                    <MessageCircle className="h-4 w-4 text-[#5a8a3c]" />
-                  </div>
                   <div>
-                    <p className="mb-0.5 font-sans text-[10px] uppercase tracking-[2px] text-[#b0a898]">Social</p>
-                    <a href="https://www.facebook.com/search/top/?q=Muzari%20exports" target="_blank" rel="noopener noreferrer" className="font-playfair text-base font-bold italic text-[#1a1a14] hover:text-[#5a8a3c] transition-colors">
-                      Muzari Exports (Facebook)
-                    </a>
+                    <p className="font-sans text-base font-semibold text-[#1a1a14]">+91 96568 08554</p>
+                    <div className="mt-1 flex gap-3 font-sans text-[11px] uppercase tracking-wider text-[#7a6b4f]">
+                      <a href="tel:+919656808554" className="transition-colors hover:text-[#1a1a14]">Call</a>
+                      <span className="text-[#e4dfd5]">|</span>
+                      <a href="https://wa.me/919656808554" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-[#1a1a14]">WhatsApp</a>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-8 border-t border-[#e4dfd5] pt-6">
-                <p className="font-sans text-[13px] italic leading-relaxed text-[#7a6b4f]">
-                  Fastest response via WhatsApp — typically within an hour for volume inquiries.
-                </p>
+              <div className="flex items-start gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-[#e4dfd5] bg-white">
+                  <MessageCircle className="h-4 w-4 text-[#5a8a3c]" />
+                </div>
+                <div>
+                  <p className="mb-0.5 font-sans text-[10px] uppercase tracking-[2px] text-[#b0a898]">Social</p>
+                  <a href="https://www.facebook.com/search/top/?q=Muzari%20exports" target="_blank" rel="noopener noreferrer" className="font-sans text-base font-semibold text-[#1a1a14] transition-colors hover:text-[#5a8a3c]">
+                    Muzari Exports (Facebook)
+                  </a>
+                </div>
+              </div>
+
+              <div className="pt-4">
+                <a
+                  href="https://wa.me/918590838554"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 bg-[#1a1a14] px-8 py-4 font-sans text-[11px] font-medium uppercase tracking-[1.5px] text-[#faf8f3] transition-all hover:bg-[#2d2d22]"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  Message on WhatsApp
+                </a>
               </div>
             </div>
 
             {/* Right: Form */}
-            <div className="bg-white px-8 py-12 sm:px-12 lg:py-16">
+            <div className="bg-white p-8 sm:p-12">
               {isSubmitted ? (
-                <div className="flex h-full flex-col items-center justify-center py-20 text-center animate-in fade-in zoom-in duration-500">
-                  <div className="mb-6 flex h-16 w-16 items-center justify-center bg-[#1a1a14]">
-                    <MessageSquare className="h-8 w-8 text-[#5a8a3c]" />
+                <div className="flex h-full flex-col items-center justify-center py-16 text-center animate-in fade-in zoom-in duration-500">
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center bg-[#5a8a3c]">
+                    <svg className="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
                   </div>
                   <h3 className="mb-3 font-playfair text-2xl font-bold text-[#1a1a14]">Inquiry Received</h3>
-                  <p className="mb-8 max-w-sm font-sans text-sm leading-relaxed text-[#7a6b4f]">
-                    Thank you for reaching out. Our export specialists will review your requirements and get back to you within 24 hours.
+                  <p className="mb-3 max-w-sm font-sans text-sm leading-relaxed text-[#7a6b4f]">
+                    Thank you — WhatsApp should have opened so you can connect with our team directly.
+                  </p>
+                  <p className="mb-8 max-w-sm font-sans text-sm leading-relaxed text-[#b0a898]">
+                    Didn&apos;t open?{' '}
+                    <a href="https://wa.me/918590838554" target="_blank" rel="noopener noreferrer" className="text-[#5a8a3c] transition-colors hover:text-[#1a1a14]">
+                      Click here to open WhatsApp.
+                    </a>
                   </p>
                   <button
-                    onClick={() => setIsSubmitted(false)}
-                    className="font-sans text-[11px] font-medium uppercase tracking-[1.5px] text-[#5a8a3c] underline underline-offset-4 transition-colors hover:text-[#1a1a14]"
+                    onClick={() => { setIsSubmitted(false); setError(null); }}
+                    className="border border-[#1a1a14] px-8 py-3 font-sans text-[11px] font-medium uppercase tracking-[1.5px] text-[#1a1a14] transition-all hover:bg-[#1a1a14] hover:text-[#faf8f3]"
                   >
                     Send Another Message
                   </button>
                 </div>
               ) : (
                 <form className="grid gap-6" onSubmit={handleSubmit}>
+
+                  <div className="mb-2">
+                    <p className="font-playfair text-xl font-bold text-[#1a1a14]">Send us a message</p>
+                    <p className="mt-1 font-sans text-[13px] text-[#7a6b4f]">Fill out the form and WhatsApp will open automatically with your message.</p>
+                  </div>
+
                   <div className="grid gap-6 md:grid-cols-2">
                     <div className="space-y-2">
                       <label htmlFor="fullName" className="font-sans text-[10px] font-medium uppercase tracking-[2px] text-[#b0a898]">Full Name</label>
@@ -175,11 +225,15 @@ export default function ContactPage() {
                     />
                   </div>
 
+                  {error && (
+                    <p className="font-sans text-sm text-red-600" role="alert">{error}</p>
+                  )}
+
                   <button
                     type="submit" disabled={isSubmitting}
-                    className="h-12 w-full bg-[#1a1a14] font-sans text-[11px] font-medium uppercase tracking-[1.5px] text-[#faf8f3] transition-all hover:bg-[#2d2d22] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+                    className="h-14 w-full bg-[#1a1a14] font-sans text-[11px] font-medium uppercase tracking-[1.5px] text-[#faf8f3] transition-all hover:bg-[#2d2d22] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
                   >
-                    {isSubmitting ? "Sending..." : "Send Inquiry"}
+                    {isSubmitting ? "Sending..." : "Send Inquiry → WhatsApp"}
                   </button>
                 </form>
               )}

@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { Nunito, Plus_Jakarta_Sans, DM_Sans, Playfair_Display } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
+import ChatBot from "@/components/ChatBot";
 
-// Nunito — rounded, warm display font for headings
-const nunito = Nunito({
+// Inter — Helvetica-style precision, industry standard for corporate/tech brands
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-nunito",
-  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-inter",
   display: "swap",
 });
 
-// Plus Jakarta Sans — clean rounded geometric for labels & UI
+// Plus Jakarta Sans — clean geometric for headings and display text
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-jakarta",
@@ -20,24 +20,12 @@ const jakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-// DM Sans — slightly rounded, highly readable for body text
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  variable: "--font-dm-sans",
-  display: "swap",
-});
-
-// Playfair Display — elegant serif for client-approved hero headlines
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair-display",
-  weight: ["700", "900"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
+// Live domain is muzari.in for now — switch to muzariexports.com once the old domain expires.
+const BASE_URL = 'https://muzari.in';
+// const BASE_URL = 'https://www.muzariexports.com';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.muzariexports.com'),
+  metadataBase: new URL(BASE_URL),
   title: "Muzari Exports | Premium Agricultural Produce Exporter from Kerala, India",
   description:
     "Muzari Exports is a premium fresh produce exporter from Kerala, India — supplying farm-direct Robusta & Nethra bananas, tapioca roots, and fresh vegetables to global buyers for 95+ years. CIF/FOB pricing available.",
@@ -59,7 +47,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Muzari Exports | Premium Agricultural Produce from Kerala, India",
     description: "Farm-direct bananas, tapioca, and fresh vegetables from Kerala, India to global ports. 95+ years of agricultural heritage.",
-    url: 'https://www.muzariexports.com',
+    url: BASE_URL,
     siteName: 'Muzari Exports',
     images: [
       {
@@ -100,8 +88,8 @@ export default function RootLayout({
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Muzari Exports',
-    url: 'https://www.muzariexports.com',
-    logo: 'https://www.muzariexports.com/logo/logo-dark.png',
+    url: BASE_URL,
+    logo: `${BASE_URL}/logo/logo-dark.png`,
     description: 'Premium fresh produce exporter from Kerala, India — supplying farm-direct bananas, tapioca roots, and fresh vegetables to global buyers for 95+ years.',
     location: {
       '@type': 'Place',
@@ -141,18 +129,19 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={cn("font-sans", dmSans.variable, nunito.variable, jakarta.variable, playfair.variable)}>
+    <html lang="en" className={cn("font-sans", inter.variable, jakarta.variable)}>
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ 
-            __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') 
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c')
           }}
         />
       </head>
-      <body className={`${nunito.variable} ${jakarta.variable} ${dmSans.variable} ${playfair.variable} antialiased`}>
+      <body className={`${inter.variable} ${jakarta.variable} antialiased`}>
         {children}
         <WhatsAppFloat />
+        <ChatBot />
       </body>
     </html>
   );

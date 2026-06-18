@@ -5,7 +5,6 @@ import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { products } from "@/lib/site-data";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { cn } from "@/lib/utils";
 import { getAdminContent } from "@/lib/get-site-content";
 
 export const dynamic = "force-dynamic";
@@ -17,73 +16,95 @@ export const metadata: Metadata = {
   alternates: { canonical: "/products" },
 };
 
+// Live domain is muzari.in for now — switch to muzariexports.com once the old domain expires.
+const BASE_URL = "https://muzari.in";
+// const BASE_URL = "https://www.muzariexports.com";
+
 export default async function ProductsPage() {
   const adminContent = await getAdminContent();
   const heroAdmin = (adminContent?.heroes as Record<string, Record<string, string>> | undefined)?.products ?? {};
   const eyebrow = heroAdmin.eyebrow ?? "Our Catalog";
-  const headline = heroAdmin.headline ?? "From India's Farms";
-  const headlineAccent = heroAdmin.headlineAccent ?? "To Your Markets.";
-  const body = heroAdmin.body ?? "Our catalog highlights premium products cultivated to meet the highest international standards for quality and consistency — sourced directly from verified farms across South India.";
-  const origin = heroAdmin.origin ?? "Kerala & South India";
+  const headline = heroAdmin.headline ?? "Export-ready produce";
+  const headlineAccent = heroAdmin.headlineAccent ?? "from India's finest harvests.";
+  const body = heroAdmin.body ?? "Our catalog highlights premium products cultivated to meet the highest international standards for quality and consistency.";
+  const origin = heroAdmin.origin ?? "Export Grade A Quality Guaranteed";
+
+  const productListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: products.map((product, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Product",
+        name: product.name,
+        description: product.summary,
+        image: `${BASE_URL}${product.image}`,
+        category: product.label,
+        additionalProperty: (product.specs ?? []).map((spec) => ({
+          "@type": "PropertyValue",
+          name: spec.label,
+          value: spec.value,
+        })),
+        offers: {
+          "@type": "Offer",
+          availability: "https://schema.org/InStock",
+          businessFunction: "http://purl.org/goodrelations/v1#Sell",
+          priceSpecification: {
+            "@type": "PriceSpecification",
+            description: "Pricing on inquiry — CIF/FOB quotes provided per shipment",
+          },
+        },
+      },
+    })),
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+      { "@type": "ListItem", position: 2, name: "Products", item: `${BASE_URL}/products` },
+    ],
+  };
 
   return (
-    <main className="min-h-screen bg-white text-green-950">
+    <main className="min-h-screen bg-white text-green-950 animate-in fade-in duration-500">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productListJsonLd).replace(/</g, "\\u003c") }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, "\\u003c") }}
+      />
       <SiteHeader />
 
-      {/* Hero — cream/olive/Playfair design */}
-      <section className="w-full bg-[#faf8f3] pt-24 lg:pt-28 px-4 sm:px-6 pb-0">
-        <div className="mx-auto max-w-[860px] overflow-hidden rounded-[20px] border border-[#e4dfd5] bg-[#faf8f3]">
-          <div className="flex flex-col items-center px-8 py-16 text-center sm:px-16 sm:py-20">
+      {/* Hero — dark green card */}
+      <section className="w-full bg-white pt-24 lg:pt-28 px-4 sm:px-6 pb-0">
+        <div className="mx-auto max-w-[1200px] overflow-hidden rounded-[28px] bg-[#062016]">
+          <div className="px-10 py-16 sm:px-16 sm:py-20">
 
-            {/* Eyebrow */}
-            <div className="mb-8 flex items-center gap-3">
-              <div className="h-px w-[30px] bg-[#7a6b4f]" />
-              <span className="font-sans text-[11px] font-medium uppercase tracking-[3px] text-[#7a6b4f]">{eyebrow}</span>
-              <div className="h-px w-[30px] bg-[#7a6b4f]" />
+            {/* Pill Badge */}
+            <div className="mb-8 inline-flex items-center rounded-full border border-white/25 px-4 py-1.5">
+              <span className="font-sans text-[11px] font-medium uppercase tracking-[3px] text-white/70">{eyebrow}</span>
             </div>
 
-            {/* Headlines */}
-            <h1 className="font-playfair text-[2.6rem] font-bold leading-[1.0] text-[#1a1a14] sm:text-[3.8rem]">
-              {headline}
+            {/* H1 — unified with underline accent on second line */}
+            <h1 className="mb-6 max-w-[780px] font-nunito font-black text-[2.8rem] leading-[1.05] text-white sm:text-[4.5rem]">
+              <span className="block">{headline}</span>
+              <span className="block underline decoration-[#82E076] decoration-[3px] underline-offset-[8px]">{headlineAccent}</span>
             </h1>
-            <p className="mb-6 font-playfair text-[2.6rem] font-bold italic leading-[1.1] text-[#5a8a3c] sm:text-[3.8rem]">
-              {headlineAccent}
-            </p>
-
-            {/* Rule */}
-            <div className="mb-7 h-[2px] w-[60px] bg-[#5a8a3c]" />
 
             {/* Body */}
-            <p className="mb-10 max-w-[520px] font-sans text-[15px] font-light italic leading-[1.9] text-[#5a5548]">
+            <p className="mb-10 max-w-[580px] font-sans text-[15px] italic leading-[1.9] text-white/60">
               {body}
             </p>
 
-            {/* Stats */}
-            <div className="flex w-full max-w-[500px]" style={{ gap: "2px" }}>
-              {[
-                { num: "3+", lbl: "Export Varieties" },
-                { num: "20+", lbl: "Countries Served" },
-                { num: "A+", lbl: "Export Grade" },
-              ].map((stat, i) => (
-                <div
-                  key={i}
-                  className={cn(
-                    "flex-1 border border-[#e4dfd5] bg-white px-3 py-5 text-center",
-                    i === 0 && "rounded-l-[10px]",
-                    i === 2 && "rounded-r-[10px]"
-                  )}
-                >
-                  <div className="mb-1 font-playfair text-[1.8rem] font-bold leading-none text-[#1a1a14]">{stat.num}</div>
-                  <div className="mt-1 font-sans text-[10px] uppercase tracking-[1.5px] text-[#7a6b4f]">{stat.lbl}</div>
-                </div>
-              ))}
-            </div>
-
-            {/* Origin */}
-            <div className="mb-4 mt-6 flex items-center gap-2 font-sans text-[11px] uppercase tracking-[2px] text-[#b0a898]">
-              <div className="h-px w-5 bg-[#d8d2c8]" />
+            {/* Status */}
+            <div className="flex items-center gap-2 font-sans text-[11px] uppercase tracking-[2.5px] text-white/50">
+              <div className="h-2 w-2 rounded-full bg-[#82E076]" />
               {origin}
-              <div className="h-px w-5 bg-[#d8d2c8]" />
             </div>
 
           </div>

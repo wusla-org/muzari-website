@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
@@ -17,6 +16,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "/farming" },
 };
 
+// Live domain is muzari.in for now — switch to muzariexports.com once the old domain expires.
+const BASE_URL = "https://muzari.in";
+// const BASE_URL = "https://www.muzariexports.com";
+
 export default async function FarmingPage() {
   const adminContent = await getAdminContent();
   const heroAdmin = (adminContent?.heroes as Record<string, Record<string, string>> | undefined)?.farming ?? {};
@@ -26,67 +29,68 @@ export default async function FarmingPage() {
   const body = heroAdmin.body ?? "Our heritage is rooted in the soil. We cultivate our own fields to ensure every export meets our generational standard of quality — from the first seed to the final port clearance.";
   const origin = heroAdmin.origin ?? "Red Soil of Kerala, India";
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+      { "@type": "ListItem", position: 2, name: "Farming", item: `${BASE_URL}/farming` },
+    ],
+  };
+
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white animate-in fade-in duration-500">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, "\\u003c") }}
+      />
       <SiteHeader />
 
-      {/* Hero — cream/olive/Playfair design */}
-      <section className="w-full bg-[#faf8f3] pt-24 lg:pt-28 px-4 sm:px-6 pb-0">
-        <div className="mx-auto max-w-[860px] overflow-hidden rounded-[20px] border border-[#e4dfd5] bg-[#faf8f3]">
-          <div className="flex flex-col items-center px-8 py-16 text-center sm:px-16 sm:py-20">
+      {/* Hero — two-column split: dark green text panel + farm image */}
+      <section className="w-full bg-white pt-24 lg:pt-28 px-4 sm:px-6 pb-0">
+        <div className="mx-auto max-w-[1200px] overflow-hidden rounded-[28px] grid grid-cols-1 lg:grid-cols-2">
 
-            {/* Eyebrow */}
-            <div className="mb-8 flex items-center gap-3">
-              <div className="h-px w-[30px] bg-[#7a6b4f]" />
-              <span className="font-sans text-[11px] font-medium uppercase tracking-[3px] text-[#7a6b4f]">{eyebrow}</span>
-              <div className="h-px w-[30px] bg-[#7a6b4f]" />
+          {/* Left — dark green text panel */}
+          <div className="flex flex-col justify-end bg-[#062016] px-10 py-16 sm:px-14 sm:py-20 min-h-[420px] lg:min-h-[560px]">
+
+            {/* Pill Badge */}
+            <div className="mb-8 inline-flex items-center rounded-full border border-white/25 px-4 py-1.5 self-start">
+              <span className="font-sans text-[11px] font-medium uppercase tracking-[3px] text-white/70">{eyebrow}</span>
             </div>
 
-            {/* Headlines */}
-            <h1 className="font-playfair text-[2.6rem] font-bold leading-[1.0] text-[#1a1a14] sm:text-[3.8rem]">
-              {headline}
+            {/* H1 */}
+            <h1 className="mb-0 max-w-[480px] font-nunito font-black text-[2.4rem] leading-[1.05] text-white sm:text-[3.4rem]">
+              <span className="block">{headline}</span>
+              <span className="block">{headlineAccent}</span>
             </h1>
-            <p className="mb-6 font-playfair text-[2.6rem] font-bold italic leading-[1.1] text-[#5a8a3c] sm:text-[3.8rem]">
-              {headlineAccent}
-            </p>
 
-            {/* Rule */}
-            <div className="mb-7 h-[2px] w-[60px] bg-[#5a8a3c]" />
+            {/* Green bar separator */}
+            <div className="my-6 h-[3px] w-20 bg-[#82E076]" />
 
             {/* Body */}
-            <p className="mb-10 max-w-[520px] font-sans text-[15px] font-light italic leading-[1.9] text-[#5a5548]">
+            <p className="max-w-[420px] font-sans text-[15px] italic leading-[1.9] text-white/60">
               {body}
             </p>
 
-            {/* Stats */}
-            <div className="flex w-full max-w-[500px]" style={{ gap: "2px" }}>
-              {[
-                { num: "1931", lbl: "Est. Year" },
-                { num: "95+", lbl: "Years Farming" },
-                { num: "35+", lbl: "Farm Partners" },
-              ].map((stat, i) => (
-                <div
-                  key={i}
-                  className={cn(
-                    "flex-1 border border-[#e4dfd5] bg-white px-3 py-5 text-center",
-                    i === 0 && "rounded-l-[10px]",
-                    i === 2 && "rounded-r-[10px]"
-                  )}
-                >
-                  <div className="mb-1 font-playfair text-[1.8rem] font-bold leading-none text-[#1a1a14]">{stat.num}</div>
-                  <div className="mt-1 font-sans text-[10px] uppercase tracking-[1.5px] text-[#7a6b4f]">{stat.lbl}</div>
-                </div>
-              ))}
-            </div>
-
-            {/* Origin */}
-            <div className="mb-4 mt-6 flex items-center gap-2 font-sans text-[11px] uppercase tracking-[2px] text-[#b0a898]">
-              <div className="h-px w-5 bg-[#d8d2c8]" />
-              {origin}
-              <div className="h-px w-5 bg-[#d8d2c8]" />
-            </div>
-
           </div>
+
+          {/* Right — farm image */}
+          <div className="relative min-h-[340px] lg:min-h-[560px]">
+            <Image
+              src="/farming_hero.png"
+              alt="Generational farming — banana plantation in Kerala"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+              priority
+            />
+            {/* Caption overlay — hidden on mobile to prevent overlap */}
+            <div className="hidden sm:block absolute bottom-5 right-5 rounded-xl bg-black/50 px-5 py-3 backdrop-blur-sm">
+              <p className="font-sans text-[10px] uppercase tracking-[2px] text-white/60">Since 1931</p>
+              <p className="font-sans text-base font-semibold text-white">Generational Soil</p>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -178,14 +182,10 @@ export default async function FarmingPage() {
             ))}
           </div>
 
-          {/* Swipe Indicator Dots (Mobile Only) */}
-          <div className="mt-4 flex items-center justify-center gap-1.5 md:hidden">
-            {processSteps.map((_, i) => (
-              <div 
-                key={i} 
-                className="h-1 rounded-full bg-white/20 w-4 transition-all duration-300 first:bg-amber-400" 
-              />
-            ))}
+          {/* Mobile swipe hint */}
+          <div className="mt-6 flex items-center justify-center gap-2 md:hidden">
+            <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/30">Swipe to explore</span>
+            <span className="text-white/30 text-xs">→</span>
           </div>
         </div>
       </section>

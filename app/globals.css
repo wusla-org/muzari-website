@@ -1,18 +1,18 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: var(--font-dm-sans);
+  --font-sans: var(--font-inter);
   --font-serif: var(--font-jakarta);
   --font-heritage: var(--font-jakarta);
-  --font-label: var(--font-jakarta);
+  --font-label: var(--font-inter);
   --font-heading: var(--font-jakarta);
-  --font-manrope: var(--font-dm-sans);
+  --font-manrope: var(--font-inter);
   --font-cormorant: var(--font-jakarta);
-  --font-playfair: var(--font-playfair-display);
+  --font-playfair: var(--font-jakarta);
+  --font-nunito: var(--font-jakarta);
   --color-cream: #faf8f3;
   --color-charcoal: #1a1a14;
   --color-olive: #5a8a3c;
@@ -173,16 +173,26 @@ a {
   }
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 3s;
+  }
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-float-delayed {
-  animation: float 6s ease-in-out infinite;
-  animation-delay: 3s;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

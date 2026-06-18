@@ -1,14 +1,12 @@
-"use client";
-
-import { useState, useEffect } from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import ProductGrid from "@/components/ProductGrid";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import MissionVisionSlider from "@/components/MissionVisionSlider";
 import {
   aboutPreview,
   getWhatsAppHref,
@@ -18,6 +16,13 @@ import {
 } from "@/lib/site-data";
 import { Users, Leaf, Briefcase, Award } from "lucide-react";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { getAdminContent } from "@/lib/get-site-content";
+
+export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const HOME_DEFAULTS = {
   eyebrow: "Premium Export Quality",
@@ -29,21 +34,11 @@ const HOME_DEFAULTS = {
   origin: "Kerala, India",
 };
 
-export default function Home() {
+export default async function Home() {
   const whatsappHref = getWhatsAppHref();
-  const [activeSlide, setActiveSlide] = useState(0);
-  const [hero, setHero] = useState(HOME_DEFAULTS);
-
-  useEffect(() => {
-    fetch("/api/site-content")
-      .then((r) => r.json())
-      .then((data) => {
-        if (data?.heroes?.home) {
-          setHero({ ...HOME_DEFAULTS, ...data.heroes.home });
-        }
-      })
-      .catch(() => {});
-  }, []);
+  const adminContent = await getAdminContent();
+  const heroAdmin = (adminContent?.heroes as Record<string, Record<string, string>> | undefined)?.home;
+  const hero = { ...HOME_DEFAULTS, ...heroAdmin };
 
   const slides = [
     {
@@ -60,22 +55,15 @@ export default function Home() {
     }
   ];
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveSlide((prev) => (prev === 0 ? 1 : 0));
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
-
   return (
-    <main className="min-h-screen bg-white text-green-950 selection:bg-green-900 selection:text-white">
+    <main className="min-h-screen bg-white text-green-950 selection:bg-green-900 selection:text-white animate-in fade-in duration-500">
       <SiteHeader />
 
       {/* Hero — client-approved cream/olive/Playfair design */}
-      <section className="w-full bg-[#faf8f3] pt-24 lg:pt-28 px-4 sm:px-6 pb-0">
+      <section className="w-full bg-[#faf8f3] pt-24 lg:pt-32 pb-16 px-4 sm:px-6">
         <h1 className="sr-only">Muzari Exports: Premium Agricultural Produce Exporter from India</h1>
-        <div className="mx-auto max-w-[860px] overflow-hidden rounded-[20px] border border-[#e4dfd5] bg-[#faf8f3]">
-          <div className="flex flex-col items-center px-8 py-16 text-center sm:px-16 sm:py-20">
+        <div className="mx-auto max-w-[860px]">
+          <div className="flex flex-col items-center px-4 py-0 text-center sm:px-8">
 
             {/* Eyebrow */}
             <div className="mb-8 flex items-center gap-3">
@@ -110,7 +98,7 @@ export default function Home() {
               </Link>
               <Link
                 href="/products"
-                className="font-sans text-[13px] text-[#7a6b4f] underline underline-offset-4 transition-colors hover:text-[#1a1a14]"
+                className="border border-[#1a1a14] px-9 py-4 font-sans text-[12px] font-medium uppercase tracking-[1.5px] text-[#1a1a14] transition-all hover:bg-[#1a1a14] hover:text-[#faf8f3] active:scale-95"
               >
                 {hero.ctaSecondary}
               </Link>
@@ -119,7 +107,7 @@ export default function Home() {
             {/* Stats */}
             <div className="flex w-full max-w-[500px]" style={{ gap: "2px" }}>
               {[
-                { num: "95+", lbl: "Years Legacy" },
+                { num: "35+", lbl: "Years Legacy" },
                 { num: "20+", lbl: "Countries" },
                 { num: "100%", lbl: "Farm Direct" },
               ].map((stat, i) => (
@@ -255,74 +243,7 @@ export default function Home() {
 
           <div className="mx-auto max-w-4xl">
             <ScrollReveal>
-              <div className="relative overflow-hidden rounded-[2.5rem] bg-green-950 p-12 md:p-20 shadow-2xl shadow-green-950/20 text-white min-h-[380px] flex flex-col justify-between">
-                
-                {/* Visual grid overlay for premium architectural feel */}
-                <div className="absolute inset-0 pointer-events-none opacity-5">
-                  <div className="absolute left-1/2 top-0 h-full w-px bg-white" />
-                  <div className="absolute left-0 top-1/2 h-px w-full bg-white" />
-                </div>
-                
-                {/* Quotes background mark */}
-                <div className="absolute -left-4 top-4 pointer-events-none select-none text-[20rem] font-heritage text-[#82E076]/5 leading-none">“</div>
-                <div className="absolute -right-4 bottom-4 pointer-events-none select-none text-[20rem] font-heritage text-[#82E076]/5 leading-none">”</div>
-
-                <div className="relative z-10 flex-1 flex flex-col justify-center">
-                  <div className="relative h-[220px] sm:h-[180px]">
-                    {slides.map((slide, index) => (
-                      <div
-                        key={index}
-                        className={cn(
-                          "absolute inset-0 flex flex-col items-center justify-center transition-all duration-700 ease-in-out",
-                          index === activeSlide
-                            ? "flex opacity-100 translate-y-0 scale-100 pointer-events-auto z-10"
-                            : "hidden opacity-0 translate-y-8 scale-95 pointer-events-none z-0"
-                        )}
-                      >
-                        <span className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-4 py-1.5 text-[9px] font-black uppercase tracking-[0.3em] !text-[#82E076]">
-                          <span>{slide.icon}</span>
-                          <span>{slide.badge}</span>
-                        </span>
-                        <p className="mb-4 font-label text-[10px] font-black uppercase tracking-[0.4em] !text-white/40">
-                          {slide.title}
-                        </p>
-                        <h3 className="font-heritage text-2xl font-bold leading-snug !text-white sm:text-3xl md:text-4xl italic tracking-tight text-center max-w-2xl px-2">
-                          &ldquo;{slide.text}&rdquo;
-                        </h3>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Indicators at the bottom */}
-                <div className="relative z-10 mt-12 flex justify-center gap-3">
-                  {slides.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setActiveSlide(index)}
-                      className={cn(
-                        "h-2 rounded-full transition-all duration-500",
-                        index === activeSlide
-                          ? "w-8 bg-[#82E076]"
-                          : "w-2 bg-white/20 hover:bg-white/40"
-                      )}
-                      aria-label={`Go to slide ${index + 1}`}
-                    />
-                  ))}
-                </div>
-
-                {/* Progress bar line at the very bottom edge of the card */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/5">
-                  <div
-                    key={activeSlide}
-                    className="h-full bg-[#82E076] w-0"
-                    style={{
-                      animation: "progressLoad 5000ms linear forwards"
-                    }}
-                  />
-                </div>
-
-              </div>
+              <MissionVisionSlider slides={slides} />
             </ScrollReveal>
           </div>
         </div>
@@ -368,7 +289,7 @@ export default function Home() {
               Our Principles
             </Badge>
             <h2 className="font-heritage text-5xl font-bold leading-[1.1] md:text-7xl tracking-tight">
-              Setting the <span className="italic text-amber-400 font-light">Gold Standard</span><span style={{ display: 'inline-block', width: '12px' }}></span>in <br />
+              Setting the <span className="italic text-amber-400 font-light">Gold Standard</span>{" "}in <br />
               Agricultural Exports.
             </h2>
           </div>
@@ -398,14 +319,11 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Swipe Indicator Dots (Mobile Only) */}
-          <div className="mt-4 flex items-center justify-center gap-1.5 sm:hidden">
-            {whyChooseUs.map((_, i) => (
-              <div 
-                key={i} 
-                className="h-1 rounded-full bg-white/20 w-4 transition-all duration-300 first:bg-amber-400" 
-              />
-            ))}
+          {/* Mobile swipe hint */}
+          <div className="mt-6 flex items-center justify-center gap-2 sm:hidden">
+            <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/30">Swipe to explore</span>
+            <span className="text-white/30 text-xs">→</span>
+
           </div>
         </div>
       </section>
@@ -442,7 +360,7 @@ export default function Home() {
                 Message via WhatsApp
               </Link>
               <Link
-                href="mailto:muzariexports@muzari.in"
+                href="mailto:muzariexports@gmail.com"
                 className={cn(
                   buttonVariants({ variant: "outline", size: "lg" }),
                   "h-14 rounded-full border-2 border-green-200 px-10 text-base font-bold text-green-800 transition-all hover:border-green-400 hover:bg-green-50"

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import type { Product } from "@/lib/site-data";
 
 type ProductGridProps = {
@@ -27,9 +28,9 @@ export default function ProductGrid({
 
   return (
     <div className="grid gap-x-12 gap-y-32 md:grid-cols-2 lg:grid-cols-3">
-      {products.map((product) => (
+      {products.map((product, index) => (
+        <ScrollReveal key={product.name} delay={index * 0.1}>
         <div
-          key={product.name}
           className="group relative focus:outline-none"
           tabIndex={0}
         >
@@ -55,11 +56,11 @@ export default function ProductGrid({
               </p>
             </div>
 
-            <h3 className="mb-3 font-serif text-3xl font-medium tracking-tight text-green-950 transition-all duration-500 group-hover:text-green-700 group-focus-within:text-green-700">
+            <h3 className="mb-3 font-heading text-3xl font-semibold tracking-tight text-green-950 transition-all duration-500 group-hover:text-green-700 group-focus-within:text-green-700">
               {product.name}
             </h3>
 
-            <p className="mb-2 text-sm leading-relaxed text-green-800/60 line-clamp-2 italic font-serif">
+            <p className="mb-2 text-sm leading-relaxed text-green-800/60 line-clamp-2 font-sans">
               {product.summary}
             </p>
 
@@ -125,6 +126,7 @@ export default function ProductGrid({
             ) : null}
           </div>
         </div>
+        </ScrollReveal>
       ))}
     </div>
   );

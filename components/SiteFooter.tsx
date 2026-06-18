@@ -62,7 +62,7 @@ export default function SiteFooter() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 shrink-0 text-amber-400" />
-                <a href="mailto:muzariexports@muzari.in" className="transition-colors hover:text-amber-400">muzariexports@muzari.in</a>
+                <a href="mailto:muzariexports@gmail.com" className="transition-colors hover:text-amber-400">muzariexports@gmail.com</a>
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="mt-0.5 h-5 w-5 shrink-0 text-amber-400" />
@@ -90,8 +90,7 @@ export default function SiteFooter() {
         <div className="border-t border-green-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-green-100/40">
           <p>&copy; {new Date().getFullYear()} Muzari Farms & Exports. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link href="#" className="hover:text-amber-400">Privacy Policy</Link>
-            <Link href="#" className="hover:text-amber-400">Terms of Service</Link>
+            <Link href="/contact" className="hover:text-amber-400">Contact Us</Link>
           </div>
         </div>
       </div>

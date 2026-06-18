@@ -7,12 +7,12 @@ export default function WhatsAppFloat() {
   const whatsappHref = getWhatsAppHref();
 
   return (
-    <div className="fixed bottom-6 right-6 z-[60] md:hidden">
+    <div className="fixed bottom-24 right-6 z-[60] md:hidden">
       <Link
         href={whatsappHref}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-2xl shadow-green-500/40 transition-transform hover:scale-110 active:scale-95 ring-4 ring-white"
+        className="flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-2xl shadow-green-500/40 transition-transform hover:scale-110 active:scale-95 ring-4 ring-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-green-300 focus-visible:ring-offset-2"
         aria-label="Contact on WhatsApp"
       >
         <svg
