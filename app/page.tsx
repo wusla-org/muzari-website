@@ -92,13 +92,13 @@ export default async function Home() {
             <div className="mb-14 flex flex-col items-center gap-4 sm:flex-row">
               <Link
                 href={whatsappHref}
-                className="bg-[#1a1a14] px-9 py-4 font-sans text-[12px] font-medium uppercase tracking-[1.5px] text-[#faf8f3] transition-all hover:bg-[#2d2d22] active:scale-95"
+                className="bg-[#5a8a3c] px-9 py-4 font-sans text-[12px] font-medium uppercase tracking-[1.5px] text-white transition-all hover:bg-[#4a7530] active:scale-95"
               >
                 {hero.ctaPrimary}
               </Link>
               <Link
                 href="/products"
-                className="border border-[#1a1a14] px-9 py-4 font-sans text-[12px] font-medium uppercase tracking-[1.5px] text-[#1a1a14] transition-all hover:bg-[#1a1a14] hover:text-[#faf8f3] active:scale-95"
+                className="border border-[#5a8a3c] px-9 py-4 font-sans text-[12px] font-medium uppercase tracking-[1.5px] text-[#5a8a3c] transition-all hover:bg-[#5a8a3c] hover:text-white active:scale-95"
               >
                 {hero.ctaSecondary}
               </Link>
