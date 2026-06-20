@@ -95,17 +95,17 @@ export default function ProductsAdminPage() {
   const p = products[activeIdx];
 
   return (
-    <AdminShell title="Products" onSave={save} saving={saving} saved={saved}>
+    <AdminShell title="Products" onSave={save} saving={saving} saved={saved} previewPath="/products">
       {/* Product tabs */}
-      <div className="mb-8 flex gap-2 border-b border-[#e4dfd5]">
+      <div className="mb-8 flex gap-2 border-b border-black/[0.08]">
         {products.map((prod, i) => (
           <button
             key={i}
             onClick={() => setActiveIdx(i)}
-            className={`pb-3 font-sans text-[11px] uppercase tracking-[1.5px] transition-colors ${
+            className={`pb-3 font-[family-name:var(--font-jakarta)] text-[11px] uppercase tracking-[1.5px] transition-colors ${
               activeIdx === i
-                ? "border-b-2 border-[#5a8a3c] text-[#1a1a14]"
-                : "text-[#7a6b4f] hover:text-[#1a1a14]"
+                ? "border-b-2 border-[#a8721a] text-[#1c3d1c]"
+                : "text-[#6a7c65] hover:text-[#2a342a]"
             }`}
           >
             {prod.name}
@@ -123,7 +123,7 @@ export default function ProductsAdminPage() {
         <SectionCard title="Product Image">
           <div className="flex items-start gap-6">
             {p.image && (
-              <div className="relative h-28 w-28 shrink-0 overflow-hidden border border-[#e4dfd5]">
+              <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded border border-black/[0.08]">
                 <Image
                   src={p.image.startsWith("http") ? p.image : p.image}
                   alt={p.imageAlt}
@@ -141,7 +141,7 @@ export default function ProductsAdminPage() {
               <button
                 onClick={() => fileRef.current?.click()}
                 disabled={uploading}
-                className="border border-[#5a8a3c] px-5 py-2.5 font-sans text-[11px] uppercase tracking-[1.5px] text-[#5a8a3c] transition-all hover:bg-[#5a8a3c] hover:text-white disabled:opacity-50"
+                className="rounded border border-[#1c3d1c] px-5 py-2.5 font-[family-name:var(--font-jakarta)] text-[11px] uppercase tracking-[1.5px] text-[#1c3d1c] transition-all hover:bg-[#1c3d1c] hover:text-[#e8f4e0] disabled:opacity-50"
               >
                 {uploading ? "Uploading..." : "Upload New Image"}
               </button>

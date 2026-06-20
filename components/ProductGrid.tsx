@@ -7,16 +7,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import type { Product } from "@/lib/site-data";
+import { toSlug } from "@/lib/product-slug";
 
 type ProductGridProps = {
   products: Product[];
-  showInquiryLinks?: boolean;
 };
 
-export default function ProductGrid({
-  products,
-  showInquiryLinks = false,
-}: ProductGridProps) {
+export default function ProductGrid({ products }: ProductGridProps) {
   const [expandedProducts, setExpandedProducts] = useState<Record<string, boolean>>({});
 
   const toggleExpand = (name: string) => {
@@ -30,9 +27,9 @@ export default function ProductGrid({
     <div className="grid gap-x-12 gap-y-32 md:grid-cols-2 lg:grid-cols-3">
       {products.map((product, index) => (
         <ScrollReveal key={product.name} delay={index * 0.1}>
-        <div
-          className="group relative focus:outline-none"
-          tabIndex={0}
+        <Link
+          href={`/products/${toSlug(product.name)}`}
+          className="group relative block focus:outline-none"
         >
           {/* Main Image Container */}
           <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-green-50/50 transition-all duration-1000 group-hover:shadow-2xl group-hover:shadow-green-950/20 group-focus-within:shadow-2xl group-focus-within:shadow-green-950/20">
@@ -113,19 +110,14 @@ export default function ProductGrid({
               </div>
             </div>
 
-            {showInquiryLinks ? (
-              <div className="mt-6 pt-6 border-t border-green-50">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-green-900 transition-all hover:gap-4 hover:text-amber-600"
-                >
-                  Export Inquiry
-                  <span aria-hidden="true" className="text-amber-500">→</span>
-                </Link>
-              </div>
-            ) : null}
+            <div className="mt-6 pt-6 border-t border-green-50">
+              <span className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-green-900 transition-all group-hover:gap-4 group-hover:text-amber-600">
+                View Details
+                <span aria-hidden="true" className="text-amber-500">→</span>
+              </span>
+            </div>
           </div>
-        </div>
+        </Link>
         </ScrollReveal>
       ))}
     </div>

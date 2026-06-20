@@ -63,7 +63,7 @@ export default function AboutAdminPage() {
   }
 
   return (
-    <AdminShell title="About & Mission" onSave={save} saving={saving} saved={saved}>
+    <AdminShell title="About & Mission" onSave={save} saving={saving} saved={saved} previewPath="/about">
       <div className="space-y-6">
         <SectionCard title="Mission & Vision">
           <Field label="Mission Statement">
@@ -82,7 +82,7 @@ export default function AboutAdminPage() {
 
         <SectionCard title="Story Sections">
           {sections.map((s, i) => (
-            <div key={i} className="space-y-3 border-b border-[#e4dfd5] pb-4 last:border-0 last:pb-0">
+            <div key={i} className="space-y-3 border-b border-black/[0.08] pb-4 last:border-0 last:pb-0">
               <Field label={`Section ${i + 1} — Heading`}>
                 <input type="text" value={s.heading} onChange={(e) => updateSection(i, "heading", e.target.value)} className={inputCls} />
               </Field>

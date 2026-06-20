@@ -51,7 +51,7 @@ export default function ContactAdminPage() {
   }
 
   return (
-    <AdminShell title="Contact Info" onSave={save} saving={saving} saved={saved}>
+    <AdminShell title="Contact Info" onSave={save} saving={saving} saved={saved} previewPath="/contact">
       <div className="space-y-6">
         <SectionCard title="Email & Address">
           <Field label="Email Address">

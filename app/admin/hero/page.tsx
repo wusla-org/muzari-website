@@ -98,17 +98,17 @@ export default function HeroAdminPage() {
   ];
 
   return (
-    <AdminShell title="Hero Sections" onSave={save} saving={saving} saved={saved}>
+    <AdminShell title="Hero Sections" onSave={save} saving={saving} saved={saved} previewPath="/">
       {/* Page tabs */}
-      <div className="mb-8 flex gap-2 border-b border-[#e4dfd5]">
+      <div className="mb-8 flex gap-2 border-b border-black/[0.08]">
         {PAGE_KEYS.map((key) => (
           <button
             key={key}
             onClick={() => setActiveTab(key)}
-            className={`pb-3 font-sans text-[11px] uppercase tracking-[1.5px] transition-colors ${
+            className={`pb-3 font-[family-name:var(--font-jakarta)] text-[11px] uppercase tracking-[1.5px] transition-colors ${
               activeTab === key
-                ? "border-b-2 border-[#5a8a3c] text-[#1a1a14]"
-                : "text-[#7a6b4f] hover:text-[#1a1a14]"
+                ? "border-b-2 border-[#a8721a] text-[#1c3d1c]"
+                : "text-[#6a7c65] hover:text-[#2a342a]"
             }`}
           >
             {PAGE_LABELS[key]}
@@ -142,7 +142,7 @@ export default function HeroAdminPage() {
         })}
       </SectionCard>
 
-      <p className="mt-6 font-sans text-xs text-[#b0a898]">
+      <p className="mt-6 text-xs text-[#9aab95]">
         Changes will be reflected on the website after clicking &ldquo;Save Changes&rdquo; above.
       </p>
     </AdminShell>

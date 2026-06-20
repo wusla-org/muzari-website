@@ -4,8 +4,10 @@ import ProductGrid from "@/components/ProductGrid";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { products } from "@/lib/site-data";
+import type { Product } from "@/lib/site-data";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { getAdminContent } from "@/lib/get-site-content";
+import { getSanityProducts } from "@/lib/sanity-queries";
 
 export const dynamic = "force-dynamic";
 
@@ -21,7 +23,11 @@ const BASE_URL = "https://muzari.in";
 // const BASE_URL = "https://www.muzariexports.com";
 
 export default async function ProductsPage() {
-  const adminContent = await getAdminContent();
+  const [adminContent, sanityProducts] = await Promise.all([
+    getAdminContent(),
+    getSanityProducts(),
+  ]);
+  const productList: Product[] = sanityProducts?.length ? sanityProducts : products;
   const heroAdmin = (adminContent?.heroes as Record<string, Record<string, string>> | undefined)?.products ?? {};
   const eyebrow = heroAdmin.eyebrow ?? "Our Catalog";
   const headline = heroAdmin.headline ?? "Export-ready produce";
@@ -32,7 +38,7 @@ export default async function ProductsPage() {
   const productListJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    itemListElement: products.map((product, index) => ({
+    itemListElement: productList.map((product, index) => ({
       "@type": "ListItem",
       position: index + 1,
       item: {
@@ -114,7 +120,7 @@ export default async function ProductsPage() {
       <section className="bg-white py-32">
         <div className="mx-auto w-[min(1280px,calc(100%-2rem))] px-4">
           <ScrollReveal delay={0.2}>
-            <ProductGrid products={products} showInquiryLinks />
+            <ProductGrid products={productList} />
           </ScrollReveal>
 
           <ScrollReveal delay={0.4}>
